@@ -10,12 +10,13 @@ import { ThemePalette } from '@angular/material/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { map, shareReplay } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-main-nav',
   standalone: true,
-  imports: [BarbersComponent, BoxesComponent, RouterOutlet, MatSidenavModule, MatToolbarModule, MatListModule, MatIconModule, RouterLink],
+  imports: [BarbersComponent, BoxesComponent, RouterOutlet, MatSidenavModule, MatToolbarModule, MatListModule, MatIconModule, RouterLink, CommonModule],
   templateUrl: './main-nav.component.html',
   styleUrl: './main-nav.component.scss'
 })
@@ -37,5 +38,6 @@ export class MainNavComponent {
   }
 
   public home():void{
+    
   }
 }
