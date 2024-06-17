@@ -1,1 +1,52 @@
-<router-outlet></router-outlet>
+<!-- <router-outlet></router-outlet> -->
+<!-- <router-outlet></router-outlet> -->
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #drawer class="sidenav"  fixedInViewport
+        [attr.role]="(isHandset$) ? 'dialog' : 'navigation'"
+        [mode]="(isHandset$) ? 'over' : 'side'"
+        [opened]="(isHandset$) ? false : true">
+      <mat-toolbar style="color: white;background: #012D74;" [routerLink]="['/'] ">
+        <div class="img bg-wrap text-center py-4" style="background-image: url(#);">
+          <div class="user-logo">
+              <!-- <div class="img" style="background-image: url(assets/Images/Logo3.png);"></div> -->
+              <h3>Test Vocacional</h3>
+          </div>
+        </div>
+      </mat-toolbar>
+      <mat-nav-list>
+        <a mat-list-item  routerLink="/Dashboard/Test" >
+          Realizar Test
+        </a>
+  
+        <a mat-list-item  routerLink="/Dashboard/Results" >
+          Resultados
+        </a>
+  
+        <a mat-list-item  routerLink="/Dashboard/Careers" >
+          Carreras
+        </a>
+  
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <mat-toolbar color="primary" style="color: white;background: #012D74;">
+        <button
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="drawer.toggle()"
+          *ngIf="isHandset$ | async">
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+  
+        <!-- <span>Adrian Condori Flores</span> -->
+  
+        <button mat-icon-button class="example-icon favorite-icon" aria-label="example icon-button" (click)="home();" style="right: 30px; position: absolute;">
+          <mat-icon>logout</mat-icon>
+        </button>
+      </mat-toolbar>
+      <!-- Add Content Here -->
+      <ng-content></ng-content>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  

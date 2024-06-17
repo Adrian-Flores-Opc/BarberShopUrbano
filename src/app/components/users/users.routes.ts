@@ -7,6 +7,7 @@ import { BoxesComponent } from "./dashboard/boxes/boxes.component";
 export const USERS_ROUTES: Routes = [
     {
         path: 'Dashboard', component: MainNavComponent, children: [
+            { path: 'Main', component: MainNavComponent },
             { path: 'Boxes', component: BoxesComponent },
             { path: 'Barbers', component: BarbersComponent },
         ]
