@@ -1,3 +1,14 @@
 .example-spacer {
     flex: 1 1 auto;
 }
+mat-toolbar{
+    position: fixed;
+    z-index: 9999;
+    width: 100%;
+    background-color: black;
+    color: white;
+    height: 80px;
+}
+button{
+    color: white !important;
+}
