@@ -1,4 +1,4 @@
-img{
+.img-seconds{
     width: 100%;
     height: 850px;
 }
@@ -15,6 +15,7 @@ img{
     background-repeat: no-repeat;
     background-size: cover;
     color: white;
+    padding: 25px;
 }
 mat-card{
     background: #000000ab;
@@ -23,4 +24,21 @@ mat-card{
     margin: 15px;
     border-radius: 30px;
     text-align: center;
+}
+.img-third{
+    border: 1px solid black;
+    border-radius: 50%;
+    height: 400px;
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 15px;
+}
+.img-third-img{
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    border: 1px solid black;
+    border-radius: 50%;
+    padding: 10px;
 }
