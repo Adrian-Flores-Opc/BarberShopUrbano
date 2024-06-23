@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-bookings',
   standalone: true,
-  imports: [],
+  imports: [MatCardModule],
   templateUrl: './bookings.component.html',
   styleUrl: './bookings.component.scss'
 })

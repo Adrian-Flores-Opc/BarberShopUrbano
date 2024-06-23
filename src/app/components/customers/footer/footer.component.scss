@@ -5,3 +5,34 @@ footer{
     background: black;
     color: white;
 }
+.mat-card-contents{
+    background: black;
+    color: white;
+    border: none;
+}
+.mat-card-headers-contents{
+    padding: 0;
+    color: white;
+}
+.mat-card-subtitle{
+    color: white;
+    font-weight: 300;
+    font-size: smaller;
+}
+.container-icons-avatar{
+    background: #616161;
+    text-align: center;
+    font-size: 55px;
+}
+.mat-card-title{
+    font-weight: 400;
+    font-size: large;
+    letter-spacing: 1px;
+}
+.mat-card-footer{
+    display: flex;
+    text-align: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+}

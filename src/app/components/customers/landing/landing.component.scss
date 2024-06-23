@@ -1,6 +1,6 @@
 .img-seconds{
     width: 100%;
-    height: 850px;
+    height: 1050px;
 }
 .container-second{
     background-image: url('../../../../assets/Images/fondo_dinamico_estrella.jpeg');
@@ -17,9 +17,9 @@
     color: white;
     padding: 25px;
 }
-mat-card{
-    background: #000000ab;
-    border: 1px solid white;
+.mat-card-thrid{
+    background: rgb(0 0 0 / 68%);
+    border: 1px solid #757575;
     padding: 10px;
     margin: 15px;
     border-radius: 30px;
@@ -41,4 +41,69 @@ mat-card{
     border: 1px solid black;
     border-radius: 50%;
     padding: 10px;
+}
+.container-room{
+    background-image: url('../../../../assets/Images/fondo_dinamico_estrella.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;   
+    background-color: #79797940;
+    color: white;
+    padding: 30px;
+}
+.title-seconds{
+    text-align: center;
+    font-weight: bold;
+    font-size: 50px;
+    letter-spacing: 10px;
+}
+.container-title-seconds{
+    padding: 80px;
+}
+.container-content-seconds{
+    padding: 0px 80px 0px 80px;
+}
+.mat-card-seconds{
+    background: border-box;
+    border-radius: 30px;
+    margin: 0px 65px 0 65px;
+    font-weight: 400;
+    font-size: 25px;
+    text-align: justify;
+    box-shadow: 1px 1px 5px 2px #0000001f;
+}
+.title-third{
+    text-align: right;
+    font-weight: bold;
+    font-size: 80px;
+    letter-spacing: 10px;
+}
+.mat-card-thrid-title{
+    font-weight: 500;
+    font-size: 30px;
+    letter-spacing: 1px;
+}
+.title-room{
+    text-align: center;
+    font-weight: bold;
+    font-size: 80px;
+    letter-spacing: 10px;
+    color: black;
+}
+.mat-card-room{
+    background: border-box;
+    border-radius: 30px;
+    font-weight: 400;
+    font-size: 25px;
+    text-align: justify;
+    box-shadow: 1px 1px 5px 2px #0000001f;
+    color: black;
+}
+.container-content-room{
+    margin-top: 50px;
+    margin-bottom: auto;
+    padding: 0px 80px 0px 80px;
+}
+.mat-card-actions{
+    margin-left: auto;
+    margin-right: auto;
 }
