@@ -1,16 +1,15 @@
-<section>
+<section class="section-main-bookings">
     <div class="container">
         <div class="row">
-            <mat-card class="example-card" appearance="outlined">
+            <mat-card *ngFor="let barbers of _getAvailableBarbersModels.user" class="example-card" appearance="outlined">
                 <mat-card-header>
                     <div mat-card-avatar class="example-header-image">
-                        <img src="" alt="">
+                        <img src={{barbers.barber.image}} alt="">
                     </div>
-                    <mat-card-title>Adrian Condori Flores</mat-card-title>
-                    <mat-card-subtitle>Damian</mat-card-subtitle>
+                    <mat-card-title>{{barbers.barber.names + ' ' + barbers.barber.lastName + ' ' + barbers.barber.motherLastName}}</mat-card-title>
+                    <mat-card-subtitle>{{barbers.barber.alias}}</mat-card-subtitle>
                 </mat-card-header>
             </mat-card>
         </div>
     </div>
 </section>
-

@@ -1,0 +1,11 @@
+<h2 mat-dialog-title>Ingrese su número de celular.</h2>
+<mat-dialog-content>
+  <mat-form-field>
+    <mat-label>Número Celular</mat-label>
+    <input matInput [(ngModel)]="cellphone" />
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancelar</button>
+  <button mat-button [mat-dialog-close]="cellphone()" (click)="this.verificationCellphone(cellphone())" cdkFocusInitial>Verificar</button>
+</mat-dialog-actions>
