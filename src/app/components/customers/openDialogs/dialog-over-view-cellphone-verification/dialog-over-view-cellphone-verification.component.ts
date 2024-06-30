@@ -9,6 +9,7 @@ import { cellphoneVerification } from '../../../../models/viewbookings/barbers-a
 import { BarbersAdministrationService } from '../../../../core/barbers-administration.service'; 
 import { getAvailableBarbersModels } from '../../../../models/viewbookings/barbers-administration.model';
 
+import { MatIconModule } from '@angular/material/icon';
 
 export interface DialogData {
   animal: string;
@@ -18,7 +19,7 @@ export interface DialogData {
 @Component({
   selector: 'app-dialog-over-view-cellphone-verification',
   standalone: true,
-  imports: [ MatFormFieldModule, MatInputModule, FormsModule, MatButtonModule, MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose ],
+  imports: [ MatFormFieldModule, MatInputModule, FormsModule, MatButtonModule, MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose, MatIconModule ],
   templateUrl: './dialog-over-view-cellphone-verification.component.html',
   styleUrl: './dialog-over-view-cellphone-verification.component.scss'
 })
