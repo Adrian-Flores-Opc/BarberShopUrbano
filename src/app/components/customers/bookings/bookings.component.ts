@@ -49,7 +49,10 @@ export class BookingsComponent {
       if (result !== undefined) {
         this.cellphone.set(result);
       }
-      if (result.event == )
+      if (result.event == "OK"){
+        
+      }
+
     });
   }
 }
