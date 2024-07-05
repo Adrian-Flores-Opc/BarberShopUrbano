@@ -8,7 +8,7 @@ export class InformationBarber {
     public barber! : Barber;
 }
 export class Barber {
-    public id! : number ;
+    public id! : number;
     public state! : string;
     public alias! : string;
     public lastName! : string;
