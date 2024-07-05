@@ -30,8 +30,7 @@ import {MatInputModule} from '@angular/material/input';
 })
 export class BarbersComponent {
   public barberResponse!:getAvailableBarbersModels;
-  readonly lastName = signal('');
-  readonly name = model('');
+  public barber!:barbersModels;  
   readonly dialog = inject(MatDialog);
   constructor(private barbersService:BarbersAdministrationService){
   }
@@ -46,15 +45,21 @@ export class BarbersComponent {
   }  
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
-      data: {name: this.name(), lastName: this.lastName()},
+      data: {barber: this.barber},
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       if (result !== undefined) {
-        console.log(result);
-        // this.lastName.set(result);
+        console.log(result.data);
+        console.log(JSON.stringify(result.data));
+        this.createBarber(this.barber);
       }
     });
   }
+  public createBarber(_request:barbersModels): void{
+    this.barbersService.sendCreateBarber(_request).subscribe({next:(response)=>{
+      this.barberResponse = response;
+    }})
+  } 
 }

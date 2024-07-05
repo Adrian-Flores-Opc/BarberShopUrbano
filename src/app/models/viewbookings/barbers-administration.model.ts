@@ -21,7 +21,7 @@ export class containsBarbers{
     public barber !: barbersModels;
 }
 export class barbersModels{
-    public id !: number;
+    public id! : number ;
     public state !: string;
     public alias !: string;
     public lastName !: string;

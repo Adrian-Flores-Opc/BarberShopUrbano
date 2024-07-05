@@ -32,13 +32,32 @@ import { barbersModels } from '../../../../../models/viewbookings/barbers-admini
 export class DialogOverviewExampleDialog {  
   public barber!:barbersModels;
   readonly dialogRef = inject(MatDialogRef<DialogOverviewExampleDialog>);
-  readonly data = inject<barbersModels>(MAT_DIALOG_DATA);
-  readonly lastname = model(this.data.lastName);
+;
   
   ngOnInit(): void{
     this.barber = new barbersModels();
   }
   onNoClick(): void {
-    this.dialogRef.close({event: 'Ok', data:barbersModels});
+    this.dialogRef.close();
+  }
+  ClickOk(): void {
+    this.dialogRef.close({event: 'Ok', data:this.barber});
+  }
+  handleFileSelect(event: any): void {
+    const file = event.target.files[0];
+    if (file) {
+      this.convertToBase64(file);
+    }
+  }
+
+  convertToBase64(file: File): void {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const base64String = reader.result as string;
+      console.log('Base64:', base64String);
+      this.barber.image = base64String;
+      // Aquí puedes asignar el base64 a una propiedad de tu modelo si lo necesitas
+    };
+    reader.readAsDataURL(file);
   }
 }
