@@ -1,22 +1,25 @@
-<mat-card class="example-card" appearance="outlined" *ngFor="let barbers of barberResponse.user">
-    <mat-card-header>
-      <div mat-card-avatar>
-        <img src={{barbers.barber.image}}>
-      </div>
-      <mat-card-title> {{barbers.barber.lastName}} </mat-card-title>
-      <mat-card-subtitle>{{barbers.barber.alias}}</mat-card-subtitle>      
-    </mat-card-header>
-    <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
-    <!-- <mat-card-content>
-      <p>
-        The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-        A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-        bred for hunting.
-      </p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-button>LIKE</button>
-      <button mat-button>SHARE</button>
-    </mat-card-actions> -->
-  </mat-card>
-  
+<div class="d-flex justify-content-center">
+    <mat-card class="example-card" appearance="outlined" *ngFor="let barbers of barberResponse.user">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image" style="background-image: url({{barbers.barber.image}});">
+          </div>
+          <mat-card-title> {{barbers.barber.lastName + ' ' + barbers.barber.motherLastName + ' ' + barbers.barber.names}}  </mat-card-title>
+          <mat-card-subtitle>{{barbers.barber.alias}}</mat-card-subtitle>      
+        </mat-card-header>
+        <br>
+    </mat-card>      
+</div>
+<br>
+<section>
+  <div class="example-button-row">
+    <div class="example-flex-container">
+      <div class="example-button-container">
+        <button mat-fab (click)="openDialog()">
+          <mat-icon>add_circle</mat-icon>
+        </button>
+      </div>      
+    </div>
+  </div>
+</section>
+
+    
