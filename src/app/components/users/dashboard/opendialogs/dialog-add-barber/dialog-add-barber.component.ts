@@ -12,7 +12,7 @@ import {
 } from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
-import { barbersModels } from '../../../../../models/viewbookings/barbers-administration.model';
+import { barberModel } from '../../../../../models/viewbookings/barbers-administration.model';
 
 @Component({
   selector: 'dialog-add-barber',
@@ -30,12 +30,12 @@ import { barbersModels } from '../../../../../models/viewbookings/barbers-admini
   ],
 })
 export class DialogOverviewExampleDialog {  
-  public barber!:barbersModels;
+  public barber!:barberModel;
   readonly dialogRef = inject(MatDialogRef<DialogOverviewExampleDialog>);
 ;
   
   ngOnInit(): void{
-    this.barber = new barbersModels();
+    this.barber = new barberModel();
   }
   onNoClick(): void {
     this.dialogRef.close();
@@ -55,8 +55,9 @@ export class DialogOverviewExampleDialog {
     reader.onload = () => {
       const base64String = reader.result as string;
       console.log('Base64:', base64String);
-      this.barber.image = base64String;
-      // Aquí puedes asignar el base64 a una propiedad de tu modelo si lo necesitas
+      const base64Fragment = base64String.replace(/^data:image\/(png|jpeg|jpg);base64,/, '');
+      console.log('Fragmento base64:', base64Fragment);
+      this.barber.image = base64Fragment;
     };
     reader.readAsDataURL(file);
   }

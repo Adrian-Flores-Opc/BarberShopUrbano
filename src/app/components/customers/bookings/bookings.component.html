@@ -1,13 +1,13 @@
 <section class="section-main-bookings">
     <div class="container">
         <div class="row">
-            <mat-card *ngFor="let barbers of _getAvailableBarbersModels.user" class="example-card" appearance="outlined">
+            <mat-card *ngFor="let barbers of _getAvailableBarbersModels.barbers" class="example-card" appearance="outlined">
                 <mat-card-header>
                     <div mat-card-avatar class="example-header-image">
-                        <img src={{barbers.barber.image}} alt="">
+                        <img src={{barbers.image}} alt="">
                     </div>
-                    <mat-card-title>{{barbers.barber.names + ' ' + barbers.barber.lastName + ' ' + barbers.barber.motherLastName}}</mat-card-title>
-                    <mat-card-subtitle>{{barbers.barber.alias}}</mat-card-subtitle>
+                    <mat-card-title>{{barbers.names + ' ' + barbers.lastName + ' ' + barbers.motherLastName}}</mat-card-title>
+                    <mat-card-subtitle>{{barbers.alias}}</mat-card-subtitle>
                 </mat-card-header>
             </mat-card>
         </div>

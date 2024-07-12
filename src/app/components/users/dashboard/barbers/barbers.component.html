@@ -1,25 +1,52 @@
-<div class="d-flex justify-content-center">
-    <mat-card class="example-card" appearance="outlined" *ngFor="let barbers of barberResponse.user">
-        <mat-card-header>
-          <div mat-card-avatar class="example-header-image" style="background-image: url({{barbers.barber.image}});">
-          </div>
-          <mat-card-title> {{barbers.barber.lastName + ' ' + barbers.barber.motherLastName + ' ' + barbers.barber.names}}  </mat-card-title>
-          <mat-card-subtitle>{{barbers.barber.alias}}</mat-card-subtitle>      
-        </mat-card-header>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="justify-content-center">
+        <figure class="text-center">
+          <blockquote class="blockquote" style="padding: 10px;">
+            <p>LIST OF BARBERS</p>
+            <!-- <h2>LIST OF BARBERS</h2> -->
+          </blockquote>          
+        </figure>        
         <br>
-    </mat-card>      
-</div>
-<br>
-<section>
-  <div class="example-button-row">
-    <div class="example-flex-container">
-      <div class="example-button-container">
-        <button mat-fab (click)="openDialog()">
-          <mat-icon>add_circle</mat-icon>
-        </button>
-      </div>      
+        <mat-form-field>
+          <mat-label>Filter</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Ex. LastName" #input>
+        </mat-form-field>
+            <button mat-flat-button (click)="openDialog()">
+              <i class="bi bi-plus-circle"></i>
+              AGREGAR
+            </button>
+            <!-- <button class="btn btn-success btn-circle btn-circle-xl m-1"><i class="fa fa-check"></i></button>         -->
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">     
+          <ng-container matColumnDef="lastname">
+            <th mat-header-cell *matHeaderCellDef> LastName </th>
+            <td mat-cell *matCellDef="let Element"> {{Element.lastName}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="motherlastname">
+            <th mat-header-cell *matHeaderCellDef> MotherLastName </th>
+            <td mat-cell *matCellDef="let Element"> {{Element.motherLastName}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="names">
+            <th mat-header-cell *matHeaderCellDef> Names </th>
+            <td mat-cell *matCellDef="let Element"> {{Element.names}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="alias">
+            <th mat-header-cell *matHeaderCellDef> Alias </th>
+            <td mat-cell *matCellDef="let Element"> {{Element.alias}} </td>
+          </ng-container>        
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr
+              mat-row
+              (click)="handleRowClick(row)"
+              [class.demo-row-is-clicked]="clickedRows.has(row)"
+              *matRowDef="let row; columns: displayedColumns;"
+          ></tr>  
+        </table>        
+      </div>
     </div>
   </div>
-</section>
-
-    
+</div>

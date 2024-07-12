@@ -8,17 +8,12 @@ export class cellphoneVerification{
 //#endregion
 
 //#region  Models Get Available Barbers
-
 export class genericResponse{
     public respCode !: string;
     public detailMessage !: string;
 }
-
 export class getAvailableBarbersModels extends genericResponse{
-    public user !: containsBarbers[];
-}
-export class containsBarbers{
-    public barber !: barbersModels;
+    public barbers !: barbersModels[];
 }
 export class barbersModels{
     public id! : number ;
@@ -29,5 +24,18 @@ export class barbersModels{
     public names !: string;
     public image !: string;
 }
+//#endregion
+//#region  Models Get Available Barbers
+export class barberCreateRequest{
+    public trace !: string;
+    public barber !: barberModel;
+}
 
+export class barberModel{
+    public alias !: string;
+    public lastName !: string;
+    public motherLastName !: string;
+    public names !: string;
+    public image !: string;
+}
 //#endregion
