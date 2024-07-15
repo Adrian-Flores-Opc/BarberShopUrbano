@@ -1,4 +1,5 @@
-import {Component} from '@angular/core';
+import {Component,inject, model, signal} from '@angular/core';
+import { Router } from '@angular/router';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -12,7 +13,7 @@ import { BarbersAdministrationService } from '../../../../core/barbers-administr
 import { barbersModels, genericResponse, getAvailableBarbersModels } from '../../../../models/viewbookings/barbers-administration.model'; 
 import { barberModel } from '../../../../models/viewbookings/barbers-administration.model'
 import { barberCreateRequest } from '../../../../models/viewbookings/barbers-administration.model'
-import {inject, model, signal} from '@angular/core';
+
 import {FormsModule} from '@angular/forms';
 import { DialogOverviewExampleDialog } from '../opendialogs/dialog-add-barber/dialog-add-barber.component';
 import {
@@ -32,7 +33,7 @@ import {
   standalone: true,
   imports: [MatButtonModule, MatCardModule, CommonModule,MatIconModule,MatDividerModule,MatFormFieldModule, MatInputModule, MatTableModule],
 })
-export class BarbersComponent {
+export class BarbersComponent {  
   public barberResponse!:getAvailableBarbersModels;
   public createBarberResponse!:genericResponse;
   public barberCreateqRequest!:barberCreateRequest;
@@ -42,7 +43,7 @@ export class BarbersComponent {
   public displayedColumns: string[] = ['lastname', 'motherlastname', 'names', 'alias'];
   public dataSource = new MatTableDataSource(this.Element);
   clickedRows = new Set<barbersModels>();
-  constructor(private barbersService:BarbersAdministrationService){
+  constructor(private barbersService:BarbersAdministrationService, private router: Router){
   }
   ngOnInit(): void{
     this.barberResponse = new getAvailableBarbersModels();
@@ -50,11 +51,13 @@ export class BarbersComponent {
   }
   public getBarbers(): void{
     this.barbersService.getAvailableBarbers().subscribe({next:(response)=>{
+      console.log(response.barbers);
       this.dataSource = new MatTableDataSource(response.barbers);
     }})
   }  
   handleRowClick(row: barbersModels) {
     console.log('entro: ' + row.id);
+    this.openDetail(row.id);    
     // Aquí puedes agregar cualquier otra lógica que necesites
 }
   openDialog(): void {
@@ -71,13 +74,14 @@ export class BarbersComponent {
       }
     });
   }
+  openDetail(id:number): void {
+    this.router.navigate(['/Barbers/Details']);
+  }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-  public createBarber(barber:barberModel): void{
-    console.log('Entro');
-    console.log(barber);
+  public createBarber(barber:barberModel): void{    
     this.barberCreateqRequest = new barberCreateRequest();
     this.barberCreateqRequest.trace = "1234567";
     this.barberCreateqRequest.barber = barber;
