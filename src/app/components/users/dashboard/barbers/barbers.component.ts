@@ -75,7 +75,7 @@ export class BarbersComponent {
     });
   }
   openDetail(id:number): void {
-    this.router.navigate(['/Barbers/Details']);
+    this.router.navigate(['/Dashboard/Details']);
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

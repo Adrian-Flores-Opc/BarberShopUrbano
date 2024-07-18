@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="justify-content-center">
+        <mat-card class="example-card" appearance="outlined" *ngFor="let barbers of barberResponse.barbers">
+          <mat-card-header>
+            <mat-card-title-group>
+              <mat-card-title> BARBER DATA </mat-card-title>
+              <mat-card-subtitle>
+                <div class="MuiBox-root css-1vg6q84" style="text-transform: uppercase;">{{barbers.alias}}</div>
+              </mat-card-subtitle>
+                <img mat-card-lg-image src={{barbers.image}}>              
+            </mat-card-title-group>    
+          </mat-card-header>    
+          <mat-card-content>
+            <div class="example-button-row">
+              DATA
+            </div>
+            <table class="example-full-width" cellspacing="0" style="text-transform: uppercase;">
+              <tr>
+                <td><mat-form-field class="example-full-width">
+                  <mat-label>LastName</mat-label>
+                  <input matInput placeholder="Ex. Suarez" value={{barbers.lastName}} [(ngModel)]="barbers.lastName" [readonly]="isReadOnly">
+                </mat-form-field></td>
+                <td><mat-form-field class="example-full-width">
+                  <mat-label>Names</mat-label>
+                  <input matInput placeholder="Ex. Suarez" value={{barbers.names}} [(ngModel)]="barbers.names" [readonly]="isReadOnly">
+                </mat-form-field></td>              
+              </tr>
+              <tr>
+                <td><mat-form-field class="example-full-width">                
+                  <mat-label>MotherLastName</mat-label>
+                  <input matInput placeholder="Ex. Suarez" value={{barbers.motherLastName}} [(ngModel)]="barbers.motherLastName" [readonly]="isReadOnly">
+                </mat-form-field></td>
+                <td><mat-form-field class="example-full-width">
+                  <mat-label>Alias</mat-label>
+                  <input matInput placeholder="Ex. Suarez" value={{barbers.alias}} [(ngModel)]="barbers.alias" [readonly]="isReadOnly">
+                </mat-form-field></td>              
+              </tr>
+          </table>            
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-stroked-button (click)="toggleReadOnly()" [hidden]="!showUpdateButton">UPDATE DATA</button>
+            <button mat-button (click)="updateBarber()" [hidden]="!showUpdateButton">DELETE DATA</button>
+            <button mat-stroked-button (click)="updateBarber()" [hidden]="!showConfirmButton">CONFIRM</button>
+            <button mat-stroked-button (click)="toggleCancel()" [hidden]="!showConfirmButton">CANCEL</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
+
+

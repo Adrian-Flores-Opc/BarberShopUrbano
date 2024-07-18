@@ -5,7 +5,7 @@ import { BarbersComponent } from "./dashboard/barbers/barbers.component";
 import { UserComponent } from "./dashboard/users/user/user.component";
 import { BoxesComponent } from "./dashboard/boxes/boxes.component";
 import { LayoutComponent } from "./dashboard/layout/layout.component";
-import { DetailBarberComponent } from "./dashboard/barbers/details/detail.barber/detail.barber.component";
+import { DetailBarberComponent } from "./dashboard/barbers/details/detail.barber.component";
 
 export const USERS_ROUTES: Routes = [
     {

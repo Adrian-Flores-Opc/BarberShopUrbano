@@ -18,6 +18,11 @@ export class BarbersAdministrationService {
     const withCredentials = false;
     return this.httpConnection.get<getAvailableBarbersModels>(this.apiEndPoint + 'api/GetBarbers', { headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }, withCredentials });
   }
+  public getAvailableBarber(id:string): Observable<getAvailableBarbersModels>{
+    const withCredentials = false;
+    return this.httpConnection.get<getAvailableBarbersModels>(this.apiEndPoint + 'api/GetBarber/' + id, { headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }, withCredentials });
+  }
+
   public sendCreateBarber(_request:barberCreateRequest): Observable<genericResponse>{
     const withCredentials = false;
     return this.httpConnection.post<genericResponse>(this.apiEndPoint + 'api/CreateBarber', _request, { headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }, withCredentials });
