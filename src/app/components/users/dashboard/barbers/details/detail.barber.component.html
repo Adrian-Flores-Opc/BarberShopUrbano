@@ -9,8 +9,10 @@
               <mat-card-subtitle>
                 <div class="MuiBox-root css-1vg6q84" style="text-transform: uppercase;">{{barbers.alias}}</div>
               </mat-card-subtitle>
-                <img mat-card-lg-image src={{barbers.image}}>              
-            </mat-card-title-group>    
+                <img mat-card-lg-image src={{barbers.image}}>
+                <br>
+                <input type="file" accept="image/*" class="file-upload" (change)="handleFileSelect($event)"> 
+            </mat-card-title-group>            
           </mat-card-header>    
           <mat-card-content>
             <div class="example-button-row">
