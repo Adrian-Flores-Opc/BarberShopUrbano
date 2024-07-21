@@ -46,7 +46,7 @@ export class BarbersComponent {
   }  
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
-      data: {name: this.name(), lastName: this.lastName()},
+      data: { data: this.},
     });
 
     dialogRef.afterClosed().subscribe(result => {

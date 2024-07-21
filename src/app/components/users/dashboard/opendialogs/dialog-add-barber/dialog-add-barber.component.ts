@@ -33,12 +33,12 @@ export class DialogOverviewExampleDialog {
   public barber!:barbersModels;
   readonly dialogRef = inject(MatDialogRef<DialogOverviewExampleDialog>);
   readonly data = inject<barbersModels>(MAT_DIALOG_DATA);
-  readonly lastname = model(this.data.lastName);
+  readonly lastname = model(this.data);
   
   ngOnInit(): void{
     this.barber = new barbersModels();
   }
   onNoClick(): void {
-    this.dialogRef.close({event: 'Ok', data:barbersModels});
+    this.dialogRef.close({event: 'Ok', data:this.data});
   }
 }
