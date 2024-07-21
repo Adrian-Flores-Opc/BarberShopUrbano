@@ -1,25 +1,50 @@
-<div class="d-flex justify-content-center">
-    <mat-card class="example-card" appearance="outlined" *ngFor="let barbers of barberResponse.user">
-        <mat-card-header>
-          <div mat-card-avatar class="example-header-image" style="background-image: url({{barbers.barber.image}});">
-          </div>
-          <mat-card-title> {{barbers.barber.lastName + ' ' + barbers.barber.motherLastName + ' ' + barbers.barber.names}}  </mat-card-title>
-          <mat-card-subtitle>{{barbers.barber.alias}}</mat-card-subtitle>      
-        </mat-card-header>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="justify-content-center">
+        <figure class="text-center">
+          <blockquote class="blockquote" style="padding: 10px;">
+            <p>LIST OF BARBERS</p>
+          </blockquote>          
+        </figure>        
         <br>
-    </mat-card>      
-</div>
-<br>
-<section>
-  <div class="example-button-row">
-    <div class="example-flex-container">
-      <div class="example-button-container">
-        <button mat-fab (click)="openDialog()">
-          <mat-icon>add_circle</mat-icon>
-        </button>
-      </div>      
+        <mat-form-field>
+          <mat-label>Filter</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Ex. LastName" #input>
+        </mat-form-field>
+            <button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorSuccess MuiIconButton-sizeMedium css-sd8kw4" (click)="openDialog()">
+                            <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-vubbuv" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="AddCircleOutlineIcon"><path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2m0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8"></path></svg>
+                            Agregar
+            </button>                        
+        <table mat-table [dataSource]="dataSource" class="MuiTable-root css-1wwzycz" aria-labelledby="tableTitle">     
+          <ng-container matColumnDef="lastname">
+            <th mat-header-cell *matHeaderCellDef> LastName </th>
+            <td mat-cell *matCellDef="let Element"> {{Element.lastName}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="motherlastname">
+            <th mat-header-cell *matHeaderCellDef> MotherLastName </th>
+            <td mat-cell *matCellDef="let Element"> {{Element.motherLastName}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="names">
+            <th mat-header-cell *matHeaderCellDef> Names </th>
+            <td mat-cell *matCellDef="let Element"> {{Element.names}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="alias">
+            <th mat-header-cell *matHeaderCellDef> Alias </th>
+            <td mat-cell *matCellDef="let Element"> {{Element.alias}} </td>
+          </ng-container>        
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr
+              mat-row
+              (click)="handleRowClick(row)"
+              [class.demo-row-is-clicked]="clickedRows.has(row)"
+              *matRowDef="let row; columns: displayedColumns;"
+          ></tr>  
+        </table>        
+      </div>
     </div>
   </div>
-</section>
-
-    
+</div>

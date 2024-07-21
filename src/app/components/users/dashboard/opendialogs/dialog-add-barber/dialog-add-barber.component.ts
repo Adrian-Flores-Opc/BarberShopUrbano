@@ -12,7 +12,7 @@ import {
 } from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
-import { barbersModels } from '../../../../../models/viewbookings/barbers-administration.model';
+import { barberModel } from '../../../../../models/viewbookings/barbers-administration.model';
 
 @Component({
   selector: 'dialog-add-barber',
@@ -30,15 +30,35 @@ import { barbersModels } from '../../../../../models/viewbookings/barbers-admini
   ],
 })
 export class DialogOverviewExampleDialog {  
-  public barber!:barbersModels;
+  public barber!:barberModel;
   readonly dialogRef = inject(MatDialogRef<DialogOverviewExampleDialog>);
-  readonly data = inject<barbersModels>(MAT_DIALOG_DATA);
-  readonly lastname = model(this.data);
+;
   
   ngOnInit(): void{
-    this.barber = new barbersModels();
+    this.barber = new barberModel();
   }
   onNoClick(): void {
-    this.dialogRef.close({event: 'Ok', data:this.data});
+    this.dialogRef.close();
+  }
+  ClickOk(): void {
+    this.dialogRef.close({event: 'Ok', data:this.barber});
+  }
+  handleFileSelect(event: any): void {
+    const file = event.target.files[0];
+    if (file) {
+      this.convertToBase64(file);
+    }
+  }
+
+  convertToBase64(file: File): void {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const base64String = reader.result as string;
+      console.log('Base64:', base64String);
+      const base64Fragment = base64String.replace(/^data:image\/(png|jpeg|jpg);base64,/, '');
+      console.log('Fragmento base64:', base64Fragment);
+      this.barber.image = base64Fragment;
+    };
+    reader.readAsDataURL(file);
   }
 }

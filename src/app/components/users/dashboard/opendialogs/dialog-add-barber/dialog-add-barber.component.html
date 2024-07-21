@@ -1,24 +1,28 @@
 <h2 mat-dialog-title>Agregar nuevo Barbero</h2>
 <mat-dialog-content>
   <!-- <p>What's your favorite animal?</p> -->
-  <mat-form-field>
+  <mat-form-field style="width: 100%;">
     <mat-label>Apellido Paterno</mat-label>
-    <input matInput [(ngModel)]="data.lastName" />
+    <input matInput [(ngModel)]="barber.lastName" />
   </mat-form-field>
-  <!-- <mat-form-field>
+  <br>
+  <mat-form-field style="width: 100%;">
     <mat-label>Apellido Materno</mat-label>
-    <input matInput [(ngModel)]="motherLastName" />
+    <input matInput [(ngModel)]="barber.motherLastName" />
   </mat-form-field>
-  <mat-form-field>
+  <br>
+  <mat-form-field style="width: 100%;">
     <mat-label>Nombres</mat-label>
-    <input matInput [(ngModel)]="names" />
+    <input matInput [(ngModel)]="barber.names" />
   </mat-form-field>
-  <mat-form-field>
+  <br>
+  <mat-form-field style="width: 100%;">
     <mat-label>Alias</mat-label>
-    <input matInput [(ngModel)]="alias" />
+    <input matInput [(ngModel)]="barber.alias" />
   </mat-form-field>
-</mat-dialog-content> -->
+</mat-dialog-content>
+<input type="file" accept="image/*" class="file-upload" (change)="handleFileSelect($event)"> 
 <mat-dialog-actions>
   <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button (click)="onNoClick()">Ok</button>
+  <button mat-button (click)="ClickOk()">Ok</button>
 </mat-dialog-actions>
