@@ -13,7 +13,7 @@ export const USERS_ROUTES: Routes = [
             { path: 'Boxes', component: BoxesComponent },
             { path: 'Barbers', component: BarbersComponent },
             { path: 'Users', component: UserComponent },
-            { path: 'Barbers/Details', component: DetailBarberComponent },
+            { path: 'Barbers/Details/:id', component: DetailBarberComponent },
         ]
     },
     {

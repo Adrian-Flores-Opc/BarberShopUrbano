@@ -1,5 +1,5 @@
 import {Component,inject, model, signal} from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -16,15 +16,8 @@ import { barberCreateRequest } from '../../../../models/viewbookings/barbers-adm
 
 import {FormsModule} from '@angular/forms';
 import { DialogOverviewExampleDialog } from '../opendialogs/dialog-add-barber/dialog-add-barber.component';
-import {
-  MAT_DIALOG_DATA,
-  MatDialog,
-  MatDialogActions,
-  MatDialogClose,
-  MatDialogContent,
-  MatDialogRef,
-  MatDialogTitle,
-} from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogActions, MatDialogClose, MatDialogContent, MatDialogRef, MatDialogTitle, } from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-barbers',
@@ -44,6 +37,7 @@ export class BarbersComponent {
   public dataSource = new MatTableDataSource(this.Element);
   clickedRows = new Set<barbersModels>();
   constructor(private barbersService:BarbersAdministrationService, private router: Router){
+    // this._activeRouter.params.subscribe(params => console.log('DATO DEL ROUTER:' + params));
   }
   ngOnInit(): void{
     this.barberResponse = new getAvailableBarbersModels();
@@ -75,7 +69,7 @@ export class BarbersComponent {
     });
   }
   openDetail(id:number): void {
-    this.router.navigate(['/Dashboard/Details']);
+    this.router.navigate(['/Dashboard/Details/'+id]);
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

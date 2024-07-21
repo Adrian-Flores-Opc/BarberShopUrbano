@@ -7,7 +7,7 @@ import { BarbersAdministrationService } from '../../../../../core/barbers-admini
 import { barberCreateRequest, barberModel, getAvailableBarbersModels } from '../../../../../models/viewbookings/barbers-administration.model';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-detail.barber',
@@ -25,7 +25,10 @@ export class DetailBarberComponent {
   isReadOnly = true; // Por defecto, el campo está en modo de solo lectura
   constructor(private barbersService:BarbersAdministrationService, private route: ActivatedRoute){
   }
-  ngOnInit(): void{    
+  ngOnInit(): void{ 
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      console.log('DATO ROUTER: ' + params.get('id'))
+    });   
     this.barberResponse = new getAvailableBarbersModels();
     this.barberUpdateqRequest = new barberCreateRequest();
     this.route.queryParams.subscribe(params => {

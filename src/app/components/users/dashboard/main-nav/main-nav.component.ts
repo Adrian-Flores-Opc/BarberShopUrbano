@@ -11,12 +11,12 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { map, shareReplay } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
-
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-main-nav',
   standalone: true,
-  imports: [BarbersComponent, BoxesComponent, RouterOutlet, MatSidenavModule, MatToolbarModule, MatListModule, MatIconModule, RouterLink, CommonModule],
+  imports: [BarbersComponent, BoxesComponent, RouterOutlet, MatSidenavModule, MatToolbarModule, MatListModule, MatIconModule, RouterLink, CommonModule, MatButtonModule],
   templateUrl: './main-nav.component.html',
   styleUrl: './main-nav.component.scss'
 })
