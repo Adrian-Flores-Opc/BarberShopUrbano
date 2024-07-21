@@ -1,0 +1,35 @@
+<h2 mat-dialog-title>Agregar nuevo Usuario</h2>
+<mat-dialog-content>
+  <p>DATA BASIC</p>
+  <mat-form-field style="width: 100%;">
+    <mat-label>Apellido Paterno</mat-label>
+    <input matInput [(ngModel)]="user.lastName" />
+  </mat-form-field>
+  <br>
+  <mat-form-field style="width: 100%;">
+    <mat-label>Apellido Materno</mat-label>
+    <input matInput [(ngModel)]="user.motherLastName" />
+  </mat-form-field>
+  <br>
+  <mat-form-field style="width: 100%;">
+    <mat-label>Nombres</mat-label>
+    <input matInput [(ngModel)]="user.names" />
+  </mat-form-field>
+  <br>  
+</mat-dialog-content>
+<input type="file" accept="image/*" class="file-upload" (change)="handleFileSelect($event)"> 
+<p>DATA ADMINISTRATIVE</p>
+  <mat-form-field>
+    <mat-label>Favorite Perfil</mat-label>
+    <mat-select [(ngModel)]="selectedValue" name="perfil">
+      @for (perfil of perfils; track perfil) {
+        <mat-option [value]="perfil.value">{{perfil.viewValue}}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+<p>DATA LOGIN</p>
+
+<mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button (click)="ClickOk()">Ok</button>
+</mat-dialog-actions>

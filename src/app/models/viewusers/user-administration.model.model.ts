@@ -21,3 +21,22 @@ export class InformationUser{
     public names! : string;
     public image! : string;
 }
+export class UserCreateRequest{
+    public trace !: string;
+    public idPerfil!: number;
+    public user!: UserModel;
+    public loginUser!: UserAuthentication;
+}
+export class UserModel {
+    public lastName! : string;
+    public motherLastName! : string;
+    public names! : string;
+    public image! : string;    
+}
+export class barberModel{
+    public alias !: string;
+    public lastName !: string;
+    public motherLastName !: string;
+    public names !: string;
+    public image !: string;
+}

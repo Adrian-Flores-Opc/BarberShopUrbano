@@ -83,6 +83,8 @@ updateBarber() {
   handleFileSelect(event: any): void {
     const file = event.target.files[0];
     if (file) {
+      console.log(event.target.result);
+      this.barberResponse.barbers[0].image = event.target.result;
       this.convertToBase64(file);
     }
   }
@@ -90,10 +92,9 @@ updateBarber() {
     const reader = new FileReader();
     reader.onload = () => {
       const base64String = reader.result as string;
-      console.log('Base64:', base64String);
       const base64Fragment = base64String.replace(/^data:image\/(png|jpeg|jpg);base64,/, '');
       console.log('Fragmento base64:', base64Fragment);
-      this.barberResponse.barbers[0].image = base64Fragment;
+      // this.barberUpdateqRequest.barber.image = base64Fragment;
     };
     reader.readAsDataURL(file);
   }
