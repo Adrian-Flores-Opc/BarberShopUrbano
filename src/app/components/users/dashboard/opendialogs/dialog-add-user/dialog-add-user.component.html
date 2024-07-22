@@ -18,18 +18,22 @@
   <br>  
 </mat-dialog-content>
 <input type="file" accept="image/*" class="file-upload" (change)="handleFileSelect($event)"> 
-<p>DATA ADMINISTRATIVE</p>
+<mat-dialog-content>
+  <p>DATA ADMINISTRATIVE</p>
   <mat-form-field>
     <mat-label>Favorite Perfil</mat-label>
     <mat-select [(ngModel)]="selectedValue" name="perfil">
       @for (perfil of perfils; track perfil) {
-        <mat-option [value]="perfil.value">{{perfil.viewValue}}</mat-option>
+        <mat-option [value]="perfil.id">{{perfil.perfil}}</mat-option>
       }
     </mat-select>
   </mat-form-field>
-<p>DATA LOGIN</p>
+</mat-dialog-content>
+<mat-dialog-content>
+  <p>DATA LOGIN</p>
 
-<mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button (click)="ClickOk()">Ok</button>
-</mat-dialog-actions>
+  <mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button mat-button (click)="ClickOk()">Ok</button>
+  </mat-dialog-actions>
+</mat-dialog-content>
