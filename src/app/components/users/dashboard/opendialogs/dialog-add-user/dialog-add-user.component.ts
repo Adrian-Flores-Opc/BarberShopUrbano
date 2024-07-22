@@ -5,12 +5,8 @@ import { MatDialogActions, MatDialogClose, MatDialogContent, MatDialogRef, MatDi
 import {MatSelectModule} from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { UserCreateRequest, UserModel } from '../../../../../models/viewusers/user-administration.model.model';
-
-interface Perfils {
-  value: string;
-  viewValue: string;
-}
+import { Perfil, UserCreateRequest, UserModel } from '../../../../../models/viewusers/user-administration.model.model';
+import { UserAdministrationService } from '../../../../../core/user-administration.service';
 
 @Component({
   selector: 'app-dialog-add-user',
@@ -30,22 +26,29 @@ interface Perfils {
   styleUrl: './dialog-add-user.component.scss'
 })
 export class DialogOverviewUserDialog {
-  selectedValue!: string;
+  selectedValue!: number;
   selectedCar!: string;
+  perfils: Perfil[]  = [];
   public usuario!:UserCreateRequest;
   public user!: UserModel;
   readonly dialogRef = inject(MatDialogRef<DialogOverviewUserDialog>);
+  constructor(private perfilsService:UserAdministrationService){
 
-  perfils: Perfils[] = [
-    {value: '1', viewValue: 'Admin'},
-    {value: '2', viewValue: 'Box'},
-    {value: '3', viewValue: 'User'},
-  ];
-
+  }
   ngOnInit(): void{
     this.usuario = new UserCreateRequest();
     this.user = new UserModel();
-    this.selectedValue = this.perfils[2].value;
+
+    this.getPerfils();    
+  }
+  public getPerfils(): void{
+    this.perfilsService.getAvailablePerfils().subscribe({next:(response)=>{
+      console.log(response);
+      console.log(this.perfils);
+      this.perfils = response.perfils;
+      console.log(this.perfils);
+      this.selectedValue = this.perfils[0].id;      
+    }})
   }
   onNoClick(): void {
     this.dialogRef.close();

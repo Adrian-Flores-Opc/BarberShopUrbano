@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Observable, throwError } from 'rxjs';
-import { UserAdministrationModel } from '../models/viewusers/user-administration.model.model'
+import { perfilsResponse, UserAdministrationModel } from '../models/viewusers/user-administration.model.model'
 
 @Injectable({
   providedIn: 'root'
@@ -16,5 +16,8 @@ export class UserAdministrationService {
     const withCredentials = false;
     return this.httpConnection.get<UserAdministrationModel>(this.apiEndPoint + 'api/GetUsers', { headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }, withCredentials });
   }
-
+  public getAvailablePerfils(): Observable<perfilsResponse>{
+    const withCredentials = false;
+    return this.httpConnection.get<perfilsResponse>(this.apiEndPoint + 'api/GetPerfils', { headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }, withCredentials });
+  }
 }

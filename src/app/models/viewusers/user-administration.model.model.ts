@@ -40,3 +40,6 @@ export class barberModel{
     public names !: string;
     public image !: string;
 }
+export class perfilsResponse extends Commonresult{
+    public perfils!:Perfil[];
+}
