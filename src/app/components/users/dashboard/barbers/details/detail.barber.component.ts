@@ -28,25 +28,22 @@ export class DetailBarberComponent {
   ngOnInit(): void{ 
     this.route.paramMap.subscribe((params: ParamMap) => {
       console.log('DATO ROUTER: ' + params.get('id'))
-    });   
+    }); 
+    this.idBarber = this.route.snapshot.paramMap.get('id') || "";
     this.barberResponse = new getAvailableBarbersModels();
-    this.barberUpdateqRequest = new barberCreateRequest();
-    this.route.queryParams.subscribe(params => {
-      console.log(params['idBarber']);
-      this.idBarber = params['idBarber']; // Nombre del parámetro de consulta
-    });
+    this.barberUpdateqRequest = new barberCreateRequest();    
     this.getBarber();
   }
-  toggleReadOnly() {
-  
+  toggleReadOnly() {    
     this.showUpdateButton = false;
     this.showConfirmButton = true;
     this.isReadOnly = false;   
-}
+    }
+
 toggleCancel() {
   this.showUpdateButton = true;
   this.showConfirmButton = false;
-  this.barbersService.getAvailableBarber('1').subscribe({next:(response)=>{
+  this.barbersService.getAvailableBarber(this.idBarber).subscribe({next:(response)=>{
     console.log(response.barbers);
     this.barberResponse = response;
   }})  
@@ -70,12 +67,21 @@ updateBarber() {
         alert("No se actualizo el barbero correctamente");
       }          
   }})
-
-
-  alert('Modificación Exitosa');
+}
+deleteBarber(){
+  this.barbersService.deleteBarber(this.idBarber).subscribe({next:(response)=>{
+    console.log("RESPONSE: " + response.respCode);
+    if(response.respCode === '00')
+      {
+        alert("Se eliminó el barbero correctamente");
+      }
+      else{
+        alert("No se eliminó el barbero correctamente");
+      }          
+  }})
 }
   public getBarber(): void{
-    this.barbersService.getAvailableBarber('1').subscribe({next:(response)=>{
+    this.barbersService.getAvailableBarber(this.idBarber).subscribe({next:(response)=>{
       console.log(response.barbers);
       this.barberResponse = response;
     }})

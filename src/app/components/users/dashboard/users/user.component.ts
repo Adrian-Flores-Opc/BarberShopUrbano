@@ -50,7 +50,6 @@ export class UserComponent {
   public getUsers(): void{
     this.usersService.getAvailableUsers().subscribe({next:(response)=>{
       console.log(response);
-
       console.log(response.users.map(user => user.information));
       this.dataSource = new MatTableDataSource(response.users.map(user => user.information));
       
@@ -73,11 +72,25 @@ export class UserComponent {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       if (result !== undefined) {
-        console.log(result.data);
+        console.log('DATA RESPUESTA:');
         console.log(JSON.stringify(result.data));
-        // this.createBarber(result.data);
+        this.createUser(result.data);
       }
     });
+  }
+  public createUser(user:UserCreateRequest): void{    
+    user.trace = "123456";
+    this.usersService.sendCreateUser(user).subscribe({next:(response)=>{
+      console.log("RESPONSE: " + response.respCode);
+      if(response.respCode === '00')
+        {
+          alert("Se creo el user correctamente");
+          this.getUsers();
+        }
+        else{
+          alert("No se creo el barbero correctamente");
+        }          
+    }})
   }
 
 }

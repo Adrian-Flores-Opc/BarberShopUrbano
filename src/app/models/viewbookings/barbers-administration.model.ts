@@ -28,7 +28,7 @@ export class barbersModels{
 //#region  Models Get Available Barbers
 export class barberCreateRequest{
     public trace !: string;
-    public barber !: barberModel;
+    public barber !: barbersModels;
 }
 
 export class barberModel{

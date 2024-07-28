@@ -75,7 +75,7 @@ export class BarbersComponent {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-  public createBarber(barber:barberModel): void{    
+  public createBarber(barber:barbersModels): void{    
     this.barberCreateqRequest = new barberCreateRequest();
     this.barberCreateqRequest.trace = "1234567";
     this.barberCreateqRequest.barber = barber;

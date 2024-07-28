@@ -5,7 +5,7 @@
         <mat-card class="example-card" appearance="outlined" *ngFor="let barbers of barberResponse.barbers">
           <mat-card-header>
             <mat-card-title-group>
-              <mat-card-title> BARBER DATA </mat-card-title>
+              <mat-card-title>BARBER INFORMATION</mat-card-title>
               <mat-card-subtitle>
                 <div class="MuiBox-root css-1vg6q84" style="text-transform: uppercase;">{{barbers.alias}}</div>
               </mat-card-subtitle>
@@ -43,7 +43,7 @@
           </mat-card-content>
           <mat-card-actions>
             <button mat-stroked-button (click)="toggleReadOnly()" [hidden]="!showUpdateButton">UPDATE DATA</button>
-            <button mat-button (click)="updateBarber()" [hidden]="!showUpdateButton">DELETE DATA</button>
+            <button mat-button (click)="deleteBarber()" [hidden]="!showUpdateButton">DELETE DATA</button>
             <button mat-stroked-button (click)="updateBarber()" [hidden]="!showConfirmButton">CONFIRM</button>
             <button mat-stroked-button (click)="toggleCancel()" [hidden]="!showConfirmButton">CANCEL</button>
           </mat-card-actions>
