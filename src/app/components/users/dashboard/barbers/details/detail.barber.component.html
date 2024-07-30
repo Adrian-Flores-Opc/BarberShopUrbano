@@ -11,7 +11,7 @@
               </mat-card-subtitle>
                 <img mat-card-lg-image src={{barbers.image}} alt="Preview Image">
                 <br>
-                <input type="file" accept="image/*" class="file-upload" (change)="handleFileSelect($event)"> 
+                <input type="file" accept="image/*" class="file-upload" (change)="handleFileSelect($event)" [readonly]="isReadOnly"> 
             </mat-card-title-group>            
           </mat-card-header>    
           <mat-card-content>

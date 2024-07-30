@@ -53,6 +53,7 @@ export class BarbersComponent {
     console.log('entro: ' + row.id);
     this.openDetail(row.id);    
     // Aquí puedes agregar cualquier otra lógica que necesites
+    this.router.navigate(['/Users/Dashboard/Barbers/Details/'+ row.id]);
 }
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {

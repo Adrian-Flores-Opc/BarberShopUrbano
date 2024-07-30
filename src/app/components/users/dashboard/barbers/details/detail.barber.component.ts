@@ -7,7 +7,7 @@ import { BarbersAdministrationService } from '../../../../../core/barbers-admini
 import { barberCreateRequest, barberModel, getAvailableBarbersModels } from '../../../../../models/viewbookings/barbers-administration.model';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
 @Component({
   selector: 'app-detail.barber',
@@ -23,7 +23,7 @@ export class DetailBarberComponent {
   public idBarber!:string;
   public barberUpdateqRequest!:barberCreateRequest;
   isReadOnly = true; // Por defecto, el campo está en modo de solo lectura
-  constructor(private barbersService:BarbersAdministrationService, private route: ActivatedRoute){
+  constructor(private barbersService:BarbersAdministrationService, private route: ActivatedRoute, private router: Router){
   }
   ngOnInit(): void{ 
     this.route.paramMap.subscribe((params: ParamMap) => {
@@ -73,6 +73,7 @@ deleteBarber(){
     console.log("RESPONSE: " + response.respCode);
     if(response.respCode === '00')
       {
+        this.router.navigate(['/Users/Dashboard/Barbers']);
         alert("Se eliminó el barbero correctamente");
       }
       else{

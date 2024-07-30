@@ -24,6 +24,7 @@ import {
 } from '@angular/material/dialog';
 import { exec } from 'child_process';
 import { DialogOverviewUserDialog } from '../opendialogs/dialog-add-user/dialog-add-user.component';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -40,7 +41,7 @@ export class UserComponent {
   public displayedColumns: string[] = ['lastname', 'motherlastname', 'names'];
   public dataSource = new MatTableDataSource(this.Element);
   clickedRows = new Set<InformationUser>();
-  constructor(private usersService:UserAdministrationService){
+  constructor(private usersService:UserAdministrationService, private router: Router){
 
   }
   ngOnInit(): void{
@@ -59,6 +60,7 @@ export class UserComponent {
   handleRowClick(row: InformationUser) {
     console.log('entro: ' + row.id);
     // Aquí puedes agregar cualquier otra lógica que necesites
+    this.router.navigate(['/Users/Dashboard/Users/Details/'+ row.id]);
 }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

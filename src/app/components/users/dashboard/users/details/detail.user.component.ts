@@ -3,7 +3,7 @@ import { InformationUser, Perfil, UpdateUserRequest, UserAdministrationModel, Us
 import {MatSelectModule} from '@angular/material/select';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { UserAdministrationService } from '../../../../../core/user-administration.service';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { UserAuthentication } from '../../../../../models/viewlogin/user-authentication.model';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { MatDialog, MatDialogActions, MatDialogClose, MatDialogContent, MatDialogRef, MatDialogTitle } from '@angular/material/dialog';
-import { DialogConfirmationComponent } from './dialog-confirmation/dialog-confirmation/dialog-confirmation.component';
+import { DialogConfirmationComponent } from './dialog-confirmation/dialog-confirmation.component';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -34,7 +34,7 @@ export class DetailUserComponent {
   public idUser!:string;
   public userUpdateqRequest!:UpdateUserRequest;
   isReadOnly = true; // Por defecto, el campo está en modo de solo lectura  
-  constructor(private perfilsService:UserAdministrationService, private userService:UserAdministrationService, private route: ActivatedRoute){
+  constructor(private perfilsService:UserAdministrationService, private userService:UserAdministrationService, private route: ActivatedRoute, private router: Router){
   }
   ngOnInit(): void{ 
     this.route.paramMap.subscribe((params: ParamMap) => {
@@ -104,12 +104,12 @@ deleteUser() {
     console.log(`Dialog result: ${result}`);
     if(result=== true)
     {
-      console.log('ENTRO');
       this.userService.deletedUser(this.idUser).subscribe({next:(response)=>{
         console.log("RESPONSE: " + response.respCode);
         if(response.respCode === '00')
-          {
+          {            
             alert("Se eliminó el usuario correctamente");
+            this.router.navigate(['/Users/Dashboard/Users']);
           }
           else{
             alert("No se eliminó el usuario correctamente");
