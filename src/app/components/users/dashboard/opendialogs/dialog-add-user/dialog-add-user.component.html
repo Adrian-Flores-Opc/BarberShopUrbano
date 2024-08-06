@@ -1,39 +1,50 @@
-<h2 mat-dialog-title>Agregar nuevo Usuario</h2>
-<mat-dialog-content>
-  <p>DATA BASIC</p>
-  <mat-form-field style="width: 100%;">
-    <mat-label>Apellido Paterno</mat-label>
-    <input matInput [(ngModel)]="user.lastName" />
-  </mat-form-field>
-  <br>
-  <mat-form-field style="width: 100%;">
-    <mat-label>Apellido Materno</mat-label>
-    <input matInput [(ngModel)]="user.motherLastName" />
-  </mat-form-field>
-  <br>
-  <mat-form-field style="width: 100%;">
-    <mat-label>Nombres</mat-label>
-    <input matInput [(ngModel)]="user.names" />
-  </mat-form-field>
-  <br>  
-</mat-dialog-content>
-<input type="file" accept="image/*" class="file-upload" (change)="handleFileSelect($event)"> 
-<mat-dialog-content>
-  <p>DATA ADMINISTRATIVE</p>
-  <mat-form-field>
-    <mat-label>Favorite Perfil</mat-label>
-    <mat-select [(ngModel)]="selectedValue" name="perfil">
-      @for (perfil of perfils; track perfil) {
-        <mat-option [value]="perfil.id">{{perfil.perfil}}</mat-option>
-      }
-    </mat-select>
-  </mat-form-field>
-</mat-dialog-content>
-<mat-dialog-content>
-  <p>DATA LOGIN</p>
-
-  <mat-dialog-actions>
-    <button mat-button (click)="onNoClick()">No Thanks</button>
-    <button mat-button (click)="ClickOk()">Ok</button>
-  </mat-dialog-actions>
-</mat-dialog-content>
+<h2 mat-dialog-title>ADD NEW USER</h2>
+<div class=".container-lg	">
+  <div class="row">
+    <div class="col-6">
+      <mat-dialog-content>
+        <p>DATA BASIC</p>
+        <mat-form-field>
+          <mat-label>LASTNAME</mat-label>
+          <input matInput [(ngModel)]="user.lastName"/>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <mat-label>MOTHER LASTNAME</mat-label>
+          <input matInput [(ngModel)]="user.motherLastName"/>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <mat-label>NAMES</mat-label>
+          <input matInput [(ngModel)]="user.names"/>
+        </mat-form-field>
+        <br>  
+      </mat-dialog-content>
+    </div>
+    <div class="col-6">
+      <mat-dialog-content>
+        <p>DATA ADMINISTRATIVE</p>
+        <mat-form-field>
+          <mat-label>selected Perfil</mat-label>
+          <mat-select [(ngModel)]="selectedValue" name="perfil">
+            <mat-option></mat-option>
+            @for (perfil of perfils; track perfil) {
+              <mat-option [value]="perfil.id">{{perfil.perfil}}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </mat-dialog-content>
+      <mat-dialog-content>
+        <p>DATA LOGIN</p>
+        <mat-form-field>
+          <mat-label>USER LOGIN</mat-label>
+          <input matInput [(ngModel)]="login.userName" />
+        </mat-form-field>        
+      </mat-dialog-content>      
+    </div>
+  </div>  
+</div>
+<mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">CANCEL</button>
+  <button mat-button (click)="ClickOk()">Ok</button>
+</mat-dialog-actions>

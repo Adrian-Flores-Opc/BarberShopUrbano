@@ -1,7 +1,31 @@
 <mat-toolbar color="primary">
-    <span routerLink="/">BarberShop Urbano</span>
-    <span class="example-spacer"></span>
-    <button mat-button routerLink="/Bookings">Reservar</button>
-    <button mat-button routerLink="/Contacts">Contactos</button>
-    <button mat-button routerLink="/Users/Login">Iniciar Sesion</button>
+  <button mat-icon-button (click)="sidenav.toggle()" id="menuIcon" aria-label="Example icon-button with menu icon">
+      <mat-icon>menu</mat-icon>
+  </button>
+  <span id="menuTitle" routerLink="/">BarberShop Urbano</span>
+  <div class="spacer"></div>
+  <div class="container-content-options">
+    <a mat-button routerLink="/Bookings" class="top-menu-item"><mat-icon>vertical_split</mat-icon>Reservar</a>
+    <a mat-button routerLink="/Contacts" class="top-menu-item"><mat-icon>people</mat-icon>Contactos</a>
+    <a mat-button routerLink="/Users/Login" class="top-menu-item"><mat-icon>verified_user</mat-icon>Iniciar Sesion</a>
+  </div>
 </mat-toolbar>
+
+<mat-sidenav-container id="sidenav-container">
+    <mat-sidenav #sidenav [fixedInViewport]="true" [fixedTopGap]="60" mode="side" class="half-screen" (opened)="onSidenavToggle(true)" (closed)="onSidenavToggle(false)">
+        <div class="side-nav-items">
+            <div>
+                <a (click)="sidenav.close()" mat-button routerLink="/Bookings" class="side-menu-item"><mat-icon>vertical_split</mat-icon>Reservar</a>
+            </div>
+
+            <div>
+                <a (click)="sidenav.close()" mat-button routerLink="/Contacts" class="side-menu-item"><mat-icon>people</mat-icon>Contactos</a>
+            </div>
+
+            <div>
+                <a (click)="sidenav.close()" mat-button routerLink="/Users/Login" class="side-menu-item"><mat-icon>verified_user</mat-icon>Iniciar Sesion</a>
+            </div>
+        </div>
+    </mat-sidenav>
+</mat-sidenav-container>
+<div class="" id="canvas-overlay"></div>

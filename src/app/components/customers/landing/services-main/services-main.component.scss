@@ -1,0 +1,63 @@
+.full-screen-third {
+  width: 100vw; /* 100% del ancho de la ventana */
+  height: 100vh; /* 100% de la altura de la ventana */
+  overflow: hidden; /* Asegura que no haya desbordamiento */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centra verticalmente */
+  align-items: center; /* Centra horizontalmente */
+}
+.container-third{
+    background-image: url('../../../../../assets/Images/fondo_main_seconds.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+    padding: 25px;
+}
+.mat-card-third{
+    background: rgb(0 0 0 / 68%);
+    border: 1px solid #757575;
+    padding: 10px;
+    // margin: 15px;
+    border-radius: 30px;
+    text-align: center;
+    width: 100%; /* Asegura que las tarjetas ocupen el 100% del ancho de su contenedor */
+    margin: 20px 0; /* Añade margen vertical */
+}
+.img-third{
+    border: 1px solid black;
+    border-radius: 50%;
+    height: 400px;
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 15px;
+}
+.img-third-img{
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    border: 1px solid black;
+    border-radius: 50%;
+    padding: 10px;
+}
+.title-third{
+  text-align: right;
+  // font-weight: bold;
+  // font-size: 80px;
+  // letter-spacing: 10px;
+  font-weight: bold;
+  font-size: 5vw; /* Tamaño de fuente responsive basado en el ancho de la ventana */
+  margin: 0; /* Elimina márgenes predeterminados */
+  letter-spacing: 2px; /* Espaciado entre letras */
+}
+.mat-card-third-title{
+  font-weight: 500;
+  // font-size: 30px;
+  letter-spacing: 1px;
+  font-size: 1.5rem; /* Tamaño de fuente */
+}
+mat-card-actions{
+  margin-right: auto;
+  margin-left: auto;
+}

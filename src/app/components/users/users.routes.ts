@@ -6,14 +6,16 @@ import { UserComponent } from "./dashboard/users/user.component";
 import { BoxesComponent } from "./dashboard/boxes/boxes.component";
 import { LayoutComponent } from "./dashboard/layout/layout.component";
 import { DetailBarberComponent } from "./dashboard/barbers/details/detail.barber.component";
+import { DetailUserComponent } from "./dashboard/users/details/detail.user.component";
 
 export const USERS_ROUTES: Routes = [
     {
         path: 'Dashboard', component: LayoutComponent, children: [
             { path: 'Boxes', component: BoxesComponent },
             { path: 'Barbers', component: BarbersComponent },
-            { path: 'Users', component: UserComponent },
             { path: 'Barbers/Details/:id', component: DetailBarberComponent },
+            { path: 'Users', component: UserComponent },
+            { path: 'Users/Details/:id', component: DetailUserComponent },            
         ]
     },
     {

@@ -1,0 +1,45 @@
+
+
+
+
+
+.container-room{
+  background-image: url('../../../../../assets/Images/fondo_dinamico_estrella.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #79797940;
+  color: white;
+  padding: 30px;
+}
+
+
+
+
+
+.title-room{
+  text-align: center;
+  font-weight: bold;
+  font-size: 80px;
+  letter-spacing: 10px;
+  color: black;
+}
+.mat-card-room{
+  background: border-box;
+  border-radius: 30px;
+  font-weight: 400;
+  font-size: 25px;
+  text-align: justify;
+  box-shadow: 1px 1px 5px 2px #0000001f;
+  color: black;
+}
+.container-content-room{
+  margin-top: 50px;
+  margin-bottom: auto;
+  padding: 0px 80px 0px 80px;
+}
+.mat-card-actions{
+  // margin-left: auto;
+  // margin-right: auto;
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+}

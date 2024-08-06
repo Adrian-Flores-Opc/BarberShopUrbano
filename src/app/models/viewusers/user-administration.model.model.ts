@@ -6,10 +6,17 @@ export class UserAdministrationModel extends Commonresult {
 export class User {
     public perfil!: Perfil;
     public information!:InformationUser;
-    public loginInfo!: UserAuthentication;    
+    public loginInfo!: UserAuthentication;
+}
+export class UpdateUserRequest{
+    public trace !: string;
+    public idUser!: number;
+    public idPerfil!: number;
+    public dataBasic!: UserModel;
+    public resetPass!: boolean;
 }
 export class Perfil{
-    public id! : number;
+    public id! : string;
     public perfil! : string;
 }
 export class InformationUser{
@@ -23,7 +30,7 @@ export class InformationUser{
 }
 export class UserCreateRequest{
     public trace !: string;
-    public idPerfil!: number;
+    public idPerfil!: string;
     public user!: UserModel;
     public loginUser!: UserAuthentication;
 }

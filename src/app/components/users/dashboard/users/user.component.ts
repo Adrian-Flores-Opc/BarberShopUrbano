@@ -24,6 +24,7 @@ import {
 } from '@angular/material/dialog';
 import { exec } from 'child_process';
 import { DialogOverviewUserDialog } from '../opendialogs/dialog-add-user/dialog-add-user.component';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -40,7 +41,7 @@ export class UserComponent {
   public displayedColumns: string[] = ['lastname', 'motherlastname', 'names'];
   public dataSource = new MatTableDataSource(this.Element);
   clickedRows = new Set<InformationUser>();
-  constructor(private usersService:UserAdministrationService){
+  constructor(private usersService:UserAdministrationService, private router: Router){
 
   }
   ngOnInit(): void{
@@ -50,7 +51,6 @@ export class UserComponent {
   public getUsers(): void{
     this.usersService.getAvailableUsers().subscribe({next:(response)=>{
       console.log(response);
-
       console.log(response.users.map(user => user.information));
       this.dataSource = new MatTableDataSource(response.users.map(user => user.information));
       
@@ -60,6 +60,7 @@ export class UserComponent {
   handleRowClick(row: InformationUser) {
     console.log('entro: ' + row.id);
     // Aquí puedes agregar cualquier otra lógica que necesites
+    this.router.navigate(['/Users/Dashboard/Users/Details/'+ row.id]);
 }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -73,11 +74,25 @@ export class UserComponent {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       if (result !== undefined) {
-        console.log(result.data);
+        console.log('DATA RESPUESTA:');
         console.log(JSON.stringify(result.data));
-        // this.createBarber(result.data);
+        this.createUser(result.data);
       }
     });
+  }
+  public createUser(user:UserCreateRequest): void{    
+    user.trace = "123456";
+    this.usersService.sendCreateUser(user).subscribe({next:(response)=>{
+      console.log("RESPONSE: " + response.respCode);
+      if(response.respCode === '00')
+        {
+          alert("Se creo el user correctamente");
+          this.getUsers();
+        }
+        else{
+          alert("No se creo el barbero correctamente");
+        }          
+    }})
   }
 
 }

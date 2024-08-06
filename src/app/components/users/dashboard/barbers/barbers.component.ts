@@ -53,6 +53,7 @@ export class BarbersComponent {
     console.log('entro: ' + row.id);
     this.openDetail(row.id);    
     // Aquí puedes agregar cualquier otra lógica que necesites
+    this.router.navigate(['/Users/Dashboard/Barbers/Details/'+ row.id]);
 }
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
@@ -75,7 +76,7 @@ export class BarbersComponent {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-  public createBarber(barber:barberModel): void{    
+  public createBarber(barber:barbersModels): void{    
     this.barberCreateqRequest = new barberCreateRequest();
     this.barberCreateqRequest.trace = "1234567";
     this.barberCreateqRequest.barber = barber;
