@@ -8,11 +8,12 @@ import { barberCreateRequest, barberModel, getAvailableBarbersModels } from '../
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-detail.barber',
   standalone: true,
-  imports: [MatButtonModule, MatCardModule, CommonModule, MatInputModule, FormsModule],
+  imports: [MatButtonModule, MatCardModule, CommonModule, MatInputModule, FormsModule, MatIconModule],
   templateUrl: './detail.barber.component.html',
   styleUrl: './detail.barber.component.scss'
 })
@@ -23,6 +24,9 @@ export class DetailBarberComponent {
   public idBarber!:string;
   public barberUpdateqRequest!:barberCreateRequest;
   isReadOnly = true; // Por defecto, el campo está en modo de solo lectura
+  imageSrc: string | ArrayBuffer | null = null;
+  base64String!: string;
+
   constructor(private barbersService:BarbersAdministrationService, private route: ActivatedRoute, private router: Router){
   }
   ngOnInit(): void{ 
@@ -45,7 +49,7 @@ toggleCancel() {
   this.showConfirmButton = false;
   this.barbersService.getAvailableBarber(this.idBarber).subscribe({next:(response)=>{
     console.log(response.barbers);
-    this.barberResponse = response;
+    this.barberResponse = response;    
   }})  
   this.isReadOnly = true;
 }
@@ -55,7 +59,10 @@ updateBarber() {
   this.showConfirmButton = false;
   this.isReadOnly = true;
   this.barberUpdateqRequest.trace="123456";
-  this.barberUpdateqRequest.barber = this.barberResponse.barbers[0];
+  this.barberUpdateqRequest.barber = this.barberResponse.barbers[0]; 
+  this.convertToBase64(this.imageSrc);
+  this.barberUpdateqRequest.barber.image = this.base64String;
+  console.log(this.barberUpdateqRequest);
   this.barbersService.sendUpdateBarber(this.barberUpdateqRequest).subscribe({next:(response)=>{
     console.log("RESPONSE: " + response.respCode);
     if(response.respCode === '00')
@@ -85,25 +92,30 @@ deleteBarber(){
     this.barbersService.getAvailableBarber(this.idBarber).subscribe({next:(response)=>{
       console.log(response.barbers);
       this.barberResponse = response;
+      this.imageSrc = this.barberResponse.barbers[0].image;
     }})
   }
-  handleFileSelect(event: any): void {
-    const file = event.target.files[0];
-    if (file) {
-      console.log(event.target.result);
-      this.barberResponse.barbers[0].image = event.target.result;
-      this.convertToBase64(file);
+  backFunction(){
+    this.router.navigate(['/Users/Dashboard/Barbers']);
+  }
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      const file = input.files[0];
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imageSrc = reader.result;        
+      };
+      reader.readAsDataURL(file);
     }
   }
-  convertToBase64(file: File): void {
-    const reader = new FileReader();
-    reader.onload = () => {
-      const base64String = reader.result as string;
-      const base64Fragment = base64String.replace(/^data:image\/(png|jpeg|jpg);base64,/, '');
-      console.log('Fragmento base64:', base64Fragment);
-      // this.barberUpdateqRequest.barber.image = base64Fragment;
-    };
-    reader.readAsDataURL(file);
+  convertToBase64(imageSrc: string | ArrayBuffer | null): void {
+    if (typeof imageSrc === 'string') {
+      this.base64String = imageSrc.split(',')[1]; // Elimina el prefijo 'data:image/...;base64,'
+    } else if (imageSrc instanceof ArrayBuffer) {
+      const binary = String.fromCharCode(...new Uint8Array(imageSrc));
+      this.base64String = window.btoa(binary);
+    }
   }
 }
 

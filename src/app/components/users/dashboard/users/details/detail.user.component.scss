@@ -5,7 +5,10 @@
   .example-full-width {
     width: 100%;
   }
-  
+  .example-button-row {
+    display: table-cell;
+    max-width: 600px;
+  }
   td {
     padding-right: 8px;
   }
