@@ -13,11 +13,12 @@ import { FormsModule } from '@angular/forms';
 import { MatDialog, MatDialogActions, MatDialogClose, MatDialogContent, MatDialogRef, MatDialogTitle } from '@angular/material/dialog';
 import { DialogConfirmationComponent } from './dialog-confirmation/dialog-confirmation.component';
 import { Observable } from 'rxjs';
+import {MatIconModule} from '@angular/material/icon';
 
 @Component({
   selector: 'app-detail.user',
   standalone: true,
-  imports: [MatButtonModule, MatCardModule, CommonModule, MatInputModule, FormsModule, MatSelectModule, MatCheckboxModule ],
+  imports: [MatButtonModule, MatCardModule, CommonModule, MatInputModule, FormsModule, MatSelectModule, MatCheckboxModule,MatIconModule],
   templateUrl: './detail.user.component.html',
   styleUrl: './detail.user.component.scss'
 })
@@ -66,10 +67,6 @@ toggleCancel() {
   this.showConfirmButton = false;
   this.getUser();
   this.resetPassword = false;
-  
-  //   console.log(response.barbers);
-  //   this.userResponse = response;
-  // }})
   this.isReadOnly = true;
 }
 updateUser() {
@@ -141,4 +138,7 @@ onModelChange(newValue: boolean) {
     });
     return dialogRef.afterClosed();
   }  
+  backFunction(){
+    this.router.navigate(['/Users/Dashboard/Users']);
+  }
 }
