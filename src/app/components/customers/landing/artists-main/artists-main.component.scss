@@ -1,27 +1,15 @@
-
-
-
-
-
 .container-room{
   background-image: url('../../../../../assets/Images/fondo_dinamico_estrella.jpeg');
   background-repeat: no-repeat;
   background-size: cover;
-  background-color: #79797940;
-  color: white;
-  padding: 30px;
 }
-
-
-
-
-
 .title-room{
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
-  font-weight: bold;
-  font-size: 80px;
-  letter-spacing: 10px;
-  color: black;
+  padding: 0 20px;
+  margin-top: 50px;
 }
 .mat-card-room{
   background: border-box;
@@ -33,13 +21,22 @@
   color: black;
 }
 .container-content-room{
-  margin-top: 50px;
-  margin-bottom: auto;
-  padding: 0px 80px 0px 80px;
+  padding: 20px;
 }
 .mat-card-actions{
-  // margin-left: auto;
-  // margin-right: auto;
-  display: flex;
-  justify-content: center; /* Centra horizontalmente */
+  background: border-box;
+  border-radius: 30px;
+  margin: 20px 0;
+  font-weight: 400;
+  font-size: 1.5rem;
+  text-align: justify;
+  box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.12);
+}
+.img-third{
+  align-items: center;
+  text-align: center; 
+}
+.img-third-img{
+  border: 1px solid black;
+  border-radius: 50%;
 }
