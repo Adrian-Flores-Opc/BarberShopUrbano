@@ -4,6 +4,7 @@ mat-grid-tile {
 footer{
     background: black;
     color: white;
+    width: 100%;
 }
 .mat-card-contents{
     background: black;
@@ -23,6 +24,9 @@ footer{
     background: #616161;
     text-align: center;
     font-size: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .mat-card-title{
     font-weight: 400;
@@ -35,4 +39,7 @@ footer{
     align-items: center;
     margin-left: auto;
     margin-right: auto;
+}
+.custom-icon-size {
+  font-size: 24px;
 }

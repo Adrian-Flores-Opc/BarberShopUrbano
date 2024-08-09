@@ -30,7 +30,9 @@
                 </mat-card>
                 <mat-card class="mat-card-contents" appearance="outlined">
                     <mat-card-header class="mat-card-headers-contents">
-                        <div mat-card-avatar class="container-icons-avatar"><mat-icon fontIcon="whatsapp"></mat-icon></div>
+                        <div mat-card-avatar class="container-icons-avatar">
+                          <fa-icon [icon]="faWhatsapp" class="custom-icon-size"></fa-icon>
+                        </div>
                         <mat-card-title class="mat-card-title">WHATSAPP</mat-card-title>
                         <mat-card-subtitle class="mat-card-subtitle">(+591) 75806163</mat-card-subtitle>
                     </mat-card-header>
@@ -52,14 +54,14 @@
                         <mat-card-subtitle class="mat-card-subtitle">Realizar una reserva</mat-card-subtitle>
                     </mat-card-content>
                     <mat-card-footer class="mat-card-footer">
-                        <div mat-card-avatar class="container-icons-avatar" style="margin: 10px;"><mat-icon fontIcon="whatsapp"></mat-icon></div>
-                        <div mat-card-avatar class="container-icons-avatar" style="margin: 10px;"><mat-icon fontIcon="whatsapp"></mat-icon></div>
-                        <div mat-card-avatar class="container-icons-avatar" style="margin: 10px;"><mat-icon fontIcon="whatsapp"></mat-icon></div>
-                        <div mat-card-avatar class="container-icons-avatar" style="margin: 10px;"><mat-icon fontIcon="whatsapp"></mat-icon></div>
+                        <div mat-card-avatar class="container-icons-avatar" style="margin: 10px;"><fa-icon [icon]="faFacebook" class="custom-icon-size"></fa-icon></div>
+                        <div mat-card-avatar class="container-icons-avatar" style="margin: 10px;"><fa-icon [icon]="faYoutube" class="custom-icon-size"></fa-icon></div>
+                        <div mat-card-avatar class="container-icons-avatar" style="margin: 10px;"><fa-icon [icon]="faXTwitter" class="custom-icon-size"></fa-icon></div>
+                        <div mat-card-avatar class="container-icons-avatar" style="margin: 10px;"><fa-icon [icon]="faTiktok" class="custom-icon-size"></fa-icon></div>
                     </mat-card-footer>
                 </mat-card>
             </div>
         </div>
-        <div class="row" style="margin: 0; text-align: center; font-weight: 500; font-size: 12px;"><p>©2024 Desarrollado por Damian Tegnology</p></div>
+        <div class="row" style="margin: 0; text-align: center; font-weight: 500; font-size: 12px;"><p>©{{currentYear}} Desarrollado por Damian Tegnology</p></div>
     </div>
 </footer>

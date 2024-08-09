@@ -2,6 +2,8 @@ import {Component} from '@angular/core';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 import { CommonModule } from '@angular/common';
 import {MatIconModule} from '@angular/material/icon';
@@ -11,8 +13,8 @@ import {MatCardModule} from '@angular/material/card';
 import { UserAdministrationService } from '../../../../core/user-administration.service';
 import { UserAdministrationModel, User, InformationUser, UserCreateRequest } from '../../../../models/viewusers/user-administration.model.model'
 import {inject, model, signal} from '@angular/core';
-import {FormsModule} from '@angular/forms';
-import { DialogOverviewExampleDialog } from '../opendialogs/dialog-add-barber/dialog-add-barber.component';
+import Swal from 'sweetalert2';
+
 import {
   MAT_DIALOG_DATA,
   MatDialog,
@@ -41,7 +43,7 @@ export class UserComponent {
   public displayedColumns: string[] = ['lastname', 'motherlastname', 'names'];
   public dataSource = new MatTableDataSource(this.Element);
   clickedRows = new Set<InformationUser>();
-  constructor(private usersService:UserAdministrationService, private router: Router){
+  constructor(private usersService:UserAdministrationService, private router: Router, private snackBar: MatSnackBar){
 
   }
   ngOnInit(): void{
@@ -86,7 +88,13 @@ export class UserComponent {
       console.log("RESPONSE: " + response.respCode);
       if(response.respCode === '00')
         {
-          alert("Se creo el user correctamente");
+          this.showAlert();
+          // Swal.fire({
+          //   title: 'Create User',
+          //   text: '¡User create susccessfull!',
+          //   icon: 'info',
+          //   confirmButtonText: 'Okr'
+          // });
           this.getUsers();
         }
         else{
@@ -94,6 +102,10 @@ export class UserComponent {
         }          
     }})
   }
-
+  showAlert() {
+    this.snackBar.open('¡Esta es una alerta!', 'Cerrar', {
+      duration: 10000,
+    });
+  }
 }
 

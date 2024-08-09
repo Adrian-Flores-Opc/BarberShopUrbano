@@ -1,24 +1,39 @@
 <div class="container">
   <div class="row">
+    <div class="example-button-row">
+      <button mat-button style="font-size: 1rem;" (click)="backFunction()">
+        <mat-icon>arrow_back</mat-icon>
+        VOLVER
+      </button>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
     <div class="col-md-12">
       <div class="justify-content-center">
         <mat-card class="example-card" appearance="outlined" *ngFor="let barbers of barberResponse.barbers">
           <mat-card-header>
             <mat-card-title-group>
               <mat-card-title>BARBER INFORMATION</mat-card-title>
+              
               <mat-card-subtitle>
                 <div class="MuiBox-root css-1vg6q84" style="text-transform: uppercase;">{{barbers.alias}}</div>
-              </mat-card-subtitle>
-                <img mat-card-lg-image src={{barbers.image}} alt="Preview Image">
-                <br>
-                <input type="file" accept="image/*" class="file-upload" (change)="handleFileSelect($event)" [readonly]="isReadOnly"> 
-            </mat-card-title-group>            
-          </mat-card-header>    
+              </mat-card-subtitle>               
+            </mat-card-title-group>
+          </mat-card-header>
+          <div>
+            <img [src]="imageSrc" *ngIf="imageSrc" alt="Preview Image" style="max-width: 200px; max-height: 200px;">            
+          </div> 
+          <div>
+            <input type="file" accept="image/*" (change)="onFileSelected($event)">
+          </div>
+          
           <mat-card-content>
             <div class="example-button-row">
               DATA
-            </div>
-            <table class="example-full-width" cellspacing="0" style="text-transform: uppercase;">
+            </div>            
+            <table class="mat-elevation-z8" cellspacing="0" style="text-transform: uppercase;">
               <tr>
                 <td><mat-form-field class="example-full-width">
                   <mat-label>LastName</mat-label>
