@@ -5,6 +5,7 @@ import { Observable, throwError } from 'rxjs';
 import { barberCreateRequest, getAvailableBarbersModels, genericResponse } from '../models/viewbookings/barbers-administration.model';
 import { BarbersGetResponse } from '../models/viewbarbers/barbers-administration.model';
 import { Commonresult } from '../models/commonresult.model';
+import { createClient, createClientResponse, dataClientFilter, filterClientRequest, InformationReservationResponse } from '../models/viewusers/user-administration.model.model';
 
 @Injectable({
   providedIn: 'root'
@@ -34,5 +35,17 @@ export class BarbersAdministrationService {
   public deleteBarber(id:string): Observable<Commonresult>{
     const withCredentials = false;
     return this.httpConnection.get<Commonresult>(this.apiEndPoint + 'api/DeleteBarber/' + id, { headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }, withCredentials });
+  }
+  public getInformationReservation(id:string): Observable<InformationReservationResponse>{
+    const withCredentials = false;
+    return this.httpConnection.get<InformationReservationResponse>(this.apiEndPoint + 'api/GetInformationReservation/' + id, { headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }, withCredentials });
+  }
+  public filterInformationClient(_request:filterClientRequest): Observable<dataClientFilter>{
+    const withCredentials = false;
+    return this.httpConnection.post<dataClientFilter>(this.apiEndPoint + 'api/FilterClient', _request, { headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }, withCredentials });
+  }
+  public createClient(_request:createClient): Observable<createClientResponse>{
+    const withCredentials = false;
+    return this.httpConnection.post<createClientResponse>(this.apiEndPoint + 'api/CreateClient', _request, { headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }, withCredentials });
   }
 }

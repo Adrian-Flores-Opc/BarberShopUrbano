@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarConfig, MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 import { CommonModule } from '@angular/common';
@@ -32,7 +32,7 @@ import { Router } from '@angular/router';
   templateUrl: './user.component.html',
   styleUrl: './user.component.scss',
   standalone: true,
-  imports: [MatButtonModule, MatCardModule, CommonModule,MatIconModule,MatDividerModule,MatFormFieldModule, MatInputModule, MatTableModule],
+  imports: [MatButtonModule, MatCardModule, CommonModule,MatIconModule,MatDividerModule,MatFormFieldModule, MatInputModule, MatTableModule, MatSnackBarModule],
 })
 export class UserComponent {
   public usersResponse!:UserAdministrationModel; 
@@ -78,7 +78,8 @@ export class UserComponent {
       if (result !== undefined) {
         console.log('DATA RESPUESTA:');
         console.log(JSON.stringify(result.data));
-        this.createUser(result.data);
+        this.showAlert();
+        // this.createUser(result.data);
       }
     });
   }
@@ -103,9 +104,16 @@ export class UserComponent {
     }})
   }
   showAlert() {
-    this.snackBar.open('¡Esta es una alerta!', 'Cerrar', {
-      duration: 10000,
-    });
+    var config: MatSnackBarConfig = {
+      panelClass: ['test'],
+    };
+    this.snackBar.open("message", '', { duration: 5000, verticalPosition: 'top', horizontalPosition: 'center' });
+    // this.snackBar.open('Mensaje de error', 'Cerrar', {
+    //   duration: 2000,      
+    //   // horizontalPosition: 'end', // Posición horizontal ('start', 'center', 'end')
+    //   // verticalPosition: 'top', // Posición vertical ('top', 'bottom')
+    //   panelClass: ['snackbar-success'],
+    // });
   }
 }
 

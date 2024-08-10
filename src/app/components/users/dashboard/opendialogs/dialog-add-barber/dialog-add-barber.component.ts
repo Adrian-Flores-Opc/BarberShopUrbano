@@ -32,7 +32,6 @@ import { barberModel } from '../../../../../models/viewbookings/barbers-administ
 export class DialogOverviewExampleDialog {  
   public barber!:barberModel;
   readonly dialogRef = inject(MatDialogRef<DialogOverviewExampleDialog>);
-;
   
   ngOnInit(): void{
     this.barber = new barberModel();
