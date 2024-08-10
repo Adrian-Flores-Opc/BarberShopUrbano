@@ -34,9 +34,28 @@
 }
 .img-third{
   align-items: center;
-  text-align: center; 
+  text-align: center;
 }
 .img-third-img{
   border: 1px solid black;
   border-radius: 50%;
+}
+.full-screen {
+  // width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+.content-mat-card{
+  align-items: center;
+  display: flex;
+}
+.full-screen-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // height: 100vh;
+}
+.img-third-img {
+  max-width: 100%;
+  height: auto;
 }
