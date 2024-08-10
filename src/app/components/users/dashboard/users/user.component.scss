@@ -68,4 +68,26 @@
     white-space: nowrap;
   }
   
+
+  //ALERT
+  .error-snackbar {
+    background-color: red;
+  }
+  .success-snackbar {
+    background-color: rgb(58, 219, 58);
+  }
+  .snackbar-success {
+    .mdc-snackbar__surface {
+      background-color: var(--color-primary) !important;
+    }
   
+    .mdc-snackbar__label {
+      color: white !important;
+    }
+  }
+
+  .test {
+    background-color: aqua;
+    color: red;
+    --mat-mdc-snack-bar-button-color: var(--white-color);
+  }

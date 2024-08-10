@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="row">
+     <div class="col-md-12">
+        <div class="justify-content-center">
+           <h2 mat-dialog-title>SEARCH CLIENT</h2>
+           <mat-dialog-content>
+              <div style="display: flex; gap: 16px;">
+                 <mat-form-field>
+                    <mat-label>Text Filter</mat-label>
+                    <input matInput [(ngModel)]="filter" />
+                 </mat-form-field>
+                 <mat-form-field>
+                    <mat-label>selected Filter</mat-label>
+                    <mat-select [(ngModel)]="selectedValue" name="filterClient">
+                    <mat-option></mat-option>
+                    @for (typeFilter of typeFilters; track typeFilters) {
+                    <mat-option [value]="typeFilter.id">{{typeFilter.description}}</mat-option>
+                    }
+                    </mat-select>
+                 </mat-form-field>
+                 <div class="container-content-options">
+                    <button class="css-Search" (click)="searchClient()">
+                       <mat-icon class="css-filte">search</mat-icon>
+                       Search
+                    </button>
+                 </div>
+              </div>
+           </mat-dialog-content>
+           <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+              <ng-container matColumnDef="id">
+                 <th mat-header-cell *matHeaderCellDef> Id </th>
+                 <td mat-cell *matCellDef="let Element"> {{Element.id}} </td>
+              </ng-container>
+              <ng-container matColumnDef="lastname">
+                 <th mat-header-cell *matHeaderCellDef> LastName </th>
+                 <td mat-cell *matCellDef="let Element"> {{Element.lastName}} </td>
+              </ng-container>
+              <ng-container matColumnDef="motherlastname">
+                 <th mat-header-cell *matHeaderCellDef> Motherlastname </th>
+                 <td mat-cell *matCellDef="let Element"> {{Element.motherLastName}} </td>
+              </ng-container>
+              <ng-container matColumnDef="names">
+                 <th mat-header-cell *matHeaderCellDef> Names </th>
+                 <td mat-cell *matCellDef="let Element"> {{Element.names}} </td>
+              </ng-container>
+              <ng-container matColumnDef="cellphone">
+                 <th mat-header-cell *matHeaderCellDef> Cellphone </th>
+                 <td mat-cell *matCellDef="let Element"> {{Element.cellphone}} </td>
+              </ng-container>
+              <ng-container matColumnDef="email">
+                 <th mat-header-cell *matHeaderCellDef> Email </th>
+                 <td mat-cell *matCellDef="let Element"> {{Element.email}} </td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr
+              mat-row
+              (click)="handleRowClick(row)"
+              [class.demo-row-is-clicked]="clickedRows.has(row)"
+              *matRowDef="let row; columns: displayedColumns;"
+              ></tr>  
+           </table>
+           <mat-dialog-actions>
+              <button mat-button (click)="onNoClick()">No Thanks</button>
+           </mat-dialog-actions>
+        </div>
+     </div>
+  </div>
+</div>

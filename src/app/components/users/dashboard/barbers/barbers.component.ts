@@ -31,9 +31,9 @@ export class BarbersComponent {
   public createBarberResponse!:genericResponse;
   public barberCreateqRequest!:barberCreateRequest;
   public barber!:barberModel;  
-  public Element!:barbersModels[];
   readonly dialog = inject(MatDialog);
   public displayedColumns: string[] = ['lastname', 'motherlastname', 'names', 'alias'];
+  public Element!:barbersModels[];
   public dataSource = new MatTableDataSource(this.Element);
   clickedRows = new Set<barbersModels>();
   constructor(private barbersService:BarbersAdministrationService, private router: Router){
@@ -91,5 +91,5 @@ export class BarbersComponent {
           alert("No se creo el barbero correctamente");
         }          
     }})
-  } 
+  }
 }

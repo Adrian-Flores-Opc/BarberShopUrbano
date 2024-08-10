@@ -1,0 +1,30 @@
+<h2 mat-dialog-title>ADD NEW CLIENT</h2>
+<mat-dialog-content>
+  <mat-form-field style="width: 100%;">
+    <mat-label>LastName</mat-label>
+    <input matInput [(ngModel)]="client.lastName" />
+  </mat-form-field>
+  <br>
+  <mat-form-field style="width: 100%;">
+    <mat-label>MotherLastName</mat-label>
+    <input matInput [(ngModel)]="client.motherLastName" />
+  </mat-form-field>
+  <br>
+  <mat-form-field style="width: 100%;">
+    <mat-label>Names</mat-label>
+    <input matInput [(ngModel)]="client.names" />
+  </mat-form-field>
+  <br>
+  <mat-form-field style="width: 100%;">
+    <mat-label>Email</mat-label>
+    <input matInput [(ngModel)]="client.email" />
+  </mat-form-field>
+  <mat-form-field style="width: 100%;">
+    <mat-label>Cellphone</mat-label>
+    <input matInput [(ngModel)]="client.cellphone" />
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button (click)="ClickOk()">Ok</button>
+</mat-dialog-actions>

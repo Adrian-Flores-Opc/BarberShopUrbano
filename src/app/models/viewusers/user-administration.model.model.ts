@@ -19,6 +19,10 @@ export class Perfil{
     public id! : string;
     public perfil! : string;
 }
+export class ServiceBarber{
+    public id! : string;
+    public descriptionService! : string;
+}
 export class InformationUser{
     public id! : number;
     public state! : string;
@@ -50,3 +54,56 @@ export class barberModel{
 export class perfilsResponse extends Commonresult{
     public perfils!:Perfil[];
 }
+export class TypeFilter{
+    public id! : string;
+    public description! : string;
+}
+export class createClient {
+    public trace !: string;
+    public lastName !: string;
+    public motherLastName !: string;
+    public names !: string;
+    public cellphone !: string;
+    public email !: string;
+}
+export class createClientResponse extends Commonresult{
+    public idClient !:string;
+}
+export class dataClient {
+    public id !: string;
+    public lastName !: string;
+    public motherLastName !: string;
+    public names !: string;
+    public cellphone !: string;
+    public email !: string;
+}
+export class dataClientFilter extends Commonresult{
+    public client!:dataClient[];
+}
+export class filterClientRequest {
+    public trace !: string;
+    public lastName !: string;
+    public motherLastName !: string;
+    public names !: string;
+    public cellphone !: string;
+    public email !: string;
+    public typeFilter !: string;
+}
+export class filterClient{
+    public idClient!:string;
+    public namesClient!: string;
+  }
+  export class InformationReservationResponse extends Commonresult{
+    public dataReservation!:Information;
+  }
+  export class Information{
+    public id !: string;
+    public lastName !: string;
+    public motherLastName !: string;
+    public names !: string;
+    public cellphone !: string;
+    public email !: string;
+    public idBarber !: string;
+    public aliasBarber !: string;
+    public dateReservation !: string;
+  }
