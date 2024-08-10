@@ -28,15 +28,14 @@
                        <input matInput placeholder="Ex. Suarez Sanchez Mario" [(ngModel)]="nameClient.namesClient" [readonly]="true">
                     </mat-form-field>
                     <button class="css-sd8kw4" (click)="openDialog()" [disabled]="!isReadOnlyReservation">
-                       <svg class="css-vubbuv" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="AddCircleOutlineIcon">
+                       <!-- <svg class="css-vubbuv" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="AddCircleOutlineIcon">
                           <path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2m0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8"></path>
                        </svg>
-                       Add Client
+                       Add Client -->
+                       <mat-icon class="css-filter">add</mat-icon>
                     </button>
                     <button class="css-Search" (click)="openDialogSarchClient()" [disabled]="!isReadOnlyReservation">
-                       <!-- <mat-icon svgIcon="thumbs-up" aria-hidden="false" aria-label="Example thumbs up SVG icon"></mat-icon> -->
-                       <mat-icon class="css-filter" >search</mat-icon>
-                       Search Client
+                       <mat-icon class="css-filter">search</mat-icon>
                     </button>
                  </div>
                  <table class="example-full-width" cellspacing="0" style="text-transform: uppercase;">
