@@ -1,3 +1,4 @@
+import { filterClientRequest } from './../viewusers/user-administration.model.model';
 export class BarbersAdministration {
 }
 
@@ -39,3 +40,7 @@ export class barberModel{
     public image !: string;
 }
 //#endregion
+
+// export class filterClientRequest{
+//     public trace !: string;
+// }
