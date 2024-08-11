@@ -5,7 +5,7 @@ import { Observable, throwError } from 'rxjs';
 import { barberCreateRequest, getAvailableBarbersModels, genericResponse } from '../models/viewbookings/barbers-administration.model';
 import { BarbersGetResponse } from '../models/viewbarbers/barbers-administration.model';
 import { Commonresult } from '../models/commonresult.model';
-import { createClient, createClientResponse, dataClientFilter, filterClientRequest, InformationReservationResponse } from '../models/viewusers/user-administration.model.model';
+import { createClient, createClientResponse, dataClientFilter, filterClientRequest, InformationReservationResponse, ServicesResponse } from '../models/viewusers/user-administration.model.model';
 
 @Injectable({
   providedIn: 'root'
@@ -47,5 +47,9 @@ export class BarbersAdministrationService {
   public createClient(_request:createClient): Observable<createClientResponse>{
     const withCredentials = false;
     return this.httpConnection.post<createClientResponse>(this.apiEndPoint + 'api/CreateClient', _request, { headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }, withCredentials });
+  }
+  public getServicesBarber(): Observable<ServicesResponse>{
+    const withCredentials = false;
+    return this.httpConnection.get<ServicesResponse>(this.apiEndPoint + 'api/GetServices', { headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }, withCredentials });
   }
 }

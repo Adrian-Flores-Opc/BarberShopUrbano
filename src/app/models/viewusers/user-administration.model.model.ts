@@ -1,3 +1,4 @@
+import { DecimalPipe } from "@angular/common";
 import { Commonresult } from "../commonresult.model"
 import { UserAuthentication } from "../viewlogin/user-authentication.model"
 export class UserAdministrationModel extends Commonresult {
@@ -106,4 +107,12 @@ export class filterClient{
     public idBarber !: string;
     public aliasBarber !: string;
     public dateReservation !: string;
+  }
+  export class ServicesResponse extends Commonresult{
+    public services!: serviceBarber [];
+  }
+  export class serviceBarber{
+    public id!: number;
+    public description!: string;
+    public price!: number;
   }

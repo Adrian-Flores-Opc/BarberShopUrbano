@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -13,13 +13,15 @@ import { DialogAddClientComponent } from '../opendialogs/dialog-add-client/dialo
 import { DialogFilterClientComponent } from '../opendialogs/dialog-filter-client/dialog-filter-client.component';
 import { BarbersAdministrationService } from '../../../../core/barbers-administration.service';
 import { filter } from 'rxjs';
+import { CommonOperations } from '../../../../Common/common.operations';
 
 @Component({
   selector: 'app-boxes',
   standalone: true,
   imports: [MatButtonModule, MatCardModule, CommonModule, MatInputModule, FormsModule, MatSelectModule, MatCheckboxModule,MatIconModule],
   templateUrl: './boxes.component.html',
-  styleUrl: './boxes.component.scss'
+  styleUrl: './boxes.component.scss',
+  providers: [CommonOperations]
 })
 export class BoxesComponent {
   selectedValue!: string;
@@ -30,7 +32,8 @@ export class BoxesComponent {
   public clientSelected!: dataClient;
   nameClient!: filterClient;
   readonly dialog = inject(MatDialog);
-  constructor(private barbersService:BarbersAdministrationService){
+  constructor(private barbersService:BarbersAdministrationService,
+              private common: CommonOperations){
     
   }
   ngOnInit(): void{ 
@@ -39,9 +42,23 @@ export class BoxesComponent {
     this.nameClient = new filterClient();
   }
   public getServices(): void{
-    // this.perfilsService.getAvailablePerfils().subscribe({next:(response)=>{
-    //   this.perfils = response.perfils;
-    // }})
+    this.barbersService.getServicesBarber().subscribe({next:(response)=>{
+      if(response.respCode =="00")
+      {
+        this.services = [];
+        response.services.forEach(element => {
+          const service = new ServiceBarber();
+          service.id = element.id + "|" + element.price;
+          service.descriptionService = element.description;
+          this.services.push(service);       
+        });
+        
+      }
+      else
+      {
+        this.common.showAlert("An error was generated, contact the administrator","error","#000","#FFF");
+      }      
+    }})
     
   }
   onModelChange(newValue: boolean) {

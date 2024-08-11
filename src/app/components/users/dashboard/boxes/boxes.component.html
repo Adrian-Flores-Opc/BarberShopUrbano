@@ -16,22 +16,16 @@
                        <mat-label>ID RESERVATION</mat-label>
                        <input matInput placeholder="Ex. RV-0000000000" [disabled]="isReadOnlyReservation" [(ngModel)]="idReservation">
                     </mat-form-field>
-                    <button mat-button class="css-sd8kw4" [hidden]="isReadOnlyReservation" (click)="searchReservation()">
-                    <!-- <mat-icon svgIcon="thumbs-up" aria-hidden="false" aria-label="Example thumbs up SVG icon"></mat-icon> -->
-                    <mat-icon class="css-filter" >search</mat-icon>
-                    Search
-                    </button>
+                    <button class="css-Search" [hidden]="isReadOnlyReservation" (click)="searchReservation()">
+                      <mat-icon class="css-filter">search</mat-icon>
+                    </button>                    
                  </div>
                  <div style="display: flex; gap: 16px;">
                     <mat-form-field class="example-full-width">
                        <mat-label>Client</mat-label>
                        <input matInput placeholder="Ex. Suarez Sanchez Mario" [(ngModel)]="nameClient.namesClient" [readonly]="true">
                     </mat-form-field>
-                    <button class="css-sd8kw4" (click)="openDialog()" [disabled]="!isReadOnlyReservation">
-                       <!-- <svg class="css-vubbuv" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="AddCircleOutlineIcon">
-                          <path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2m0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8"></path>
-                       </svg>
-                       Add Client -->
+                    <button class="css-Search" (click)="openDialog()" [disabled]="!isReadOnlyReservation">                       
                        <mat-icon class="css-filter">add</mat-icon>
                     </button>
                     <button class="css-Search" (click)="openDialogSarchClient()" [disabled]="!isReadOnlyReservation">
@@ -45,7 +39,6 @@
                              <mat-form-field>
                                 <mat-label>Type Service</mat-label>
                                 <mat-select [(ngModel)]="selectedValue" name="service">
-                                <mat-option></mat-option>
                                 @for (service of services; track service) {
                                 <mat-option [value]="service.id">{{service.descriptionService}}</mat-option>
                                 }
