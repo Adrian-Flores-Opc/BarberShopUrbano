@@ -1,15 +1,13 @@
-<section class="section-main-bookings">
-    <div class="container">
-        <div class="row">
-            <mat-card *ngFor="let barbers of _getAvailableBarbersModels.barbers" class="example-card" appearance="outlined">
-                <mat-card-header>
-                    <div mat-card-avatar class="example-header-image">
-                        <img src={{barbers.image}} alt="">
-                    </div>
-                    <mat-card-title>{{barbers.names + ' ' + barbers.lastName + ' ' + barbers.motherLastName}}</mat-card-title>
-                    <mat-card-subtitle>{{barbers.alias}}</mat-card-subtitle>
-                </mat-card-header>
-            </mat-card>
-        </div>
+<div class="container section-main-bookings">
+    <div class="row" *ngIf="_getAvailableBarbersModels.respCode === '00'">
+        <mat-card *ngFor="let barbers of _getAvailableBarbersModels.barbers" class="example-card" appearance="outlined">
+            <mat-card-header>
+                <div mat-card-avatar class="example-header-image">
+                    <img src={{barbers.image}} alt="">
+                </div>
+                <mat-card-title>{{barbers.names + ' ' + barbers.lastName + ' ' + barbers.motherLastName}}</mat-card-title>
+                <mat-card-subtitle>{{barbers.alias}}</mat-card-subtitle>
+            </mat-card-header>
+        </mat-card>
     </div>
-</section>
+</div>

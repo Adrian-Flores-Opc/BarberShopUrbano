@@ -116,3 +116,7 @@ export class filterClient{
     public description!: string;
     public price!: number;
   }
+
+  export class cellphoneFilter{
+    public cellphone!:string
+  }

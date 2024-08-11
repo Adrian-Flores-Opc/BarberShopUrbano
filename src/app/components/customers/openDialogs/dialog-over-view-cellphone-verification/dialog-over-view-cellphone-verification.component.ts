@@ -1,4 +1,4 @@
-import { Component, inject, model } from '@angular/core';
+import { Component, inject, model, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogActions, MatDialogClose, MatDialogContent, MatDialogRef, MatDialogTitle, } from '@angular/material/dialog';
@@ -10,11 +10,8 @@ import { BarbersAdministrationService } from '../../../../core/barbers-administr
 import { getAvailableBarbersModels } from '../../../../models/viewbookings/barbers-administration.model';
 
 import { MatIconModule } from '@angular/material/icon';
+import { cellphoneFilter } from '../../../../models/viewusers/user-administration.model.model';
 
-export interface DialogData {
-  animal: string;
-  name: string;
-}
 
 @Component({
   selector: 'app-dialog-over-view-cellphone-verification',
@@ -23,12 +20,13 @@ export interface DialogData {
   templateUrl: './dialog-over-view-cellphone-verification.component.html',
   styleUrl: './dialog-over-view-cellphone-verification.component.scss'
 })
-export class DialogOverViewCellphoneVerificationComponent {
+export class DialogOverViewCellphoneVerificationComponent implements OnInit {
   readonly dialogRef = inject(MatDialogRef<DialogOverViewCellphoneVerificationComponent>);
-  readonly data = inject<cellphoneVerification>(MAT_DIALOG_DATA);
-  readonly cellphone = model(this.data.cellphone);
+  // readonly data = inject<cellphoneFilter>(MAT_DIALOG_DATA);
+  // readonly cellphone = model(this.data.cellphone);
 
   public _getAvailableBarbersModels !: getAvailableBarbersModels;
+  public _cellphoneFilter !: cellphoneFilter;
 
   constructor(private _barbersService: BarbersAdministrationService) { 
 
@@ -36,6 +34,7 @@ export class DialogOverViewCellphoneVerificationComponent {
 
   ngOnInit(): void {
     this._getAvailableBarbersModels = new getAvailableBarbersModels();
+    this._cellphoneFilter = new cellphoneFilter;
   }
 
   public onNoClick(): void {
@@ -43,27 +42,13 @@ export class DialogOverViewCellphoneVerificationComponent {
   }
 
   public verificationClick(): void{
-    this.dialogRef.close({ event: 'verification', data: this.cellphone });
+    console.log('ES OBTUVO EL SIGUIENTE NUMERO: ' + JSON.stringify(this._cellphoneFilter));
+    this.dialogRef.close({ event: 'verification', data: this._cellphoneFilter });
   }
 
   public verificationCellphone(cellphone: string): void{
     console.log('ES OBTUVO EL SIGUIENTE NUMERO: ' + cellphone);
-    this.getAvailableBarbers();
+    // this.getAvailableBarbers();
   }
 
-  public getAvailableBarbers(): void {
-    try{
-      this._barbersService.getAvailableBarbers().subscribe({ next: (_response) => {
-        this._getAvailableBarbersModels = _response;
-        console.log('OBTENER RESPUESTA: ' + JSON.stringify(this._getAvailableBarbersModels));
-        console.log(_response);
-      }, error: (_error) =>{
-        console.log(_error);
-      }, complete:() =>{
-        console.log('Complete');
-      }});
-    } catch (error) {
-      console.log(error);
-    }
-  }
 }
