@@ -120,3 +120,15 @@ export class filterClient{
   export class cellphoneFilter{
     public cellphone!:string
   }
+//CLIENT MODEL AUXILIAR
+export class registerBox{
+    public guid!: string;
+    public idTypeService!: number;
+    public typeService!: string;
+    public price!: number;
+    public qty!: number;
+    public discount!: number;
+    public subTotal!: number;
+  }
+  //END CLIENT
+
