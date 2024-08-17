@@ -1,9 +1,20 @@
 .carousel,
 .carousel-inner,
 .carousel-item,
-.carousel-item img {
+.carousel-item
+.img-layer {
   height: 100vh;
 }
-.carousel-item img {
+.carousel-item
+.img-layer {
   object-fit: cover;
+}
+.overlay-image {
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 100%;
+  width: 350px !important;
+  filter: drop-shadow(5px 10px 3px rgb(191, 191, 191));
 }

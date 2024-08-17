@@ -43,3 +43,23 @@ footer{
 .custom-icon-size {
   font-size: 24px;
 }
+.no-underline {
+  text-decoration: none;
+  color: inherit;
+}
+.mat-card-subtitle-hover:hover{
+  color: #b5b5b5;
+}
+.mat-card-avatar-facebbok-hover:hover{
+  background-color: #0866ffbf;
+}
+.mat-card-avatar-whatsapp-hover:hover{
+  background-color: #176b5b;
+}
+.mat-card-avatar-instagram-hover:hover{
+  background-color: #833ab4;
+  background: linear-gradient(to right, #833ab4,#fd1d1d,#fcb045);
+}
+.mat-card-avatar-tiktok-hover:hover{
+  background-color: black;
+}

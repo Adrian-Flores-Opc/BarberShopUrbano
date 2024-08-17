@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+
+      <form [formGroup]="registerForm">
+
+        <mat-dialog-content>
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label> Nombres: </mat-label>
+            <input matInput formControlName="names" [(ngModel)]="_createNewClientRequest.names">
+            <!-- <mat-error *ngIf="registerForm.controls.names.hasError('required')" >El campo es obligatorio</mat-error> -->
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label> Apellido Paterno: </mat-label>
+            <input matInput formControlName="lastName" [(ngModel)]="_createNewClientRequest.lastName">
+            <!-- <mat-error *ngIf="registerForm.controls.user.hasError('required')" >El campo es obligatorio</mat-error> -->
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label> Apellido Materno: </mat-label>
+            <input matInput formControlName="motherLastName" [(ngModel)]="_createNewClientRequest.motherLastName">
+            <!-- <mat-error *ngIf="registerForm.controls.user.hasError('required')" >El campo es obligatorio</mat-error> -->
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label> Correo Electronico: </mat-label>
+            <input matInput formControlName="email" [(ngModel)]="_createNewClientRequest.email">
+            <!-- <mat-error *ngIf="registerForm.controls.user.hasError('required')" >El campo es obligatorio</mat-error> -->
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label> Celular: </mat-label>
+            <input matInput formControlName="cellphone" [(ngModel)]="_createNewClientRequest.cellphone">
+            <!-- <mat-error *ngIf="registerForm.controls.user.hasError('required')" >El campo es obligatorio</mat-error> -->
+          </mat-form-field>
+        </mat-dialog-content>
+        <mat-dialog-actions>
+          <button mat-button (click)="onNolick()">Cancelar</button>
+          <button mat-button [disabled]="!registerForm.valid" (click)="saveClientRegistration(_createNewClientRequest)" cdkFocusInitial>Verificar</button>
+        </mat-dialog-actions>
+
+      </form>
+    </div>
+  </div>
+</div>

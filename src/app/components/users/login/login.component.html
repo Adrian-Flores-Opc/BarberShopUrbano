@@ -7,7 +7,7 @@
           <!-- <i class="fas fa-user"></i>
           <input type="text" placeholder="Username" /> -->
 
-          <mat-form-field appearance="fill" class="full-width">
+          <mat-form-field appearance="outline" class="full-width">
             <mat-label> Usuario </mat-label>
             <input matInput formControlName="user" [(ngModel)]="_modelLogin.userName">
             <!-- <mat-error *ngIf="registerForm.controls.user.hasError('required')" >El campo es obligatorio</mat-error> -->
@@ -17,7 +17,7 @@
           <!-- <i class="fas fa-lock"></i>
           <input type="password" placeholder="Password" /> -->
 
-          <mat-form-field appearance="fill" class="full-width">
+          <mat-form-field appearance="outline" class="full-width">
             <mat-label> Contraseña</mat-label>
             <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" [(ngModel)]="_modelLogin.passwordName">
             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
@@ -27,8 +27,8 @@
           </mat-form-field>
         </div>
         <!-- <input type="submit" value="Login" class="btn solid" /> -->
-        <button mat-raised-button color="primary" [disabled]="!registerForm.valid" (click)="submitLogin(_modelLogin)">
-          <mat-icon>search</mat-icon>
+        <button mat-flat-button color="primary" [disabled]="!registerForm.valid" (click)="submitLogin(_modelLogin)" class="mat-button-login">
+          <mat-icon>verified_user</mat-icon>
           Ingresar
         </button>
       </form>
@@ -39,7 +39,7 @@
     <div class="panel left-panel">
       <div class="content">
       </div>
-      <img src="../../../../assets/Images/log.svg" class="image" alt="" />
+      <!-- <img src="../../../../assets/Images/log.svg" class="image" alt="" /> -->
     </div>
     <div class="panel right-panel">
     </div>
