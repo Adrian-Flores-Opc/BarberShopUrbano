@@ -118,7 +118,6 @@ export class BookingsComponent implements OnInit {
 
             } });
         }
-
       }, error: (_error) => {
         console.log(_error);
       }, complete:() => {
