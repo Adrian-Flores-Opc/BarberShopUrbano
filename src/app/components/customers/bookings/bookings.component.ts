@@ -17,7 +17,7 @@ import { filterClientRequest, cellphoneFilter } from '../../../models/viewusers/
   imports: [MatCardModule, CommonModule, MatButtonModule, MatFormFieldModule, MatInputModule],
   templateUrl: './bookings.component.html',
   styleUrl: './bookings.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 
