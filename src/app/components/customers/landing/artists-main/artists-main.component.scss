@@ -58,4 +58,16 @@
 .img-third-img {
   max-width: 100%;
   height: auto;
+  object-fit: cover;
+}
+
+.container-divider-class{
+  // transform: rotate(180deg) translateX(50%);
+}
+.container-divider-class svg{
+  object-fit: cover;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100% !important;
+  height: 100px !important;
 }

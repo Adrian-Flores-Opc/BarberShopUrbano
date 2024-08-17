@@ -1,15 +1,21 @@
-<section class="section-main-bookings">
-    <div class="container">
-        <div class="row">
-            <mat-card *ngFor="let barbers of _getAvailableBarbersModels.barbers" class="example-card" appearance="outlined">
-                <mat-card-header>
-                    <div mat-card-avatar class="example-header-image">
-                        <img src={{barbers.image}} alt="">
-                    </div>
-                    <mat-card-title>{{barbers.names + ' ' + barbers.lastName + ' ' + barbers.motherLastName}}</mat-card-title>
-                    <mat-card-subtitle>{{barbers.alias}}</mat-card-subtitle>
-                </mat-card-header>
-            </mat-card>
-        </div>
+<div class="container section-main-bookings">
+  <div class="" *ngIf="_getAvailableBarbersModels?.respCode === '00'">
+    <div class="" *ngFor="let barbers of _getAvailableBarbersModels?.barbers; let i = index">
+
     </div>
-</section>
+  </div>
+    <div class="row" >
+
+      <div class="col-md-4" *ngFor="let barbers of _getAvailableBarbersModels?.barbers">
+        <mat-card class="example-card" appearance="outlined" (click)="searchReservation(barbers.id)">
+          <mat-card-header>
+              <div mat-card-avatar class="example-header-image">
+                  <img src={{barbers.image}} alt="">
+              </div>
+              <mat-card-title>{{barbers.names + ' ' + barbers.lastName + ' ' + barbers.motherLastName}}</mat-card-title>
+              <mat-card-subtitle>{{barbers.alias}}</mat-card-subtitle>
+          </mat-card-header>
+      </mat-card>
+      </div>
+    </div>
+</div>

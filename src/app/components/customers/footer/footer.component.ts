@@ -4,7 +4,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faWhatsapp, faFacebook, faYoutube, faXTwitter, faTiktok  } from '@fortawesome/free-brands-svg-icons';
+import { faWhatsapp, faFacebook, faYoutube, faXTwitter, faTiktok, faInstagram  } from '@fortawesome/free-brands-svg-icons';
 
 
 @Component({
@@ -22,6 +22,7 @@ export class FooterComponent {
   faYoutube = faYoutube;
   faXTwitter = faXTwitter;
   faTiktok= faTiktok;
+  faInstagram = faInstagram;
 
   ngOnInit(): void{
     this.currentYear =  new Date().getFullYear();

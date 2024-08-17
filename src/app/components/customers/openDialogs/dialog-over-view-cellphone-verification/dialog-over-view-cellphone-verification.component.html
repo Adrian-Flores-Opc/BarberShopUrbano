@@ -2,11 +2,11 @@
 <mat-dialog-content>
   <mat-form-field>
     <mat-label>Número Celular</mat-label>
-    <input matInput [(ngModel)]="cellphone" />
+    <input matInput [(ngModel)]="_cellphoneFilter.cellphone" />
     <mat-icon matSuffix>phone</mat-icon>
   </mat-form-field>
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cancelar</button>
-  <button mat-button [mat-dialog-close]="cellphone()" (click)="this.verificationCellphone(cellphone())" cdkFocusInitial>Verificar</button>
+  <button mat-button (click)="verificationClick()" cdkFocusInitial>Verificar</button>
 </mat-dialog-actions>

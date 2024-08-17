@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarConfig, MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 import { CommonModule } from '@angular/common';
@@ -27,12 +27,14 @@ import {
 import { exec } from 'child_process';
 import { DialogOverviewUserDialog } from '../opendialogs/dialog-add-user/dialog-add-user.component';
 import { Router } from '@angular/router';
+import { CommonOperations } from '../../../../Common/common.operations';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrl: './user.component.scss',
   standalone: true,
-  imports: [MatButtonModule, MatCardModule, CommonModule,MatIconModule,MatDividerModule,MatFormFieldModule, MatInputModule, MatTableModule],
+  providers: [CommonOperations],
+  imports: [MatButtonModule, MatCardModule, CommonModule,MatIconModule,MatDividerModule,MatFormFieldModule, MatInputModule, MatTableModule, MatSnackBarModule],
 })
 export class UserComponent {
   public usersResponse!:UserAdministrationModel; 
@@ -43,7 +45,9 @@ export class UserComponent {
   public displayedColumns: string[] = ['lastname', 'motherlastname', 'names'];
   public dataSource = new MatTableDataSource(this.Element);
   clickedRows = new Set<InformationUser>();
-  constructor(private usersService:UserAdministrationService, private router: Router, private snackBar: MatSnackBar){
+  constructor(private usersService:UserAdministrationService, 
+              private router: Router, private snackBar: MatSnackBar,
+              private common: CommonOperations){
 
   }
   ngOnInit(): void{
@@ -88,24 +92,13 @@ export class UserComponent {
       console.log("RESPONSE: " + response.respCode);
       if(response.respCode === '00')
         {
-          this.showAlert();
-          // Swal.fire({
-          //   title: 'Create User',
-          //   text: '¡User create susccessfull!',
-          //   icon: 'info',
-          //   confirmButtonText: 'Okr'
-          // });
+          this.common.showAlert("Succesfull","success","#000","#FFF");
           this.getUsers();
         }
         else{
-          alert("No se creo el barbero correctamente");
+          this.common.showAlert("An error was generated, contact the administrator","error","#000","#FFF");
         }          
     }})
-  }
-  showAlert() {
-    this.snackBar.open('¡Esta es una alerta!', 'Cerrar', {
-      duration: 10000,
-    });
   }
 }
 

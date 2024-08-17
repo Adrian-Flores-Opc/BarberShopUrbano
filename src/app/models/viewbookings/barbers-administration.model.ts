@@ -1,7 +1,8 @@
+import { filterClientRequest } from './../viewusers/user-administration.model.model';
 export class BarbersAdministration {
 }
 
-//#region Cellphone Verification / Registration client 
+//#region Cellphone Verification / Registration client
 export class cellphoneVerification{
     public cellphone !: string;
 }
@@ -12,9 +13,15 @@ export class genericResponse{
     public respCode !: string;
     public detailMessage !: string;
 }
+
+export class getAvailableBarbersViewsModels extends genericResponse{
+  public viewBarbersDetail !: getAvailableBarbersModels[];
+}
+
 export class getAvailableBarbersModels extends genericResponse{
     public barbers !: barbersModels[];
 }
+
 export class barbersModels{
     public id! : number ;
     public state !: string;
@@ -39,3 +46,18 @@ export class barberModel{
     public image !: string;
 }
 //#endregion
+
+
+export class createNewClientRequest{
+    public trace !: string;
+    public lastName !: string;
+    public motherLastName !: string;
+    public names !: string;
+    public email !: string;
+    public cellphone !: string;
+}
+
+
+export class createNewClientResponse extends genericResponse{
+  public idClient !: string;
+}
