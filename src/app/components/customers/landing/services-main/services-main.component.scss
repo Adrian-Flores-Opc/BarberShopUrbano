@@ -61,3 +61,7 @@ mat-card-actions{
   margin-right: auto;
   margin-left: auto;
 }
+
+.collapse:not(.show) {
+  display: none;
+}
