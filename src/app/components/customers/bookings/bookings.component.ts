@@ -16,6 +16,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { DialogOverViewClientRegistrationComponent } from '../openDialogs/dialog-over-view-client-registration/dialog-over-view-client-registration.component';
+import { DialogOverViewCalendarSelectionComponent } from '../openDialogs/dialog-over-view-calendar-selection/dialog-over-view-calendar-selection.component';
 
 
 @Component({
@@ -130,5 +131,12 @@ export class BookingsComponent implements OnInit {
 
   public searchReservation(idBarber: number): void{
     console.log('BARBER: ' + idBarber);
+    this.openDialogCalendarSelection();
+  }
+
+  public openDialogCalendarSelection(): void {
+    const dialogRef = this.dialog.open(DialogOverViewCalendarSelectionComponent, {
+
+    });
   }
 }

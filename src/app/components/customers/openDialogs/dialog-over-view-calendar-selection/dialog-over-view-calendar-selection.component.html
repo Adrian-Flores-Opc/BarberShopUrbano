@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <mat-dialog-content>
+                <mat-card class="demo-inline-calendar-card">
+                    <mat-calendar [(selected)]="selected"></mat-calendar>
+                </mat-card>
+            </mat-dialog-content>
+            <mat-dialog-actions>
+                <button mat-button (click)="onNolick()">Cancelar</button>
+                <button mat-button  (click)="onSelectedCalendar()" cdkFocusInitial>Seleccionar</button>
+            </mat-dialog-actions>
+        </div>
+    </div>
+</div>

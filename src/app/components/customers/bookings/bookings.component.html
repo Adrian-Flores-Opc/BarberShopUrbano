@@ -1,13 +1,12 @@
 <div class="container section-main-bookings">
   <div class="" *ngIf="_getAvailableBarbersModels?.respCode === '00'">
     <div class="" *ngFor="let barbers of _getAvailableBarbersModels?.barbers; let i = index">
-
     </div>
   </div>
     <div class="row" >
 
-      <div class="col-md-4" *ngFor="let barbers of _getAvailableBarbersModels?.barbers">
-        <mat-card class="example-card" appearance="outlined" (click)="searchReservation(barbers.id)">
+      <div class="col-md-4 container-card" *ngFor="let barbers of _getAvailableBarbersModels?.barbers">
+        <mat-card class="example-card container-card-contend" appearance="outlined" (click)="searchReservation(barbers.id)">
           <mat-card-header>
               <div mat-card-avatar class="example-header-image">
                   <img src={{barbers.image}} alt="">
