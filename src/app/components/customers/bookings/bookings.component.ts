@@ -99,7 +99,7 @@ export class BookingsComponent implements OnInit {
                 _addNewBarber.barbers = [];
                 this._getAvailableBarbersModels.barbers.forEach((barber, index) => {
                   _addNewBarber.barbers.push(barber); _counter++;
-                  console.log('INDEX RESPONSE: ' + index + ' - ' + _counter + ' - ' + this._getAvailableBarbersModels.barbers.length + ' - ');
+                  // console.log('INDEX RESPONSE: ' + index + ' - ' + _counter + ' - ' + this._getAvailableBarbersModels.barbers.length + ' - ');
 
                   if (_counter  === 3 || (index + 1 ) === this._getAvailableBarbersModels.barbers.length) {
                     const _addNewBarberAux = _addNewBarber;
