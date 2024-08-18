@@ -65,3 +65,12 @@ mat-card-actions{
 .collapse:not(.show) {
   display: none;
 }
+.collapse-container{
+  display: block !important;
+  background-color: transparent;
+  color: white;
+}
+.collapse-container-content{
+  background-color: transparent;
+  color: white;
+}

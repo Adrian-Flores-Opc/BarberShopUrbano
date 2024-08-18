@@ -14,7 +14,10 @@ import { MatSidenavModule } from '@angular/material/sidenav';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
-  constructor(private renderer: Renderer2, private el: ElementRef) {}
+  constructor(private renderer: Renderer2, private el: ElementRef) {
+
+  }
+  
   onSidenavToggle(isOpened: boolean): void {
     const canvasOverlay = this.el.nativeElement.querySelector('#canvas-overlay');
     console.log('SE INVOCO EL METODO: ' + canvasOverlay);

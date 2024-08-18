@@ -1,4 +1,4 @@
-import { Component, signal, ViewChild } from '@angular/core';
+import { Component, signal, ViewChild, Renderer2, ElementRef } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -15,6 +15,9 @@ export class ServicesMainComponent {
   // @ViewChild(MatAccordion) accordion: MatAccordion;
 
   readonly panelOpenState = signal(false);
+  constructor(private renderer: Renderer2, private el: ElementRef){
+
+  }
   // public isTabOpen: Boolean = false;
   // public tabType: string = "";
   // clickOntab(tab) {
@@ -22,4 +25,19 @@ export class ServicesMainComponent {
   //   this.isTabOpen = !this.isTabOpen;
   //   this.tabType = tab;
   // }
+  onSidenavToggle(isOpened: boolean, idCollapse: string, idContainerCollapse: string): void {
+    const canvasOverlay = this.el.nativeElement.querySelector('#'+idCollapse);
+    const canvasOverlayContent = this.el.nativeElement.querySelector('#'+idContainerCollapse);
+    console.log('SE INVOCO EL METODO: ' + canvasOverlay + ' - ' + canvasOverlayContent);
+    // this.renderer.addClass(canvasOverlay, 'new-class');
+    if (isOpened) {
+      this.renderer.addClass(canvasOverlay, 'collapse-container');
+      this.renderer.addClass(canvasOverlayContent, 'collapse-container-content')
+      // document.body.classList.add('sidenav-open');
+    } else {
+      this.renderer.removeClass(canvasOverlay, 'collapse-container');
+      this.renderer.removeClass(canvasOverlayContent, 'collapse-container-content');
+      // document.body.classList.remove('sidenav-open');
+    }
+  }
 }
