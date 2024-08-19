@@ -12,6 +12,11 @@ body {
   box-sizing: border-box;
   font-family: Roboto,
   "Helvetica Neue", sans-serif;
+  
+  background-image: url(assets/Images/fondo_main_seconds.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white
 }
 ::-webkit-scrollbar {
   width: 6px;

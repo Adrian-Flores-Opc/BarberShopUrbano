@@ -39,9 +39,10 @@ export class DialogOverViewCalendarSelectionComponent implements OnInit {
     
     let _date: string = JSON.stringify(this.selected());
     console.log('SELECTED: ' + this._datePipe.transform(_date.slice(1, 11), "yyyy-MM-dd"));
-    // let calendarSelected : string = moment(_date).utc().format('YYYY-MM-DD');
     let calendarSelected = new Date(_date.slice(1, 11));
     console.log('SELECTED: ' + calendarSelected);
+
+    
   }
   public convert(str: string) {
     var date = new Date(str),
