@@ -63,7 +63,6 @@ export class DialogFilterClientComponent {
     this.dialogRef.close();
   }  
   searchClient(): void{
-    alert('Entro');
     this._requestFilter = new filterClientRequest();
 
     if(this.selectedValue == "ln" || this.selectedValue == "mln" || this.selectedValue == "n")

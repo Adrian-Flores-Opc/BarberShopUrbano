@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-     <div class="col-md-12">
+     <div class="col-12">
         <div class="justify-content-center">
            <mat-card class="example-card" appearance="outlined" style="max-width: 1200px;">
               <mat-card-header>
@@ -11,7 +11,7 @@
               <br>
               <mat-card-content>
                  <div style="display: flex; gap: 16px;">
-                    <mat-checkbox class="example-margin" (change)="onModelChange($event.checked)">Reservation</mat-checkbox>
+                    <mat-checkbox class="example-margin" (change)="onModelChange($event.checked)" [(ngModel)]="isChecked">Reservation</mat-checkbox>
                     <mat-form-field class="example-full-width">
                        <mat-label>ID RESERVATION</mat-label>
                        <input matInput placeholder="Ex. RV-0000000000" [disabled]="isReadOnlyReservation" [(ngModel)]="idReservation">
@@ -32,46 +32,61 @@
                        <mat-icon class="css-filter">search</mat-icon>
                     </button>
                  </div>
-                 <table class="example-full-width" cellspacing="0" style="text-transform: uppercase;">
-                    <thead>
-                       <tr>
-                          <td>
-                             <mat-form-field>
-                                <mat-label>Type Service</mat-label>
-                                <mat-select [(ngModel)]="selectedValue" name="service" (ngModelChange)="onServiceSelectionChange($event)">
-                                  <mat-option *ngFor="let service of services" [value]="service.id">{{ service.descriptionService }}</mat-option>
-                                </mat-select>                                
-                             </mat-form-field>
-                          </td>
-                          <td>
-                             <mat-form-field class="example-full-width">
-                                <mat-label>Price</mat-label>
-                                <input matInput type="number" class="example-right-align" placeholder="0.00" [(ngModel)]="price"/>
-                                <span matTextPrefix>Bs.&nbsp;</span>
-                                <!-- <span matTextSuffix>.00</span> -->
-                             </mat-form-field>
-                          </td>
-                          <td>
-                             <mat-form-field class="example-full-width">
-                                <mat-label>Qty</mat-label>
-                                <input matInput type="number" class="example-right-align" placeholder="Ex. 1"[(ngModel)]="qty">
-                             </mat-form-field>
-                          </td>
-                          <td>
-                            <mat-form-field class="example-full-width">
-                               <mat-label>Discount</mat-label>
-                               <input matInput type="number" class="example-right-align" placeholder="Ex. 10" [(ngModel)]="discount">
-                               <span matTextSuffix>&nbsp;%</span>
-                            </mat-form-field>
-                         </td>
-                         <td>
-                          <button class="css-Search" (click)="addItem()">
-                            <mat-icon class="css-filter">add_shopping_cart</mat-icon>
-                          </button>
-                         </td>                         
-                       </tr>                      
-                    </thead>
-                 </table>                 
+                 <div class="container">
+                  <div class="row">
+                    <div class="col-4">
+                     <mat-form-field style="padding: 0%;">
+                        <mat-label>Type Service</mat-label>
+                        <mat-select [(ngModel)]="selectedValue" name="service" (ngModelChange)="onServiceSelectionChange($event)">
+                          <mat-option *ngFor="let service of services" [value]="service.id">{{ service.descriptionService }}</mat-option>
+                        </mat-select>                                
+                     </mat-form-field>
+                    </div>
+                    <!-- <div class="col-4">
+                     <mat-form-field>
+                        <mat-label>prueba</mat-label>
+                        <input matInput
+       type="text"
+       pattern="^\d+(\.\d{1,2})?$"
+       placeholder="0.00"
+       [(ngModel)]="priceTest"
+       #priceInput="ngModel"
+       required
+      />
+      <div *ngIf="priceInput.invalid && (priceInput.dirty || priceInput.touched)">
+      <p style="color: red;">El formato debe ser numérico con hasta dos decimales.</p>
+      </div>
+                        <span matTextPrefix>Bs.&nbsp;</span>
+                     </mat-form-field>
+                    </div> -->
+
+                    <div class="col-4">
+                     <mat-form-field>
+                        <mat-label>Price</mat-label>
+                        <input matInput type="text" pattern="^\d+(\.\d{1,2})?$" class="example-right-align" placeholder="0.00" [(ngModel)]="price"/>
+                        <span matTextPrefix>Bs.&nbsp;</span>
+                     </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                     <mat-form-field>
+                        <mat-label>Qty</mat-label>
+                        <input matInput type="text" pattern="^\d+(\.\d{1,2})?$" class="example-right-align" placeholder="Ex. 1" [(ngModel)]="qty"/>
+                     </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                     <mat-form-field>
+                        <mat-label>Discount</mat-label>
+                        <input matInput type="text" class="example-right-align" placeholder="Ex. 10" [(ngModel)]="discount">
+                        <span matTextSuffix>&nbsp;%</span>
+                     </mat-form-field>
+                     </div>
+                     <div class="col-4">
+                        <button class="css-Search" (click)="addItem()">
+                           <mat-icon class="css-filter">add_shopping_cart</mat-icon>
+                         </button>
+                     </div>
+                  </div>
+                </div>                        
               </mat-card-content>
               <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
                 
@@ -124,31 +139,37 @@
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>              
               </table>
-
               <br>
-              <table class="example-full-width" cellspacing="0" style="text-transform: uppercase;">
-                <thead>
-                  <tr>                          
-                    <td>
-                       <mat-form-field class="example-full-width">
-                          <mat-label>Cash</mat-label>
-                          <!-- <input matInput placeholder="Ex. 100.00" [(ngModel)]="user.motherLastName"> -->
-                          <input matInput placeholder="Ex. 100">
-                       </mat-form-field>
-                    </td>
-                    <td>
-                       <mat-form-field class="example-full-width">
-                          <mat-label>Change</mat-label>
-                          <!-- <input matInput placeholder="Ex. 100.00" [(ngModel)]="user.motherLastName"> -->
-                          <input matInput placeholder="Ex. 0.0">
-                       </mat-form-field>
-                    </td>
-                 </tr>
-                </thead>
-              </table>
+              <div class="container">
+               <div class="row align-items-center">
+                  <div class="col">
+                     <mat-form-field>
+                        <mat-label>TOTAL</mat-label>
+                        <input matInput type="text" class="example-right-align" placeholder="0.00" [(ngModel)]="totalValue" readonly="true">
+                        <span matTextPrefix>Bs.&nbsp;</span>
+                     </mat-form-field>                  
+                  </div>
+                  <div class="col">
+                     <mat-form-field>
+                        <mat-label>Cash</mat-label>
+                        <input matInput type="text" class="example-right-align" placeholder="Ex. 100.00" [(ngModel)]="cashAmount" (blur)="validateChange()">
+                        <span matTextPrefix>Bs.&nbsp;</span>
+                     </mat-form-field>                  
+                  </div>
+                  <div class="col">
+                     <mat-form-field>
+                        <mat-label>Change</mat-label>
+                        <input matInput type="text" class="example-right-align" placeholder="Ex. 100.00" [(ngModel)]="changeAmount" readonly="true">
+                        <span matTextPrefix>Bs.&nbsp;</span>
+                     </mat-form-field>                  
+                  </div>
+                </div>               
+              </div>             
               <mat-card-actions>
-                 <!-- <button mat-stroked-button (click)="toggleReadOnly()" [hidden]="!showUpdateButton">UPDATE DATA</button>
-                    <button mat-stroked-button (click)="toggleCancel()" [hidden]="!showConfirmButton">CANCEL</button> -->
+                 <button mat-stroked-button (click)="registerTransaction()" >REGISTER</button>
+                 <button mat-stroked-button (click)="clearFields()" >
+                  <i class="fas fa-broom"></i> CLEAN
+                  </button>                  
               </mat-card-actions>
            </mat-card>
         </div>
