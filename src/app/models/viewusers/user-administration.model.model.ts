@@ -131,4 +131,24 @@ export class registerBox{
     public subTotal!: number;
   }
   //END CLIENT
+//MODEL PAYMENTS
+export class PaymentRegisterRequest{
 
+    public trace!: string;
+    public idReservation!: number;
+    public idClient!: number;
+    public idBarber!: number;
+    public total!: number;
+    public cash!: number;
+    public change!: number;
+    public detail: DetailPayment[] = [];
+  }
+  export class DetailPayment
+  {
+    public typeService!: number;
+    public price!: number;
+    public qty!: number;
+    public discount!: number;
+    public subTotal!: number;
+  }
+//MODEL
