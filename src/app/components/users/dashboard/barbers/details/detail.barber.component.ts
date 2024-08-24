@@ -9,11 +9,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
+import { CommonOperations } from '../../../../../Common/common.operations';
 
 @Component({
   selector: 'app-detail.barber',
   standalone: true,
   imports: [MatButtonModule, MatCardModule, CommonModule, MatInputModule, FormsModule, MatIconModule],
+  providers: [CommonOperations],
   templateUrl: './detail.barber.component.html',
   styleUrl: './detail.barber.component.scss'
 })
@@ -26,8 +28,9 @@ export class DetailBarberComponent {
   isReadOnly = true; // Por defecto, el campo está en modo de solo lectura
   imageSrc: string | ArrayBuffer | null = null;
   base64String!: string;
-
-  constructor(private barbersService:BarbersAdministrationService, private route: ActivatedRoute, private router: Router){
+  constructor(private barbersService:BarbersAdministrationService, private route: ActivatedRoute, private router: Router,
+              private common: CommonOperations
+  ){
   }
   ngOnInit(): void{ 
     this.route.paramMap.subscribe((params: ParamMap) => {
@@ -67,11 +70,11 @@ updateBarber() {
     console.log("RESPONSE: " + response.respCode);
     if(response.respCode === '00')
       {
-        alert("Se actualizo el barbero correctamente");
+        this.common.showAlert("Barber Update Successfull","success","#000","#FFF");
         this.getBarber();
       }
       else{
-        alert("No se actualizo el barbero correctamente");
+        this.common.showAlert("An error was generated, barber not update","error","#000","#FFF");
       }          
   }})
 }

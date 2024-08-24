@@ -14,13 +14,15 @@ import { MatDialog, MatDialogActions, MatDialogClose, MatDialogContent, MatDialo
 import { DialogConfirmationComponent } from './dialog-confirmation/dialog-confirmation.component';
 import { Observable } from 'rxjs';
 import {MatIconModule} from '@angular/material/icon';
+import { CommonOperations } from '../../../../../Common/common.operations';
 
 @Component({
   selector: 'app-detail.user',
   standalone: true,
   imports: [MatButtonModule, MatCardModule, CommonModule, MatInputModule, FormsModule, MatSelectModule, MatCheckboxModule,MatIconModule],
   templateUrl: './detail.user.component.html',
-  styleUrl: './detail.user.component.scss'
+  styleUrl: './detail.user.component.scss',
+  providers: [CommonOperations],
 })
 export class DetailUserComponent {
   readonly dialog = inject(MatDialog);
@@ -35,7 +37,7 @@ export class DetailUserComponent {
   public idUser!:string;
   public userUpdateqRequest!:UpdateUserRequest;
   isReadOnly = true; // Por defecto, el campo está en modo de solo lectura  
-  constructor(private perfilsService:UserAdministrationService, private userService:UserAdministrationService, private route: ActivatedRoute, private router: Router){
+  constructor(private perfilsService:UserAdministrationService, private userService:UserAdministrationService, private route: ActivatedRoute, private router: Router, private common: CommonOperations){
   }
   ngOnInit(): void{ 
     this.route.paramMap.subscribe((params: ParamMap) => {
@@ -87,12 +89,12 @@ updateUser() {
     console.log("RESPONSE: " + response.respCode);
     if(response.respCode === '00')
       {
-        alert("Se actualizo el usuario correctamente");
+        this.common.showAlert("User Update Succesfull","success","#000","#FFF");
         this.getUser();
         this.resetPassword = false;
       }
       else{
-        alert("No se actualizo el usuario correctamente");
+        this.common.showAlert("An error was generated, contact the administrator","error","#000","#FFF");
       }          
   }})
 }

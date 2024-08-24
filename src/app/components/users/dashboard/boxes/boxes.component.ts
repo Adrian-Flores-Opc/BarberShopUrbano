@@ -96,11 +96,12 @@ export class BoxesComponent {
       console.log("RESPONSE: " + response.respCode);
       if(response.respCode === '00')
         {
+          this.common.showAlert("Client Create Succesfull","success","#000","#FFF");
           this.nameClient.idClient = response.idClient;
           this.nameClient.namesClient = client.lastName + " " + client.motherLastName + " " + client.names;
         }
         else{
-          alert("No se creo el barbero correctamente");
+          this.common.showAlert("Client not create, contact the administrator","error","#000","#FFF");
         }          
     }})
   }
@@ -124,6 +125,10 @@ export class BoxesComponent {
       {
         this.nameClient.idClient = response.dataReservation.id;
         this.nameClient.namesClient = response.dataReservation.lastName + " " + response.dataReservation.motherLastName + " " + response.dataReservation.names;
+      }
+      else
+      {
+        this.common.showAlert("Reservation not found, please retry your search!","error","#000","#FFF");
       }      
     }})
   }
@@ -198,10 +203,11 @@ export class BoxesComponent {
       console.log("RESPONSE: " + response.respCode);
       if(response.respCode === '00')
         {
-          
+          this.common.showAlert("Register Successfull","success","#000","#FFF");
+          this.clearFields();
         }
         else{
-          alert("No se creo el barbero correctamente");
+          this.common.showAlert("Register not made, contact the administrator","error","#000","#FFF");
         }          
     }})
   }
