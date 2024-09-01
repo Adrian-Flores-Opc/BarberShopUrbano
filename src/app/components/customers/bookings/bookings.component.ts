@@ -126,4 +126,10 @@ export class BookingsComponent implements OnInit {
       }
     }, error: (_error) => { }, complete:() => { } });
   }
+
+  public openDialogCalendarSelection(): void {
+    const dialogRef = this.dialog.open(DialogOverViewCalendarSelectionComponent, {
+
+    });
+  }
 }
