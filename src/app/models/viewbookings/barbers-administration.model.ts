@@ -61,3 +61,20 @@ export class createNewClientRequest{
 export class createNewClientResponse extends genericResponse{
   public idClient !: string;
 }
+
+
+export class getTimesByBarberRequest{
+  public trace !: string;
+  public idBarber !: number;
+  public date !: string;
+}
+
+export class getTimesByBarberResponse extends genericResponse{
+  public avilablesTimesBarber !: getTimesByBarberData[];
+}
+
+export class getTimesByBarberData {
+  public idAvailableTurn !: number;
+  public turnInit !: string;
+  public turnEnd !: string;
+}

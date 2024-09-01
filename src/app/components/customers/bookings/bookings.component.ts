@@ -16,6 +16,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { DialogOverViewClientRegistrationComponent } from '../openDialogs/dialog-over-view-client-registration/dialog-over-view-client-registration.component';
+import { DialogOverViewCalendarSelectionComponent } from '../openDialogs/dialog-over-view-calendar-selection/dialog-over-view-calendar-selection.component';
 
 
 @Component({
@@ -37,6 +38,8 @@ export class BookingsComponent implements OnInit {
   public _availableBarbers$: Subject<getAvailableBarbersModels> = new Subject<getAvailableBarbersModels>();
   public availableBarbers: any;
   public _getAvailableBarbersViewsModels !: getAvailableBarbersViewsModels;
+
+  public _serviceSelected:boolean = false;
 
   constructor(private _barbersService: BarbersAdministrationService) { }
 
@@ -85,38 +88,8 @@ export class BookingsComponent implements OnInit {
             this.openDialogClientRegistration();
         }
         else {
-            // LISTAR BARBEROS DISPONIBLES
-            this._barbersService.getAvailableBarbers().subscribe({ next: (_responseBarbers) => {
-              this._getAvailableBarbersModels = _responseBarbers;
-              console.log('barbers disponibles: ' + JSON.stringify(this._getAvailableBarbersModels));
-              if (this._getAvailableBarbersModels.detailMessage === "DATA NOT FOUND" && this._getAvailableBarbersModels.respCode === "001") {
-                // NO SE TIENE BARBEROS DISPONIBLES
-              }
-              else {
-                // DIBUJAR BARBEROS DISPONIBLES A NIVEL VISTA
-                let _counter : number = 0;
-                let _addNewBarber = new getAvailableBarbersModels();
-                _addNewBarber.barbers = [];
-                this._getAvailableBarbersModels.barbers.forEach((barber, index) => {
-                  _addNewBarber.barbers.push(barber); _counter++;
-                  console.log('INDEX RESPONSE: ' + index + ' - ' + _counter + ' - ' + this._getAvailableBarbersModels.barbers.length + ' - ');
-
-                  if (_counter  === 3 || (index + 1 ) === this._getAvailableBarbersModels.barbers.length) {
-                    const _addNewBarberAux = _addNewBarber;
-                    console.log('AGREGACION PUSH: ' + JSON.stringify(_addNewBarberAux));
-                    this._getAvailableBarbersViewsModels.viewBarbersDetail.push(_addNewBarberAux);
-                    _counter = 0;
-                    console.log('AGREGACION PUSH AFTER: ' + JSON.stringify(this._getAvailableBarbersViewsModels));
-                    _addNewBarber.barbers = [];
-                  }
-                });
-                console.log('JSON FINAL RESPONSE: ' + JSON.stringify(this._getAvailableBarbersViewsModels));
-              }
-            }, error: (_error) => {
-
-            }, complete:() => {
-
-            } });
+            // PASO LA VALIDACION DE CELULAR SE DEBE LISTAR LOS BARBEROS DISPONIBLES POR SERVICIO
+            this._serviceSelected = true;
         }
       }, error: (_error) => {
         console.log(_error);
@@ -130,5 +103,27 @@ export class BookingsComponent implements OnInit {
 
   public searchReservation(idBarber: number): void{
     console.log('BARBER: ' + idBarber);
+    this.openDialogCalendarSelection(idBarber);
+  }
+
+  public openDialogCalendarSelection(idBarber: number): void {
+    const dialogRef = this.dialog.open(DialogOverViewCalendarSelectionComponent, {
+      data: { idBarber: idBarber },
+    });
+  }
+
+  public GetAvailableBarbersByService(): void{
+    this._serviceSelected = false;
+    // LISTAR BARBEROS DISPONIBLES
+    this._barbersService.getAvailableBarbers().subscribe({ next: (_responseBarbers) => {
+      this._getAvailableBarbersModels = _responseBarbers;
+      console.log('barbers disponibles: ' + JSON.stringify(this._getAvailableBarbersModels));
+      if (this._getAvailableBarbersModels.detailMessage === "DATA NOT FOUND" && this._getAvailableBarbersModels.respCode === "001") {
+        // NO SE TIENE BARBEROS DISPONIBLES
+      }
+      else {
+        // DIBUJAR BARBEROS DISPONIBLES A NIVEL VISTA PARA EL TEMA DEL RESPONSIVE
+      }
+    }, error: (_error) => { }, complete:() => { } });
   }
 }

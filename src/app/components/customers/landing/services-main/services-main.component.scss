@@ -61,3 +61,16 @@ mat-card-actions{
   margin-right: auto;
   margin-left: auto;
 }
+
+.collapse:not(.show) {
+  display: none;
+}
+.collapse-container{
+  display: block !important;
+  background-color: transparent;
+  color: white;
+}
+.collapse-container-content{
+  background-color: transparent;
+  color: white;
+}

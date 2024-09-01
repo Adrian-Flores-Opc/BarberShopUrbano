@@ -17,6 +17,7 @@ import { barberCreateRequest } from '../../../../models/viewbookings/barbers-adm
 import {FormsModule} from '@angular/forms';
 import { DialogOverviewExampleDialog } from '../opendialogs/dialog-add-barber/dialog-add-barber.component';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogActions, MatDialogClose, MatDialogContent, MatDialogRef, MatDialogTitle, } from '@angular/material/dialog';
+import { CommonOperations } from '../../../../Common/common.operations';
 
 
 @Component({
@@ -25,6 +26,7 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogActions, MatDialogClose, MatDialog
   styleUrl: './barbers.component.scss',
   standalone: true,
   imports: [MatButtonModule, MatCardModule, CommonModule,MatIconModule,MatDividerModule,MatFormFieldModule, MatInputModule, MatTableModule],
+  providers: [CommonOperations],
 })
 export class BarbersComponent {  
   public barberResponse!:getAvailableBarbersModels;
@@ -36,7 +38,9 @@ export class BarbersComponent {
   public Element!:barbersModels[];
   public dataSource = new MatTableDataSource(this.Element);
   clickedRows = new Set<barbersModels>();
-  constructor(private barbersService:BarbersAdministrationService, private router: Router){
+  constructor(private barbersService:BarbersAdministrationService, private router: Router,
+    private common: CommonOperations
+  ){
     // this._activeRouter.params.subscribe(params => console.log('DATO DEL ROUTER:' + params));
   }
   ngOnInit(): void{
@@ -45,7 +49,6 @@ export class BarbersComponent {
   }
   public getBarbers(): void{
     this.barbersService.getAvailableBarbers().subscribe({next:(response)=>{
-      console.log(response.barbers);
       this.dataSource = new MatTableDataSource(response.barbers);
     }})
   }  
@@ -84,11 +87,11 @@ export class BarbersComponent {
       console.log("RESPONSE: " + response.respCode);
       if(response.respCode === '00')
         {
-          alert("Se creo el barbero correctamente");
+          this.common.showAlert("Barber Create Successfull","success","#000","#FFF");
           this.getBarbers();
         }
         else{
-          alert("No se creo el barbero correctamente");
+          this.common.showAlert("An error was generated, barber not create","error","#000","#FFF");
         }          
     }})
   }

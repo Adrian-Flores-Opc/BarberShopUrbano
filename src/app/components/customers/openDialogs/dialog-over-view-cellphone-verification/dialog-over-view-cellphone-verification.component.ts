@@ -6,7 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { cellphoneVerification } from '../../../../models/viewbookings/barbers-administration.model';
 
-import { BarbersAdministrationService } from '../../../../core/barbers-administration.service'; 
+import { BarbersAdministrationService } from '../../../../core/barbers-administration.service';
 import { getAvailableBarbersModels } from '../../../../models/viewbookings/barbers-administration.model';
 
 import { MatIconModule } from '@angular/material/icon';
@@ -28,7 +28,7 @@ export class DialogOverViewCellphoneVerificationComponent implements OnInit {
   public _getAvailableBarbersModels !: getAvailableBarbersModels;
   public _cellphoneFilter !: cellphoneFilter;
 
-  constructor(private _barbersService: BarbersAdministrationService) { 
+  constructor(private _barbersService: BarbersAdministrationService) {
 
   }
 

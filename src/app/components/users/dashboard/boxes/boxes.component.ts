@@ -7,7 +7,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { createClient, dataClient, filterClient, registerBox, ServiceBarber } from '../../../../models/viewusers/user-administration.model.model';
+import { createClient, dataClient, DetailPayment, filterClient, PaymentRegisterRequest, registerBox, ServiceBarber } from '../../../../models/viewusers/user-administration.model.model';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAddClientComponent } from '../opendialogs/dialog-add-client/dialog-add-client.component';
 import { DialogFilterClientComponent } from '../opendialogs/dialog-filter-client/dialog-filter-client.component';
@@ -31,17 +31,22 @@ export class BoxesComponent {
   public Element:registerBox[]= [];
   isGuidColumnHidden = false;
   dataSource = new MatTableDataSource(this.Element);  
+  isChecked: boolean = false; // Inicializa con el valor deseado
   selectedValue!: string;
   idSelectedValue!: number;
+  totalValue!: string;
+  cashAmount!: string;
+  changeAmount!: string;
   services: ServiceBarber[]  = [];
   idReservation!: string;
   isReadOnlyReservation = true; // Por defecto, el campo está en modo de solo lectura  
   public client!:createClient;
   public clientSelected!: dataClient;
   nameClient!: filterClient;
-  price!: number;
-  qty!: number;
-  discount!: number;
+  price!: string;
+  priceTest!: string;
+  qty!: string;
+  discount!: string;
   readonly dialog = inject(MatDialog);
   constructor(private barbersService:BarbersAdministrationService,
               private common: CommonOperations){
@@ -72,9 +77,7 @@ export class BoxesComponent {
     
   }
   onModelChange(newValue: boolean) {
-    this.isReadOnlyReservation = !newValue;
-    this.idReservation = "";
-    this.nameClient = new filterClient();
+    this.cleanFieldsReservation(!newValue);
   }
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogAddClientComponent, {
@@ -93,11 +96,12 @@ export class BoxesComponent {
       console.log("RESPONSE: " + response.respCode);
       if(response.respCode === '00')
         {
+          this.common.showAlert("Client Create Succesfull","success","#000","#FFF");
           this.nameClient.idClient = response.idClient;
           this.nameClient.namesClient = client.lastName + " " + client.motherLastName + " " + client.names;
         }
         else{
-          alert("No se creo el barbero correctamente");
+          this.common.showAlert("Client not create, contact the administrator","error","#000","#FFF");
         }          
     }})
   }
@@ -121,6 +125,10 @@ export class BoxesComponent {
       {
         this.nameClient.idClient = response.dataReservation.id;
         this.nameClient.namesClient = response.dataReservation.lastName + " " + response.dataReservation.motherLastName + " " + response.dataReservation.names;
+      }
+      else
+      {
+        this.common.showAlert("Reservation not found, please retry your search!","error","#000","#FFF");
       }      
     }})
   }
@@ -132,20 +140,25 @@ export class BoxesComponent {
     if (selectedService) {
       aux.typeService =  selectedService.descriptionService;
     }    
-    aux.price = this.price;
-    aux.qty = this.qty;
-    aux.discount = this.price * (this.discount / 100);   
+    console.log(this.totalValue);
+    aux.price = parseFloat(this.price);
+    aux.qty = parseFloat(this.qty);
+    aux.discount = parseFloat(this.price) * (parseFloat(this.discount) / 100);   
     aux.subTotal = (aux.price - aux.discount)* aux.qty;
+    console.log(this.totalValue);
+    if(this.totalValue===undefined|| this.totalValue === 'NaN' || this.totalValue ==="")
+      this.totalValue = "0.00";
+    this.totalValue = (parseFloat(this.totalValue) + aux.subTotal).toString();
     this.Element.push(aux);
     this.dataSource = new MatTableDataSource(this.Element); 
   }
   eliminarFila(element: any) {
-    alert('ENTRO');
     console.log(element.guid);
     const indiceDelElemento = this.Element.findIndex(item => item.guid === element.guid);
     if (indiceDelElemento !== -1) {
         console.log('Índice del elemento encontrado:', indiceDelElemento);
         this.Element.splice(indiceDelElemento, 1);
+        this.totalValue = (parseFloat(this.totalValue) - element.subTotal).toString();
         this.dataSource = new MatTableDataSource(this.Element); 
     }
     // Encuentra el índice de la fila en tu fuente de datos (por ejemplo, un arreglo)
@@ -158,7 +171,63 @@ export class BoxesComponent {
   onServiceSelectionChange(selectedId: string): void {    
     const parts = selectedId.split("|");
     this.idSelectedValue = parseFloat(parts[0]);
-    this.price = parseFloat(parts[1]);
-  }  
+    this.price = parts[1];
+  }    
+  validateChange() {
+    if (this.totalValue !== null) {
+      this.changeAmount = (parseFloat(this.cashAmount) - parseFloat(this.totalValue)).toString();
+    }
+  }
+  registerTransaction(){
+    let payment = new PaymentRegisterRequest();
+    if(!this.isChecked)
+      payment.idReservation = 0;
+    else
+      payment.idReservation = Number(this.idReservation);
+    payment.idClient = Number(this.nameClient.idClient);
+    payment.idBarber = Number("0");
+    payment.total = parseFloat(this.totalValue);
+    payment.cash = parseFloat(this.cashAmount);
+    payment.change = parseFloat(this.changeAmount);
+    this.Element.forEach(element => {
+      let aux = new DetailPayment;
+      aux.typeService = element.idTypeService;
+      aux.price = element.price;
+      aux.qty = element.qty;
+      aux.discount = element.discount;
+      aux.subTotal = element.subTotal;
+      payment.detail.push(aux);
+    });
+    console.log(JSON.stringify(payment));
+    this.barbersService.registerPayment(payment).subscribe({next:(response)=>{
+      console.log("RESPONSE: " + response.respCode);
+      if(response.respCode === '00')
+        {
+          this.common.showAlert("Register Successfull","success","#000","#FFF");
+          this.clearFields();
+        }
+        else{
+          this.common.showAlert("Register not made, contact the administrator","error","#000","#FFF");
+        }          
+    }})
+  }
+  clearFields(){
+    this.isChecked = false; // Cambia el valor del checkbox
+    this.cleanFieldsReservation(true);
+    this.selectedValue ='-1';
+  }
+  cleanFieldsReservation(newValue: boolean) {
+    this.isReadOnlyReservation = newValue;
+    this.idReservation = "";
+    this.nameClient = new filterClient();
+    this.price = "";
+    this.qty = "";
+    this.discount ="";
+    this.Element = [];
+    this.dataSource = new MatTableDataSource(this.Element); 
+    this.totalValue = "";
+    this.cashAmount = "";
+    this.changeAmount = "";
+  }
 }
 

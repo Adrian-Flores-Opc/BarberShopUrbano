@@ -1,13 +1,12 @@
 <div class="container section-main-bookings">
   <div class="" *ngIf="_getAvailableBarbersModels?.respCode === '00'">
     <div class="" *ngFor="let barbers of _getAvailableBarbersModels?.barbers; let i = index">
-
     </div>
   </div>
-    <div class="row" >
+  <div class="row" *ngIf="!_serviceSelected">
 
-      <div class="col-md-4" *ngFor="let barbers of _getAvailableBarbersModels?.barbers">
-        <mat-card class="example-card" appearance="outlined" (click)="searchReservation(barbers.id)">
+      <div class="col-md-4 container-card" *ngFor="let barbers of _getAvailableBarbersModels?.barbers">
+        <mat-card class="example-card container-card-contend" appearance="outlined" (click)="searchReservation(barbers.id)">
           <mat-card-header>
               <div mat-card-avatar class="example-header-image">
                   <img src={{barbers.image}} alt="">
@@ -17,5 +16,67 @@
           </mat-card-header>
       </mat-card>
       </div>
+  </div>
+  <div class="row" *ngIf="_serviceSelected">
+    <div class="col-md-4">
+      <mat-card class="example-card" appearance="outlined">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>SERVICIO 1</mat-card-title>
+          <mat-card-subtitle>SERVICIO 1</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+        <mat-card-content>
+          <p>
+            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+            A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+            bred for hunting.
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button (click)="GetAvailableBarbersByService()">BARBEROS DISPONIBLES</button>
+        </mat-card-actions>
+      </mat-card>
     </div>
+    <div class="col-md-4">
+      <mat-card class="example-card" appearance="outlined">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>SERVICIO 2</mat-card-title>
+          <mat-card-subtitle>SERVICIO 2</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+        <mat-card-content>
+          <p>
+            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+            A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+            bred for hunting.
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button (click)="GetAvailableBarbersByService()">BARBEROS DISPONIBLES</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+    <div class="col-md-4">
+      <mat-card class="example-card" appearance="outlined">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>SERVICIO 3</mat-card-title>
+          <mat-card-subtitle>SERVICIO 3</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+        <mat-card-content>
+          <p>
+            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+            A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+            bred for hunting.
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button (click)="GetAvailableBarbersByService()">BARBEROS DISPONIBLES</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
 </div>
