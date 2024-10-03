@@ -3,7 +3,7 @@
        <h1 class="title-third">SERVICIOS</h1>
   </div>
   <div class="row">
-      <div class="col-md-8">
+      <div class="col-md-4">
            <mat-card appearance="outlined" class="mat-card-third">
                 <mat-card-title class="mat-card-third-title">Corte de cabello</mat-card-title>
                 <mat-card-content>- Lavado - Asesoramiento - Corte - Peinado - Aplicaciòn de producto</mat-card-content>
@@ -23,43 +23,36 @@
                     </div>
                 </mat-card-footer>
            </mat-card>
-
       </div>
-      <div class="col-md-4"></div>
-  </div>
-  <div class="row">
-      <div class="col-md-2"></div>
-      <div class="col-md-8">
-           <mat-card appearance="outlined" class="mat-card-third">
-               <mat-card-title class="mat-card-third-title">Base o permanente</mat-card-title>
-               <mat-card-content>- Este tratamiento quimico es una forma perfecta de añadir textura y volumen a tu estilo</mat-card-content>
-               <mat-card-actions class="mat-card-actions"><button mat-button style="color: white;" (click)="onSidenavToggle(true, 'serviceCollapseTwo', 'serviceCollapseTwoContainer')">Ver màs</button></mat-card-actions>
-               <mat-card-footer>
-                <div class="collapse" id="serviceCollapseTwo">
-                    <div class="card card-body" id="serviceCollapseTwoContainer">
-                        Si sientes curiosidad por la base o has pensado en hacértela, pero no sabes por dónde empezar estás en el lugar adecuado para entender de qué se trata:
+
+      <div class="col-md-4">
+        <mat-card appearance="outlined" class="mat-card-third">
+            <mat-card-title class="mat-card-third-title">Base o permanente</mat-card-title>
+            <mat-card-content>- Este tratamiento quimico es una forma perfecta de añadir textura y volumen a tu estilo</mat-card-content>
+            <mat-card-actions class="mat-card-actions"><button mat-button style="color: white;" (click)="onSidenavToggle(true, 'serviceCollapseTwo', 'serviceCollapseTwoContainer')">Ver màs</button></mat-card-actions>
+            <mat-card-footer>
+             <div class="collapse" id="serviceCollapseTwo">
+                 <div class="card card-body" id="serviceCollapseTwoContainer">
+                     Si sientes curiosidad por la base o has pensado en hacértela, pero no sabes por dónde empezar estás en el lugar adecuado para entender de qué se trata:
 Nosotros tenemos dos tratamientos <br/>
 1. Base o permanente. - cambia la forma de un cabello lacio a ondulado de manera notoria, para cambiar de estilo y peinado es un tratamiento adecuado, pues proporciona volumen y simetría donde no hay. <br/>
 2. ⁠*Rompimiento de a raíz - Semi ondulado*. - Si tienes un cabello lacio y naturalmente no tienes volumen, este tratamiento discreto no cambia en su totalidad la forma pero si proporción volumen y una ligera ondulación de medios a puntas que le da la sensación de un cepillado, el impacto visual de este tratamiento es menos agresivo.
-                    </div>
-                    <button mat-button style="color: white;" (click)="onSidenavToggle(false, 'serviceCollapseTwo', 'serviceCollapseTwoContainer')">Cerrar</button>
-                </div>
-            </mat-card-footer>
-           </mat-card>
+                 </div>
+                 <button mat-button style="color: white;" (click)="onSidenavToggle(false, 'serviceCollapseTwo', 'serviceCollapseTwoContainer')">Cerrar</button>
+             </div>
+         </mat-card-footer>
+        </mat-card>
       </div>
-      <div class="col-md-2"></div>
-  </div>
-  <div class="row">
-      <div class="col-md-4"></div>
-      <div class="col-md-8">
-           <mat-card appearance="outlined" class="mat-card-third">
-               <mat-card-title class="mat-card-third-title">Mechas / Color/ Decoloraciòn</mat-card-title>
-               <mat-card-content>- La colorimetria es el arte de saber mezclar colores deacuerdo a las necesidades</mat-card-content>
-               <mat-card-actions class="mat-card-actions"><button mat-button style="color: white;" (click)="onSidenavToggle(true, 'serviceCollapseThree', 'serviceCollapseThreeContainer')">Ver màs</button></mat-card-actions>
-               <mat-card-footer>
-                <div class="collapse" id="serviceCollapseThree">
-                    <div class="card card-body" id="serviceCollapseThreeContainer">
-                        Para este servicio es necesaria la asesoría face to face para tomar la mejor decisión, ya que este tratamiento químico puede ayudarte a resaltar el styling del cabello o puede llegar a apagarlo
+
+      <div class="col-md-4">
+        <mat-card appearance="outlined" class="mat-card-third">
+            <mat-card-title class="mat-card-third-title">Mechas / Color/ Decoloraciòn</mat-card-title>
+            <mat-card-content>- La colorimetria es el arte de saber mezclar colores deacuerdo a las necesidades</mat-card-content>
+            <mat-card-actions class="mat-card-actions"><button mat-button style="color: white;" (click)="onSidenavToggle(true, 'serviceCollapseThree', 'serviceCollapseThreeContainer')">Ver màs</button></mat-card-actions>
+            <mat-card-footer>
+             <div class="collapse" id="serviceCollapseThree">
+                 <div class="card card-body" id="serviceCollapseThreeContainer">
+                     Para este servicio es necesaria la asesoría face to face para tomar la mejor decisión, ya que este tratamiento químico puede ayudarte a resaltar el styling del cabello o puede llegar a apagarlo
 Si quieres saber más de los diferentes tipos de procesos de coloración estás en el lugar adecuado. <br/>
 1.- Mechas con gorro <br/>
 Estás mechas pueden realizarse con color si tu intención es aclarar ligerame el tono del cabello para darle ciertas iluminaciones más visibles a luz
@@ -68,11 +61,21 @@ Pueden realizarse con decoloración para cambiar drásticamente el tono natural,
 Se trabaja en toda la cabeza dependiendo del estilo de corte <br/>
 Pero es el cambio total del color, para esta técnica si tomamos en cuenta el tono de la piel ya que podría generar un contraste grande en la iluminación del rostro <br/>
 
-                    </div>
-                    <button mat-button style="color: white;" (click)="onSidenavToggle(false, 'serviceCollapseThree', 'serviceCollapseThreeContainer')">Cerrar</button>
-                </div>
-            </mat-card-footer>
-           </mat-card>
+                 </div>
+                 <button mat-button style="color: white;" (click)="onSidenavToggle(false, 'serviceCollapseThree', 'serviceCollapseThreeContainer')">Cerrar</button>
+             </div>
+         </mat-card-footer>
+        </mat-card>
       </div>
+  </div>
+  <div class="row">
+      <div class="col-md-4">
+        <mat-card appearance="outlined" class="mat-card-third">
+            <mat-card-title>DEPILACIÓN FACIAL (cera)</mat-card-title>
+            <mat-card-content>La depilación facial con cera es una técnica que se utiliza para retirar el vello de la piel del rostro Beneficios</mat-card-content>
+        </mat-card>
+      </div>
+      <div class="col-md-4"></div>
+      <div class="col-md-4"></div>
   </div>
 </div>
