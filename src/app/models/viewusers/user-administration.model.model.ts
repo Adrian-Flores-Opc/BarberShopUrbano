@@ -113,6 +113,7 @@ export class filterClient{
   }
   export class serviceBarber{
     public id!: number;
+    public service!: string;
     public description!: string;
     public price!: number;
   }

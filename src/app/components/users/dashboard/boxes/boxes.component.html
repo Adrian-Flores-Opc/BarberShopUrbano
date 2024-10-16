@@ -1,178 +1,327 @@
-<div class="container">
-  <div class="row">
-     <div class="col-12">
-        <div class="justify-content-center">
-           <mat-card class="example-card" appearance="outlined" style="max-width: 1200px;">
-              <mat-card-header>
-                 <mat-card-title-group>
-                    <mat-card-title>REGISTER SERVICE</mat-card-title>
-                 </mat-card-title-group>
-              </mat-card-header>
-              <br>
-              <mat-card-content>
-                 <div style="display: flex; gap: 16px;">
-                    <mat-checkbox class="example-margin" (change)="onModelChange($event.checked)" [(ngModel)]="isChecked">Reservation</mat-checkbox>
-                    <mat-form-field class="example-full-width">
-                       <mat-label>ID RESERVATION</mat-label>
-                       <input matInput placeholder="Ex. RV-0000000000" [disabled]="isReadOnlyReservation" [(ngModel)]="idReservation">
-                    </mat-form-field>
-                    <button class="css-Search" [hidden]="isReadOnlyReservation" (click)="searchReservation()">
-                      <mat-icon class="css-filter">search</mat-icon>
-                    </button>
+<div class="flex flex-col items-center justify-top min-h-screen bg-gray-800 dark" style="padding-top: 1%">
+   <div class="w-full max-w-3xl bg-gray-800 rounded-lg shadow-md p-6 border border-white">
+       <h2 class="text-2xl font-bold text-gray-200 mb-4">REGISTER SERVICE</h2>
+       <div class="flex flex-col space-y-4">
+           <div class="flex flex-col">
+               <div class="flex flex-col sm:flex-row sm:items-center sm:space-x-2 w-full">
+                   <label class="cursor-pointer text-slate-400 flex items-center space-x-2">
+                       <span>Reservation</span>
+                       <mat-checkbox (change)="onModelChange($event.checked)" [(ngModel)]="isChecked"></mat-checkbox>
+                   </label>
+                   <div class="flex flex-grow items-center space-x-2 mt-2 sm:mt-0">
+                       <input
+                           matInput
+                           placeholder="Ex. RV-0000000000"
+                           class="bg-gray-700 text-gray-200 border-0 rounded-md p-2 flex-grow focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
+                           [disabled]="isReadOnlyReservation" [(ngModel)]="idReservation"
+                       />
+                       <div class="group relative">
+                           <button
+                               [hidden]="isReadOnlyReservation"
+                               (click)="searchReservation()"                                
+                           >
+                               <svg 
+                                   stroke-linejoin="round" 
+                                   stroke-linecap="round" 
+                                   stroke-width="2" 
+                                   stroke="currentColor" 
+                                   fill="none" 
+                                   viewBox="0 0 24 24" 
+                                   class="w-8 h-8 hover:scale-125 duration-200 hover:stroke-blue-500"
+                               >
+                                   <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                   <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                   <g id="SVGRepo_iconCarrier"> 
+                                       <path d="M11 6C13.7614 6 16 8.23858 16 11M16.6588 16.6549L21 21M19 11C19 15.4183 15.4183 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11Z" stroke="#f8f7f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> 
+                                   </g>
+                               </svg>
+                           </button>
+                           <span class="absolute -top-14 left-0 sm:left-[50%] sm:translate-x-[-50%] 
+                              z-20 origin-left scale-0 px-3 rounded-lg border 
+                              border-gray-300 bg-white py-2 text-sm font-bold
+                              shadow-md transition-all duration-300 ease-in-out 
+                              group-hover:scale-100">Search Reservation  
+                        </span>
+                       
+
+                       </div>
+                   </div>
+               </div>
+           </div>
+           <div class="flex flex-col sm:flex-row sm:items-center sm:space-x-2 w-full">
+               <label class="cursor-pointer text-slate-400 sm:w-auto sm:mr-2 mb-2 sm:mb-0">
+                   <span>Client</span>
+               </label>
+               <div class="flex flex-col sm:flex-row sm:items-center sm:space-x-2 w-full sm:flex-grow">
+                   <div class="flex items-center space-x-2 w-full">
+                       <input
+                           matInput
+                           placeholder="Ex. Suarez Sanchez Mario"
+                           class="bg-gray-700 text-gray-200 border-0 rounded-md p-2 flex-grow focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
+                           [(ngModel)]="nameClient.namesClient" [readonly]="true"
+                       />
+                       <div class="group relative flex items-center">
+                           <button 
+                               (click)="openDialog()" 
+                               [disabled]="!isReadOnlyReservation"
+                           >
+                               <svg 
+                                   stroke-linejoin="round" 
+                                   stroke-linecap="round" 
+                                   stroke-width="2" 
+                                   stroke="currentColor" 
+                                   fill="none" 
+                                   viewBox="0 0 24 24" 
+                                   class="w-8 h-8 hover:scale-125 duration-200 hover:stroke-blue-500"
+                               >
+                                   <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                   <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                   <g id="SVGRepo_iconCarrier"> 
+                                       <path d="M15 12L12 12M12 12L9 12M12 12L12 9M12 12L12 15" stroke="#dde0e9" stroke-width="1.5" stroke-linecap="round"></path> 
+                                       <path d="M7 3.33782C8.47087 2.48697 10.1786 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 10.1786 2.48697 8.47087 3.33782 7" stroke="#dde0e9" stroke-width="1.5" stroke-linecap="round"></path> 
+                                   </g>
+                               </svg>
+                           </button>
+                           <span class="absolute -top-14 left-[50%] -translate-x-[50%] 
+                               z-20 origin-left scale-0 px-3 rounded-lg border 
+                               border-gray-300 bg-white py-2 text-sm font-bold
+                               shadow-md transition-all duration-300 ease-in-out 
+                               group-hover:scale-100">Add Client
+                           </span>
+                       </div>
+                       <div class="group relative flex items-center">
+                           <button 
+                               (click)="openDialogSarchClient()" 
+                               [disabled]="!isReadOnlyReservation"
+                           >
+                               <svg 
+                                   stroke-linejoin="round" 
+                                   stroke-linecap="round" 
+                                   stroke-width="2" 
+                                   stroke="currentColor" 
+                                   fill="none" 
+                                   viewBox="0 0 24 24" 
+                                   class="w-8 h-8 hover:scale-125 duration-200 hover:stroke-blue-500"
+                               >
+                                   <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                   <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                   <g id="SVGRepo_iconCarrier"> 
+                                       <path d="M11 6C13.7614 6 16 8.23858 16 11M16.6588 16.6549L21 21M19 11C19 15.4183 15.4183 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11Z" stroke="#f8f7f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> 
+                                   </g>
+                               </svg>
+                           </button>
+                           <span class="absolute -top-14 left-[50%] -translate-x-[50%] 
+                               z-20 origin-left scale-0 px-3 rounded-lg border 
+                               border-gray-300 bg-white py-2 text-sm font-bold
+                               shadow-md transition-all duration-300 ease-in-out 
+                               group-hover:scale-100">Search Client  
+                           </span>
+                       </div>
+                   </div>
+               </div>
+           </div>            
+           <div class="flex flex-col sm:flex-row sm:items-start sm:space-x-1 w-full">
+               <div class="flex flex-col sm:flex-row sm:items-center sm:space-x-1 w-full sm:w-1/3">
+                   <label class="cursor-pointer text-slate-400 sm:w-1/3 sm:text-left">
+                       <span>Type Service</span>
+                   </label>
+                   <select
+                       class="bg-gray-700 text-gray-200 border-0 rounded-md p-2 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150 w-full sm:w-2/3"
+                       [(ngModel)]="selectedValue"
+                       name="service"
+                       (ngModelChange)="onServiceSelectionChange($event)"
+                   >
+                       <option *ngFor="let service of services" [value]="service.id">{{ service.descriptionService }}</option>
+                   </select>
+               </div>
+               <div class="flex flex-col sm:flex-row sm:items-center sm:space-x-1 w-full sm:w-1/3 mt-2 sm:mt-0">
+                   <label class="cursor-pointer text-slate-400 sm:w-1/3 sm:text-right">
+                       <span>Price Bs.</span>
+                   </label>
+                   <div class="flex items-center w-full sm:w-2/3">
+                       <input
+                           type="text"
+                           placeholder="0.00"
+                           class="bg-gray-700 text-gray-200 border-0 rounded-md p-2 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150 text-right placeholder-right w-full sm:w-md"
+                           [(ngModel)]="price"
+                       />
+                   </div>
+               </div>
+               <div class="flex flex-col sm:flex-row sm:items-center sm:space-x-1 w-full sm:w-1/3 mt-2 sm:mt-0">
+                   <label class="cursor-pointer text-slate-400 sm:w-1/3 sm:text-right">
+                       <span>Qty</span>
+                   </label>
+                   <div class="flex items-center w-full sm:w-2/3">
+                     <input
+                         type="text"
+                         placeholder="Ex. 1"
+                         class="bg-gray-700 text-gray-200 border-0 rounded-md p-2 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150 text-right placeholder-right w-full sm:w-md"
+                         [(ngModel)]="qty"
+                     />
                  </div>
-                 <div style="display: flex; gap: 16px;">
-                    <mat-form-field class="example-full-width">
-                       <mat-label>Client</mat-label>
-                       <input matInput placeholder="Ex. Suarez Sanchez Mario" [(ngModel)]="nameClient.namesClient" [readonly]="true">
-                    </mat-form-field>
-                    <button class="css-Search" (click)="openDialog()" [disabled]="!isReadOnlyReservation">                       
-                       <mat-icon class="css-filter">add</mat-icon>
-                    </button>
-                    <button class="css-Search" (click)="openDialogSarchClient()" [disabled]="!isReadOnlyReservation">
-                       <mat-icon class="css-filter">search</mat-icon>
-                    </button>
-                 </div>
-                 <div class="container">
-                  <div class="row">
-                    <div class="col-4">
-                     <mat-form-field style="padding: 0%;">
-                        <mat-label>Type Service</mat-label>
-                        <mat-select [(ngModel)]="selectedValue" name="service" (ngModelChange)="onServiceSelectionChange($event)">
-                          <mat-option *ngFor="let service of services" [value]="service.id">{{ service.descriptionService }}</mat-option>
-                        </mat-select>                                
-                     </mat-form-field>
-                    </div>
-                    <!-- <div class="col-4">
-                     <mat-form-field>
-                        <mat-label>prueba</mat-label>
-                        <input matInput
-       type="text"
-       pattern="^\d+(\.\d{1,2})?$"
-       placeholder="0.00"
-       [(ngModel)]="priceTest"
-       #priceInput="ngModel"
-       required
-      />
-      <div *ngIf="priceInput.invalid && (priceInput.dirty || priceInput.touched)">
-      <p style="color: red;">El formato debe ser numérico con hasta dos decimales.</p>
-      </div>
-                        <span matTextPrefix>Bs.&nbsp;</span>
-                     </mat-form-field>
-                    </div> -->
-
-                    <div class="col-4">
-                     <mat-form-field>
-                        <mat-label>Price</mat-label>
-                        <input matInput type="text" pattern="^\d+(\.\d{1,2})?$" class="example-right-align" placeholder="0.00" [(ngModel)]="price"/>
-                        <span matTextPrefix>Bs.&nbsp;</span>
-                     </mat-form-field>
-                    </div>
-                    <div class="col-4">
-                     <mat-form-field>
-                        <mat-label>Qty</mat-label>
-                        <input matInput type="text" pattern="^\d+(\.\d{1,2})?$" class="example-right-align" placeholder="Ex. 1" [(ngModel)]="qty"/>
-                     </mat-form-field>
-                    </div>
-                    <div class="col-4">
-                     <mat-form-field>
-                        <mat-label>Discount</mat-label>
-                        <input matInput type="text" class="example-right-align" placeholder="Ex. 10" [(ngModel)]="discount">
-                        <span matTextSuffix>&nbsp;%</span>
-                     </mat-form-field>
-                     </div>
-                     <div class="col-4">
-                        <button class="css-Search" (click)="addItem()">
-                           <mat-icon class="css-filter">add_shopping_cart</mat-icon>
-                         </button>
-                     </div>
-                  </div>
-                </div>                        
-              </mat-card-content>
-              <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-                
-                <ng-container matColumnDef="guid">
-                  <th mat-header-cell *matHeaderCellDef hidden="true"> </th>
-                  <td mat-cell *matCellDef="let element" hidden="true"> {{element.guid}} </td>
-                </ng-container>
-
-                <ng-container matColumnDef="deleteEmployee">
-                  <th mat-header-cell *matHeaderCellDef> Delete </th>
-                  <td mat-cell *matCellDef="let element">
-                    <button mat-button style="color: red;" (click)="eliminarFila(element)"><i class="fas fa-trash"></i></button>                    
-                  </td>
-                </ng-container>
-                
-                <ng-container matColumnDef="idTypeService">
-                  <th mat-header-cell *matHeaderCellDef> Id Service </th>
-                  <td mat-cell *matCellDef="let element"> {{element.idTypeService}} </td>
-                </ng-container>
-
-                <ng-container matColumnDef="typeService">
-                  <th mat-header-cell *matHeaderCellDef> Type Service </th>
-                  <td mat-cell *matCellDef="let element"> {{element.typeService}} </td>
-                </ng-container>
-              
-                <!-- Weight Column -->
-                <ng-container matColumnDef="price">
-                  <th mat-header-cell *matHeaderCellDef> Price </th>
-                  <td mat-cell *matCellDef="let element"> {{element.price}} </td>
-                </ng-container>
-              
-                <!-- Symbol Column -->
-                <ng-container matColumnDef="qty">
-                  <th mat-header-cell *matHeaderCellDef> Qty </th>
-                  <td mat-cell *matCellDef="let element"> {{element.qty}} </td>
-                </ng-container>
-
-                <!-- Symbol Column -->
-                <ng-container matColumnDef="discount">
-                  <th mat-header-cell *matHeaderCellDef> Discount </th>
-                  <td mat-cell *matCellDef="let element"> {{element.discount}} </td>
-                </ng-container>
-
-                
-                <ng-container matColumnDef="subTotal">
-                  <th mat-header-cell *matHeaderCellDef> Sub Total </th>
-                  <td mat-cell *matCellDef="let element"> {{element.subTotal}} </td>
-                </ng-container>
-
-                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>              
-              </table>
-              <br>
-              <div class="container">
-               <div class="row align-items-center">
-                  <div class="col">
-                     <mat-form-field>
-                        <mat-label>TOTAL</mat-label>
-                        <input matInput type="text" class="example-right-align" placeholder="0.00" [(ngModel)]="totalValue" readonly="true">
-                        <span matTextPrefix>Bs.&nbsp;</span>
-                     </mat-form-field>                  
-                  </div>
-                  <div class="col">
-                     <mat-form-field>
-                        <mat-label>Cash</mat-label>
-                        <input matInput type="text" class="example-right-align" placeholder="Ex. 100.00" [(ngModel)]="cashAmount" (blur)="validateChange()">
-                        <span matTextPrefix>Bs.&nbsp;</span>
-                     </mat-form-field>                  
-                  </div>
-                  <div class="col">
-                     <mat-form-field>
-                        <mat-label>Change</mat-label>
-                        <input matInput type="text" class="example-right-align" placeholder="Ex. 100.00" [(ngModel)]="changeAmount" readonly="true">
-                        <span matTextPrefix>Bs.&nbsp;</span>
-                     </mat-form-field>                  
-                  </div>
-                </div>               
-              </div>             
-              <mat-card-actions>
-                 <button mat-stroked-button (click)="registerTransaction()" >REGISTER</button>
-                 <button mat-stroked-button (click)="clearFields()" >
-                  <i class="fas fa-broom"></i> CLEAN
-                  </button>                  
-              </mat-card-actions>
-           </mat-card>
-        </div>
-     </div>
-  </div>
+               </div>
+           </div>            
+           <div class="flex flex-col space-y-2 w-full sm:space-y-0 sm:flex-row sm:items-center sm:space-x-2">
+               <label class="cursor-pointer text-slate-400 sm:w-auto sm:mr-2">
+                   <span>Discount %</span>
+               </label>
+               <div class="flex items-center space-x-2 w-full sm:w-auto">
+                   <input
+                       type="text"
+                       placeholder="Ex. 10"
+                       class="bg-gray-700 text-gray-200 border-0 rounded-md p-2 flex-grow sm:flex-grow-0 sm:max-w-md focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150 text-right placeholder-right"
+                       [(ngModel)]="discount"
+                   />
+                   <div class="group relative flex items-center">
+                       <button 
+                           (click)="addItem()" 
+                       >
+                           <svg 
+                               stroke-linejoin="round" 
+                               stroke-linecap="round" 
+                               stroke-width="2" 
+                               stroke="currentColor"                                 
+                               fill="#ffffff"
+                               viewBox="0 0 495.525 495.525"
+                               class="w-8 h-8 hover:scale-125 duration-200 hover:stroke-blue-500"
+                           >
+                               <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                               <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                               <g id="SVGRepo_iconCarrier">
+                                   <g>
+                                       <g>
+                                           <path d="M281.799,288.831h-44.908l-3.347,39.076h67.941C292.111,317.489,285.549,301.858,281.799,288.831z"></path>
+                                           <path d="M311.873,177.148c16.598-16.598,37.352-27.144,59.914-31.447c7.113-7.123,14.229-15.785,21.344-20.995h34.113c26.053,0,26.053-39.077,0-39.077h-41.48c-4.287,0-7.826,0.61-10.656,2.485c-1.658,0.899-3.281,1.816-4.83,3.363c-17.646,17.668-35.291,35.43-52.938,53.098c-1.936,1.936-3.305,3.577-4.24,6.182h-64.853l-3.637,44.287h52.853C301.609,187.23,306.402,182.62,311.873,177.148z"></path>
+                                           <polygon points="130.073,275.806 224.897,275.806 230.47,208.072 124.503,208.072"></polygon>
+                                           <polygon points="119.793,150.759 123.43,195.046 231.543,195.046 235.18,150.759"></polygon>
+                                           <path d="M289.967,208.072h-46.43l-5.573,67.734h41.208C275.952,252.36,279.567,228.913,289.967,208.072z"></path>
+                                           <polygon points="111.435,208.072 14.964,208.072 32.661,275.806 117.006,275.806"></polygon>
+                                           <polygon points="106.725,150.759 0,150.759 11.552,195.046 110.359,195.046"></polygon>
+                                           <polygon points="134.493,327.909 220.477,327.909 223.824,288.831 131.146,288.831"></polygon>
+                                           <polygon points="36.074,288.831 46.708,327.909 121.426,327.909 118.078,288.831"></polygon>
+                                           <circle cx="86.171" cy="375.458" r="34.438"></circle>
+                                           <circle cx="268.799" cy="375.458" r="34.438"></circle>
+                                           <path d="M393.734,156.934c-56.129,0-101.793,45.664-101.793,101.792c0,56.129,45.664,101.792,101.793,101.792s101.791-45.663,101.791-101.792C495.525,202.598,449.863,156.934,393.734,156.934z M453.297,278.411h-41.684v39.076h-36.473v-39.076h-20.842h-20.84v-2.605v-36.472h41.682v-39.077h36.473v39.077h41.684V278.411L453.297,278.411z"></path>
+                                       </g>
+                                   </g>
+                               </g>
+                           </svg>                                  
+                       </button>
+                       <span class="absolute -top-14 left-[50%] -translate-x-[50%] 
+                           z-20 origin-left scale-0 px-3 rounded-lg border 
+                           border-gray-300 bg-white py-2 text-sm font-bold
+                           shadow-md transition-all duration-300 ease-in-out 
+                           group-hover:scale-100">Add Item  
+                       </span>
+                   </div>
+               </div>
+           </div>
+           <div class="w-full overflow-x-auto">
+               <table class="min-w-full divide-y divide-gray-200 bg-gray-700 text-gray-200">
+                   <thead class="bg-gray-600">
+                       <tr>
+                           <th class="px-2 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Delete</th>
+                           <th class="px-2 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Id Service</th>
+                           <th class="px-2 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Type Service</th>
+                           <th class="px-2 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Price</th>
+                           <th class="px-2 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Qty</th>
+                           <th class="px-2 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Discount</th>
+                           <th class="px-2 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Sub Total</th>
+                       </tr>
+                   </thead>
+                   <tbody class="bg-gray-700 divide-y divide-gray-600">
+                       <tr *ngFor="let element of dataSource.data">
+                           <td class="px-2 py-4 whitespace-nowrap text-sm text-gray-300">
+                               <button class="text-red-500" (click)="eliminarFila(element)">
+                                   <i class="fas fa-trash"></i>
+                               </button>
+                           </td>
+                           <td class="px-2 py-4 whitespace-nowrap text-sm text-gray-200">{{ element.idTypeService }}</td>
+                           <td class="px-2 py-4 whitespace-nowrap text-sm text-gray-200">{{ element.typeService }}</td>
+                           <td class="px-2 py-4 whitespace-nowrap text-sm text-gray-200">{{ element.price }}</td>
+                           <td class="px-2 py-4 whitespace-nowrap text-sm text-gray-200">{{ element.qty }}</td>
+                           <td class="px-2 py-4 whitespace-nowrap text-sm text-gray-200">{{ element.discount }}</td>
+                           <td class="px-2 py-4 whitespace-nowrap text-sm text-gray-200">{{ element.subTotal }}</td>
+                       </tr>
+                   </tbody>
+               </table>
+           </div>            
+           <div class="flex flex-col sm:flex-row sm:items-start sm:space-x-1 w-full">
+               <div class="flex flex-col sm:flex-row sm:items-center sm:space-x-1 w-full sm:w-1/3 mt-2 sm:mt-0">
+                   <label class="cursor-pointer text-slate-400 sm:w-1/3 sm:text-right">
+                       <span>TOTAL Bs.</span>
+                   </label>
+                   <div class="flex items-center w-full sm:w-2/3">
+                       <input
+                           type="text"
+                           placeholder="0.00"
+                           class="bg-gray-700 text-gray-200 border-0 rounded-md p-2 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150 text-right placeholder-right w-full sm:w-md"
+                           [(ngModel)]="totalValue"
+                           readonly="true"
+                       />
+                   </div>
+               </div>
+               <div class="flex flex-col sm:flex-row sm:items-center sm:space-x-1 w-full sm:w-1/3 mt-2 sm:mt-0">
+                   <label class="cursor-pointer text-slate-400 sm:w-1/3 sm:text-right">
+                       <span>Cash Bs.</span>
+                   </label>
+                   <div class="flex items-center w-full sm:w-2/3">
+                       <input
+                           type="text"
+                           placeholder="Ex. 100.00"
+                           class="bg-gray-700 text-gray-200 border-0 rounded-md p-2 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150 text-right placeholder-right w-full sm:w-md"
+                           [(ngModel)]="cashAmount"
+                           (blur)="validateChange()"
+                       />
+                   </div>
+               </div>
+               <div class="flex flex-col sm:flex-row sm:items-center sm:space-x-1 w-full sm:w-1/3 mt-2 sm:mt-0">
+                   <label class="cursor-pointer text-slate-400 sm:w-1/3 sm:text-right">
+                       <span>Change</span>
+                   </label>
+                   <input
+                       type="text"
+                       placeholder="Ex. 100.00"
+                       class="bg-gray-700 text-gray-200 border-0 rounded-md p-2 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150 text-right placeholder-right w-full sm:w-md"
+                       [(ngModel)]="changeAmount"
+                       readonly="true"
+                   />
+               </div>
+           </div>
+           <!-- Buttons -->
+           <div style="padding-top: 1%;" class="flex flex-col">                        
+            <div class="flex space-x-4 mb-4 max-w-md w-full">
+                <button class="inline-block cursor-pointer rounded-md bg-gray-700 px-4 py-3.5 text-center text-sm font-semibold uppercase text-white transition duration-200 ease-in-out hover:bg-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-700 focus-visible:ring-offset-2 active:scale-95" 
+                        (click)="registerTransaction()">
+                    Register
+                </button>
+                <button class="inline-block cursor-pointer rounded-md bg-gray-700 px-4 py-3.5 text-center text-sm font-semibold uppercase text-white transition duration-200 ease-in-out hover:bg-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-700 focus-visible:ring-offset-2 active:scale-95 flex items-center" 
+                        (click)="clearFields()">
+                    <svg
+                        stroke-linejoin="round" 
+                        stroke-linecap="round" 
+                        stroke-width="2" 
+                        stroke="currentColor" 
+                        fill="#000000"
+                        viewBox="0 0 256 256"
+                        class="w-6 h-6 mr-2"
+                    >
+                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                        <g id="SVGRepo_iconCarrier">
+                        <style type="text/css">
+                            .st0 { fill: #464646; }
+                            .st1 { fill: #D1D1D1; }
+                        </style>
+                        <path class="st1" d="M226.079,41.926c-0.884-5.277-3.761-9.888-8.101-12.983l-5.025-3.585c-3.4-2.425-7.409-3.707-11.594-3.707 c-6.469,0-12.563,3.131-16.305,8.376l-57.367,80.43l-14.13-10.079c-3.952-2.818-9.076-4.371-14.429-4.371 c-4.881,0-9.62,1.323-13.345,3.728l-10.504,6.782c-4.988,3.22-7.935,8.159-8.108,13.566c-2.918,0.769-5.544,2.401-7.496,4.762 c-0.477,0.577-11.797,14.298-22.697,29.591c-20.845,29.248-22.878,39.697-19.403,47.08c2.212,4.697,6.882,7.502,12.494,7.502 c0.324,0,0.652-0.009,0.997-0.026c2.356-0.127,4.721-0.192,7.029-0.192c0.813,0,1.616,0.008,2.41,0.023 c0.064,0.001,0.129,0.002,0.193,0.002c2.94,0,5.713-1.293,7.601-3.504c0.094,0.158,0.192,0.314,0.294,0.469 c1.548,2.313,3.99,3.874,6.738,4.313c5.918,0.94,11.446,2.369,16.901,4.368c0.56,0.205,1.128,0.357,1.701,0.458 c0.484,0.307,1.002,0.575,1.55,0.801c5.371,2.209,10.62,4.972,16.519,8.691c1.496,0.941,3.179,1.453,4.877,1.53 c0.747,1.545,1.898,2.913,3.41,3.934c9.245,6.236,17.978,12.126,28.687,12.126l0,0c4.828,0,9.68-1.258,14.418-3.736 c28.051-14.679,29.838-37.795,29.9-38.771c0.038-0.595,0.031-1.196-0.001-1.801c5.81-1.333,10.455-5.831,12.295-12.226l3.33-11.567 c2.692-9.354-1.252-20.67-9.178-26.324l-14.462-10.315l57.365-80.429C225.743,52.5,226.963,47.203,226.079,41.926z"></path>
+                        <path class="st0" d="M179.311,171.143c1.521-5.285-0.897-12.223-5.375-15.416l-14.463-10.315c-4.477-3.193-5.527-9.47-2.334-13.947 l57.367-80.431c3.195-4.478,2.145-10.754-2.334-13.948l-5.025-3.584c-4.479-3.194-10.756-2.143-13.948,2.334l-57.367,80.43 c-3.192,4.478-9.471,5.528-13.948,2.334l-14.13-10.078c-4.479-3.194-11.922-3.366-16.543-0.383l-10.505,6.782 c-4.621,2.983-4.738,8.038-0.26,11.23l84.628,60.366c4.479,3.192,9.387,1.481,10.907-3.804L179.311,171.143z"></path>
+                        <path class="st0" d="M163.316,198.863c0.149-2.348-1.293-5.387-3.207-6.752l-86.521-61.709c-1.915-1.365-4.706-1-6.206,0.813 c0,0-56.939,68.875-36.857,67.789c3.54-0.19,6.922-0.244,10.171-0.182c10.792-16.244,28.777-34.951,28.777-34.951 s-8.46,19.021-12.572,36.353c6.986,1.11,13.189,2.811,18.77,4.854c4.205-4.922,7.501-9.326,7.501-9.326 c-1.585,4.381-2.858,7.896-3.887,10.728c6.904,2.84,12.805,6.174,18.049,9.479c9.059-5.701,16.407-11.812,16.407-11.812 s-3.167,8.431-7.862,17.443c12.133,8.184,21.013,14.027,32.875,7.818C162.146,217.174,163.316,198.863,163.316,198.863z"></path>
+                        </g>
+                    </svg>
+                    <span>Clean</span>
+                </button>
+            </div>                        
+        </div>     
+       </div>
+   </div>
 </div>

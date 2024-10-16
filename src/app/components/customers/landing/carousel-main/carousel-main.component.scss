@@ -1,14 +1,17 @@
 .carousel,
 .carousel-inner,
 .carousel-item,
-.carousel-item
-.img-layer {
-  height: 100vh;
+.carousel-item .img-layer {
+  height: auto;
+  max-height: 100vh; /* Ajusta este valor según tus necesidades */
 }
-.carousel-item
-.img-layer {
+
+.carousel-item .img-layer {
   object-fit: cover;
+  object-position: center;
+  width: 100%;
 }
+
 .overlay-image {
   position: absolute;
   top: 80%;
@@ -17,4 +20,56 @@
   max-width: 100%;
   width: 350px !important;
   filter: drop-shadow(5px 10px 3px rgb(191, 191, 191));
+}
+
+@media (max-width: 1200px) {
+  .carousel,
+  .carousel-inner,
+  .carousel-item,
+  .carousel-item .img-layer {
+    height: 80vh;
+  }
+
+  .overlay-image {
+    top: 75%;
+    width: 300px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .carousel,
+  .carousel-inner,
+  .carousel-item,
+  .carousel-item .img-layer {
+    height: 60vh;
+  }
+
+  .carousel-item .img-layer {
+    object-fit: contain;
+    object-position: center;
+  }
+
+  .overlay-image {
+    top: 70%;
+    width: 200px !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .carousel,
+  .carousel-inner,
+  .carousel-item,
+  .carousel-item .img-layer {
+    height: 50vh;
+  }
+
+  .carousel-item .img-layer {
+    object-fit: contain;
+    object-position: center;
+  }
+
+  .overlay-image {
+    top: 65%;
+    width: 150px !important;
+  }
 }

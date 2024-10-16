@@ -65,7 +65,7 @@ export class BoxesComponent {
         response.services.forEach(element => {
           const service = new ServiceBarber();
           service.id = element.id + "|" + element.price;
-          service.descriptionService = element.description;
+          service.descriptionService = element.service;
           this.services.push(service);       
         });        
       }
