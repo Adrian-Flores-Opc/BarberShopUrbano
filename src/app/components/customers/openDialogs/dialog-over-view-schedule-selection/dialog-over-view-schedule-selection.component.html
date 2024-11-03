@@ -1,12 +1,20 @@
 <mat-dialog-content>
-  <h2>HORARIOS DISPONIBLES DEL BARBERO POKEMONCHIS:</h2>
-  <mat-list-item role="list">
-    <mat-list-item role="listitem">
-
+  <h4 mat-dialog-title>{{_titleModal}}</h4>
+  
+  <!-- <mat-list-item role="list">
+    <mat-list-item role="listitem" *ngFor="let item of _response.avilablesTimesBarber">
+      {{item.turnInit + ' - ' + item.turnEnd }}
     </mat-list-item>
-  </mat-list-item>
+  </mat-list-item> -->
+
+  <mat-selection-list #shoesList  [multiple]="false">
+    @for (item of _response.avilablesTimesBarber; track item) {
+      <mat-list-option [value]="item.idAvailableTurn" (click)="setSelectedSchedule(item.idAvailableTurn)">{{item.turnInit + ' - ' + item.turnEnd}}</mat-list-option>
+    }
+  </mat-selection-list>
+
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button mat-button>Cancelar</button>
-  <button mat-button cdkFocusInitial>Verificar</button>
+  <button mat-button (click)="onNolick()">Cancelar</button>
+  <button mat-button cdkFocusInitial (click)="selectedScheduleHours()">Aceptar</button>
 </mat-dialog-actions>

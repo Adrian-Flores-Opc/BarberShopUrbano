@@ -55,5 +55,6 @@ export class DialogOverViewCalendarSelectionComponent implements OnInit {
     let _dateString: string = `${year}${month}${day}`;
     console.log("FECHA FORMATER:" + _dateString);
     this.openDialog(_dateString, this.data.idBarber);
+    this.dialogRef.close({ event: 'onNoClick' });
   }
 }
