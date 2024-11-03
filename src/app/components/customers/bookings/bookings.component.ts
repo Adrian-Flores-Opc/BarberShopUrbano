@@ -18,11 +18,12 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { DialogOverViewClientRegistrationComponent } from '../openDialogs/dialog-over-view-client-registration/dialog-over-view-client-registration.component';
 import { DialogOverViewCalendarSelectionComponent } from '../openDialogs/dialog-over-view-calendar-selection/dialog-over-view-calendar-selection.component';
 
+import { MatChipsModule } from '@angular/material/chips';
 
 @Component({
   selector: 'app-bookings',
   standalone: true,
-  imports: [MatCardModule, CommonModule, MatButtonModule, MatFormFieldModule, MatInputModule, NgFor, NgIf, MatDatepickerModule, MatNativeDateModule, NgxMaterialTimepickerModule],
+  imports: [MatCardModule, CommonModule, MatButtonModule, MatFormFieldModule, MatInputModule, NgFor, NgIf, MatDatepickerModule, MatNativeDateModule, NgxMaterialTimepickerModule, MatChipsModule],
   templateUrl: './bookings.component.html',
   styleUrl: './bookings.component.scss'
 })

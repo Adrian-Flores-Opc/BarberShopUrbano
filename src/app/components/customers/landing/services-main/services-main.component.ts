@@ -3,6 +3,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatAccordion } from "@angular/material/expansion";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-services-main',
@@ -15,7 +16,7 @@ export class ServicesMainComponent {
   // @ViewChild(MatAccordion) accordion: MatAccordion;
 
   readonly panelOpenState = signal(false);
-  constructor(private renderer: Renderer2, private el: ElementRef){
+  constructor(private renderer: Renderer2, private el: ElementRef, private router: Router ){
 
   }
   // public isTabOpen: Boolean = false;
@@ -40,4 +41,14 @@ export class ServicesMainComponent {
       // document.body.classList.remove('sidenav-open');
     }
   }
+
+  routerBookings(): void {
+    this.router.navigate(['/','Bookings']);
+  }
+
+  routerContacts(): void {
+    // this.router.navigate(['/','Bookings']);
+    window.open('https://wa.link/e9cnx5', '_blank');
+  }
+
 }

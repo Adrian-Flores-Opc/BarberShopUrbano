@@ -18,8 +18,8 @@
                             Este es nuestro servicio estrella, pues nos especializamos en la asesoría que tiene que ver con tu imagen, nuestra prioridad es realizar las facciones que te favorecen y atenuar ciertas imperfecciones.
                         </div>
                         <button mat-button style="color: white;" (click)="onSidenavToggle(false, 'serviceCollapseOne', 'serviceCollapseOneContainer')">Cerrar</button>
-                        <button mat-button style="color: white;" >QUIERO HACER UNA RESERVA</button>
-                        <button mat-button style="color: white;" >QUIRO QUE ALGUIEN ME ASESORE</button>
+                        <button mat-button style="color: white;" (click)="routerBookings()">QUIERO HACER UNA RESERVA</button>
+                        <button mat-button style="color: white;" (click)="routerContacts()">QUIERO QUE ALGUIEN ME ASESORE</button>
                     </div>
                 </mat-card-footer>
            </mat-card>
@@ -39,6 +39,8 @@ Nosotros tenemos dos tratamientos <br/>
 2. ⁠*Rompimiento de a raíz - Semi ondulado*. - Si tienes un cabello lacio y naturalmente no tienes volumen, este tratamiento discreto no cambia en su totalidad la forma pero si proporción volumen y una ligera ondulación de medios a puntas que le da la sensación de un cepillado, el impacto visual de este tratamiento es menos agresivo.
                  </div>
                  <button mat-button style="color: white;" (click)="onSidenavToggle(false, 'serviceCollapseTwo', 'serviceCollapseTwoContainer')">Cerrar</button>
+                 <button mat-button style="color: white;" (click)="routerBookings()" routerLink="/Bookings">QUIERO HACER UNA RESERVA</button>
+                 <button mat-button style="color: white;" (click)="routerContacts()">QUIERO QUE ALGUIEN ME ASESORE</button>
              </div>
          </mat-card-footer>
         </mat-card>
@@ -63,6 +65,8 @@ Pero es el cambio total del color, para esta técnica si tomamos en cuenta el to
 
                  </div>
                  <button mat-button style="color: white;" (click)="onSidenavToggle(false, 'serviceCollapseThree', 'serviceCollapseThreeContainer')">Cerrar</button>
+                 <button mat-button style="color: white;" (click)="routerBookings()" routerLink="/Bookings">QUIERO HACER UNA RESERVA</button>
+                 <button mat-button style="color: white;" (click)="routerContacts()">QUIERO QUE ALGUIEN ME ASESORE</button>
              </div>
          </mat-card-footer>
         </mat-card>
@@ -73,18 +77,24 @@ Pero es el cambio total del color, para esta técnica si tomamos en cuenta el to
         <mat-card appearance="outlined" class="mat-card-third">
             <mat-card-title>DEPILACIÓN FACIAL (cera)</mat-card-title>
             <mat-card-content>La depilación facial con cera es una técnica que se utiliza para retirar el vello de la piel del rostro Beneficios</mat-card-content>
+            <button mat-button style="color: white;" (click)="routerBookings()" routerLink="/Bookings">QUIERO HACER UNA RESERVA</button>
+            <button mat-button style="color: white;" (click)="routerContacts()">QUIERO QUE ALGUIEN ME ASESORE</button>
         </mat-card>
       </div>
       <div class="col-md-4">
         <mat-card appearance="outlined" class="mat-card-third">
             <mat-card-title>Perfilado y afeitado de Barba / Ritual de Barba</mat-card-title>
             <mat-card-content>Objetivo mejorar los rasgos faciales  Basados en crear formas simétricas y líneas definidas Usamos vaporizador o toallas calientes para que el afeitado/perfilado no sea tan agresivo con la piel </mat-card-content>
+            <button mat-button style="color: white;" (click)="routerBookings()" routerLink="/Bookings">QUIERO HACER UNA RESERVA</button>
+            <button mat-button style="color: white;" (click)="routerContacts()">QUIERO QUE ALGUIEN ME ASESORE</button>
         </mat-card>
       </div>
       <div class="col-md-4">
         <mat-card appearance="outlined" class="mat-card-third">
             <mat-card-title>Hidratación capilar </mat-card-title>
             <mat-card-content>Esta hidratación  (enfocada en la hebra capilar) es un tratamiento que trabaja de raíz a punta , proporcionando nutrición y rejuvenecimiento capilar Usamos productos diseñados para tratar esa vitalidad brillo y suavidad que necesita tu cabello.</mat-card-content>
+            <button mat-button style="color: white;" (click)="routerBookings()" routerLink="/Bookings">QUIERO HACER UNA RESERVA</button>
+            <button mat-button style="color: white;" (click)="routerContacts()">QUIERO QUE ALGUIEN ME ASESORE</button>
         </mat-card>
       </div>
   </div>

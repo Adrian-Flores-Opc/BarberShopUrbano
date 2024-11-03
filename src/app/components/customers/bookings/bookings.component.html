@@ -4,7 +4,6 @@
     </div>
   </div>
   <div class="row" *ngIf="!_serviceSelected">
-
       <div class="col-md-4 container-card" *ngFor="let barbers of _getAvailableBarbersModels?.barbers">
         <mat-card class="example-card container-card-contend" appearance="outlined" (click)="searchReservation(barbers.id)">
           <mat-card-header>
@@ -17,69 +16,59 @@
       </mat-card>
       </div>
   </div>
+  
   <div class="row" *ngIf="_serviceSelected">
-    <mat-card class="example-card" appearance="outlined">
-      <mat-card-header>SERVICIOS</mat-card-header>
-      <div class="col-md-4">
-        <mat-card class="example-card" appearance="outlined">
-          <mat-card-header>
-            <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>SERVICIO 1</mat-card-title>
-            <mat-card-subtitle>SERVICIO 1</mat-card-subtitle>
-          </mat-card-header>
-          <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-          <mat-card-content>
-            <p>
-              The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-              A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-              bred for hunting.
-            </p>
-          </mat-card-content>
-          <mat-card-actions>
-            <button mat-button (click)="GetAvailableBarbersByService()">BARBEROS DISPONIBLES</button>
-          </mat-card-actions>
-        </mat-card>
-      </div>
-      <div class="col-md-4">
-        <mat-card class="example-card" appearance="outlined">
-          <mat-card-header>
-            <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>SERVICIO 2</mat-card-title>
-            <mat-card-subtitle>SERVICIO 2</mat-card-subtitle>
-          </mat-card-header>
-          <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-          <mat-card-content>
-            <p>
-              The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-              A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-              bred for hunting.
-            </p>
-          </mat-card-content>
-          <mat-card-actions>
-            <button mat-button (click)="GetAvailableBarbersByService()">BARBEROS DISPONIBLES</button>
-          </mat-card-actions>
-        </mat-card>
-      </div>
-      <div class="col-md-4">
-        <mat-card class="example-card" appearance="outlined">
-          <mat-card-header>
-            <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>SERVICIO 3</mat-card-title>
-            <mat-card-subtitle>SERVICIO 3</mat-card-subtitle>
-          </mat-card-header>
-          <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-          <mat-card-content>
-            <p>
-              The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-              A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-              bred for hunting.
-            </p>
-          </mat-card-content>
-          <mat-card-actions>
-            <button mat-button (click)="GetAvailableBarbersByService()">BARBEROS DISPONIBLES</button>
-          </mat-card-actions>
-        </mat-card>
-      </div>
-    </mat-card>
+    <div class="col-md-12">
+      <mat-card class="example-card" appearance="outlined">
+        <mat-card-header>SERVICIOS</mat-card-header>
+        <div class="row"></div>
+        <div class="col-md-4">
+          <mat-card class="example-card" appearance="outlined">
+            <mat-card-header>
+              <mat-card-title>Corte de cabello</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <p>- Lavado - Asesoramiento - Corte - Peinado - Aplicaciòn de producto</p>
+            </mat-card-content>
+            <mat-card-footer class="example-card-footer">
+              <mat-chip-set aria-label="Chihuahua traits">
+                <mat-chip (click)="GetAvailableBarbersByService()">Barberos Disponibles</mat-chip>
+              </mat-chip-set>
+            </mat-card-footer>
+          </mat-card>
+        </div>
+        <div class="col-md-4">
+          <mat-card class="example-card" appearance="outlined">
+            <mat-card-header>
+              <mat-card-title>Base o permanente</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <p>Este tratamiento quimico es una forma perfecta de añadir textura y volumen a tu estilo</p>
+            </mat-card-content>
+            <mat-card-footer class="example-card-footer">
+              <mat-chip-set aria-label="Chihuahua traits">
+                <mat-chip (click)="GetAvailableBarbersByService()">Barberos Disponibles</mat-chip>
+              </mat-chip-set>
+            </mat-card-footer>
+          </mat-card>
+
+        </div>
+        <div class="col-md-4">
+          <mat-card class="example-card" appearance="outlined">
+            <mat-card-header>
+              <mat-card-title>Mechas / Color/ Decoloraciòn</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <p>La colorimetria es el arte de saber mezclar colores deacuerdo a las necesidades</p>
+            </mat-card-content>
+            <mat-card-footer class="example-card-footer">
+              <mat-chip-set aria-label="Chihuahua traits">
+                <mat-chip (click)="GetAvailableBarbersByService()">Barberos Disponibles</mat-chip>
+              </mat-chip-set>
+            </mat-card-footer>
+          </mat-card>
+        </div>
+      </mat-card>
+    </div>
   </div>
 </div>
