@@ -19,54 +19,140 @@
   
   <div class="row" *ngIf="_serviceSelected">
     <div class="col-md-12">
-      <mat-card class="example-card" appearance="outlined">
+      <mat-card class="example-card" appearance="outlined" style="background: transparent; color: white; border: none;">
         <mat-card-header>SERVICIOS</mat-card-header>
-        <div class="row"></div>
-        <div class="col-md-4">
-          <mat-card class="example-card" appearance="outlined">
-            <mat-card-header>
-              <mat-card-title>Corte de cabello</mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-              <p>- Lavado - Asesoramiento - Corte - Peinado - Aplicaciòn de producto</p>
-            </mat-card-content>
-            <mat-card-footer class="example-card-footer">
-              <mat-chip-set aria-label="Chihuahua traits">
-                <mat-chip (click)="GetAvailableBarbersByService()">Barberos Disponibles</mat-chip>
-              </mat-chip-set>
-            </mat-card-footer>
-          </mat-card>
+        <div class="row">
+          <div class="col-md-4">
+            <mat-card class="example-card" appearance="outlined" style="    background: rgba(0, 0, 0, 0.68);
+            border: 1px solid #757575;
+            padding: 10px;
+            border-radius: 30px;
+            text-align: center;
+            width: 100%;
+            margin: 20px 0;">
+              <mat-card-header>
+                <mat-card-title>Corte de cabello</mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <p>- Lavado - Asesoramiento - Corte - Peinado - Aplicaciòn de producto</p>
+              </mat-card-content>
+              <mat-card-footer class="example-card-footer">
+                <mat-chip-set aria-label="Chihuahua traits">
+                  <mat-chip (click)="GetAvailableBarbersByService()">Barberos Disponibles</mat-chip>
+                </mat-chip-set>
+              </mat-card-footer>
+            </mat-card>
+          </div>
+          <div class="col-md-4">
+            <mat-card class="example-card" appearance="outlined" style="    background: rgba(0, 0, 0, 0.68);
+            border: 1px solid #757575;
+            padding: 10px;
+            border-radius: 30px;
+            text-align: center;
+            width: 100%;
+            margin: 20px 0;">
+              <mat-card-header>
+                <mat-card-title>Base o permanente</mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <p>Este tratamiento quimico es una forma perfecta de añadir textura y volumen a tu estilo</p>
+              </mat-card-content>
+              <mat-card-footer class="example-card-footer">
+                <mat-chip-set aria-label="Chihuahua traits">
+                  <mat-chip (click)="GetAvailableBarbersByService()">Barberos Disponibles</mat-chip>
+                </mat-chip-set>
+              </mat-card-footer>
+            </mat-card>
+  
+          </div>
+          <div class="col-md-4">
+            <mat-card class="example-card" appearance="outlined" style="    background: rgba(0, 0, 0, 0.68);
+            border: 1px solid #757575;
+            padding: 10px;
+            border-radius: 30px;
+            text-align: center;
+            width: 100%;
+            margin: 20px 0;">
+              <mat-card-header>
+                <mat-card-title>Mechas / Color/ Decoloraciòn</mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <p>La colorimetria es el arte de saber mezclar colores deacuerdo a las necesidades</p>
+              </mat-card-content>
+              <mat-card-footer class="example-card-footer">
+                <mat-chip-set aria-label="Chihuahua traits">
+                  <mat-chip (click)="GetAvailableBarbersByService()">Barberos Disponibles</mat-chip>
+                </mat-chip-set>
+              </mat-card-footer>
+            </mat-card>
+          </div>
         </div>
-        <div class="col-md-4">
-          <mat-card class="example-card" appearance="outlined">
-            <mat-card-header>
-              <mat-card-title>Base o permanente</mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-              <p>Este tratamiento quimico es una forma perfecta de añadir textura y volumen a tu estilo</p>
-            </mat-card-content>
-            <mat-card-footer class="example-card-footer">
-              <mat-chip-set aria-label="Chihuahua traits">
-                <mat-chip (click)="GetAvailableBarbersByService()">Barberos Disponibles</mat-chip>
-              </mat-chip-set>
-            </mat-card-footer>
-          </mat-card>
 
-        </div>
-        <div class="col-md-4">
-          <mat-card class="example-card" appearance="outlined">
-            <mat-card-header>
-              <mat-card-title>Mechas / Color/ Decoloraciòn</mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-              <p>La colorimetria es el arte de saber mezclar colores deacuerdo a las necesidades</p>
-            </mat-card-content>
-            <mat-card-footer class="example-card-footer">
-              <mat-chip-set aria-label="Chihuahua traits">
-                <mat-chip (click)="GetAvailableBarbersByService()">Barberos Disponibles</mat-chip>
-              </mat-chip-set>
-            </mat-card-footer>
-          </mat-card>
+        <div class="row">
+          <div class="col-md-4">
+            <mat-card class="example-card" appearance="outlined" style="    background: rgba(0, 0, 0, 0.68);
+            border: 1px solid #757575;
+            padding: 10px;
+            border-radius: 30px;
+            text-align: center;
+            width: 100%;
+            margin: 20px 0;">
+              <mat-card-header>
+                <mat-card-title>DEPILACIÓN FACIAL (cera)</mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <p>La depilación facial con cera es una técnica que se utiliza para retirar el vello de la piel del rostro Beneficios</p>
+              </mat-card-content>
+              <mat-card-footer class="example-card-footer">
+                <mat-chip-set aria-label="Chihuahua traits">
+                  <mat-chip (click)="GetAvailableBarbersByService()">Barberos Disponibles</mat-chip>
+                </mat-chip-set>
+              </mat-card-footer>
+            </mat-card>
+          </div>
+          <div class="col-md-4">
+            <mat-card class="example-card" appearance="outlined" style="    background: rgba(0, 0, 0, 0.68);
+            border: 1px solid #757575;
+            padding: 10px;
+            border-radius: 30px;
+            text-align: center;
+            width: 100%;
+            margin: 20px 0;">
+              <mat-card-header>
+                <mat-card-title>Perfilado y afeitado de Barba / Ritual de Barba</mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <p>Este tratamiento quimico es una forma perfecta de añadir textura y volumen a tu estilo</p>
+              </mat-card-content>
+              <mat-card-footer class="example-card-footer">
+                <mat-chip-set aria-label="Chihuahua traits">
+                  <mat-chip (click)="GetAvailableBarbersByService()">Barberos Disponibles</mat-chip>
+                </mat-chip-set>
+              </mat-card-footer>
+            </mat-card>
+  
+          </div>
+          <div class="col-md-4">
+            <mat-card class="example-card" appearance="outlined" style="    background: rgba(0, 0, 0, 0.68);
+            border: 1px solid #757575;
+            padding: 10px;
+            border-radius: 30px;
+            text-align: center;
+            width: 100%;
+            margin: 20px 0;">
+              <mat-card-header>
+                <mat-card-title>Hidratación capilar</mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <p>La colorimetria es el arte de saber mezclar colores deacuerdo a las necesidades</p>
+              </mat-card-content>
+              <mat-card-footer class="example-card-footer">
+                <mat-chip-set aria-label="Chihuahua traits">
+                  <mat-chip (click)="GetAvailableBarbersByService()">Barberos Disponibles</mat-chip>
+                </mat-chip-set>
+              </mat-card-footer>
+            </mat-card>
+          </div>
         </div>
       </mat-card>
     </div>
