@@ -78,3 +78,16 @@ export class getTimesByBarberData {
   public turnInit !: string;
   public turnEnd !: string;
 }
+
+
+export class generateReservationClientRequest{
+  public trace !: string;
+  public idRelationBarberTurn !: number;
+  public idClient !: number;
+}
+
+export class generateReservationClientResponse{
+  public idReservation !: string;
+  public respCode !: string;
+  public detailMessage !: string;
+}

@@ -5,7 +5,7 @@ export class CommonOperations{
   public showAlert(title: string, icon:string, background: string, colorFont: string){
     const Toast = Swal.mixin({
       toast: true,
-      position: "top-end",
+      position: "bottom-end",
       showConfirmButton: false,
       timer: 4000,
       timerProgressBar: true,
@@ -25,6 +25,12 @@ export class CommonOperations{
     else if(icon=="error"){
       Toast.fire({
         icon: "error",
+        title: title
+      });
+    }
+    else if(icon=="info"){
+      Toast.fire({
+        icon: "info",
         title: title
       });
     }

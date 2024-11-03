@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Observable, throwError } from 'rxjs';
-import { barberCreateRequest, getAvailableBarbersModels, genericResponse, getTimesByBarberRequest, getTimesByBarberResponse } from '../models/viewbookings/barbers-administration.model';
+import { barberCreateRequest, getAvailableBarbersModels, genericResponse, getTimesByBarberRequest, getTimesByBarberResponse, generateReservationClientRequest, generateReservationClientResponse } from '../models/viewbookings/barbers-administration.model';
 import { BarbersGetResponse } from '../models/viewbarbers/barbers-administration.model';
 import { Commonresult } from '../models/commonresult.model';
 import { createClient, createClientResponse, dataClientFilter, filterClientRequest, InformationReservationResponse, PaymentRegisterRequest, ServicesResponse } from '../models/viewusers/user-administration.model.model';
@@ -60,5 +60,10 @@ export class BarbersAdministrationService {
   public getTimesByBarber(_request: getTimesByBarberRequest): Observable<getTimesByBarberResponse>{
     const withCredentials = false;
     return this.httpConnection.post<getTimesByBarberResponse>(this.apiEndPoint + 'api/GetTimesByBarber', _request, { headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }, withCredentials });
+  }
+
+  public generateReservationClient(_request: generateReservationClientRequest): Observable<generateReservationClientResponse>{
+    const withCredentials = false;
+    return this.httpConnection.post<generateReservationClientResponse>(this.apiEndPoint + 'api/GenerateReservation', _request, { headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }, withCredentials });
   }
 }
