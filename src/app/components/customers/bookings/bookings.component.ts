@@ -20,6 +20,8 @@ import { DialogOverViewCalendarSelectionComponent } from '../openDialogs/dialog-
 
 import { MatChipsModule } from '@angular/material/chips';
 
+import { dataClientFilter } from '../../../models/viewusers/user-administration.model.model';
+
 @Component({
   selector: 'app-bookings',
   standalone: true,
@@ -41,6 +43,9 @@ export class BookingsComponent implements OnInit {
   public _getAvailableBarbersViewsModels !: getAvailableBarbersViewsModels;
 
   public _serviceSelected:boolean = false;
+
+
+  public _responseFilterClient !: dataClientFilter;
 
   constructor(private _barbersService: BarbersAdministrationService) { }
 
@@ -82,7 +87,8 @@ export class BookingsComponent implements OnInit {
       this._requestFilterCellphone.cellphone = cellphone;
       this._requestFilterCellphone.typeFilter = 'CELLPHONE';
       this._barbersService.filterInformationClient(this._requestFilterCellphone).subscribe({ next: (_response) => {
-        console.log(_response);
+        console.log('DATOS DEL CLIENTE SEGUN SU CELULAR: ' + JSON.stringify(_response));
+        this._responseFilterClient = _response;
         if (_response.detailMessage === "DATA NOT FOUND" && _response.respCode === "001"){
             // LEVANTAR MODAL PARA REGISTRO DE DATOS
             console.log('SE DEBE INICIAR OTRO MODAL PARA EL REGISTRO DEL CLIENTE:');
