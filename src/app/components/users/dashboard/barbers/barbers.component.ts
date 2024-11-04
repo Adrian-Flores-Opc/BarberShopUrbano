@@ -18,7 +18,7 @@ import {FormsModule} from '@angular/forms';
 import { DialogOverviewExampleDialog } from '../opendialogs/dialog-add-barber/dialog-add-barber.component';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogActions, MatDialogClose, MatDialogContent, MatDialogRef, MatDialogTitle, } from '@angular/material/dialog';
 import { CommonOperations } from '../../../../Common/common.operations';
-
+import { Console } from 'node:console';
 
 @Component({
   selector: 'app-barbers',
@@ -58,6 +58,13 @@ export class BarbersComponent {
     // Aquí puedes agregar cualquier otra lógica que necesites
     this.router.navigate(['/Users/Dashboard/Barbers/Details/'+ row.id]);
 }
+onSelect(element: any) {    
+    console.log('entro: ' + element.id);
+    this.openDetail(element.id);
+    this.router.navigate(['/Users/Dashboard/Barbers/Details/'+ element.id]);
+  }
+
+
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
       data: {barber: this.barber},
@@ -76,6 +83,7 @@ export class BarbersComponent {
     this.router.navigate(['/Dashboard/Details/'+id]);
   }
   applyFilter(event: Event) {
+    console.log('ENTRO EVENTO');
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }

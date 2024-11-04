@@ -1,46 +1,72 @@
-<div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="justify-content-center">
-          <figure class="text-center">
-            <blockquote class="blockquote" style="padding: 10px;">
-              <p>LIST OF USERS</p>
-            </blockquote>          
-          </figure>        
-          <br>
-          <mat-form-field>
-            <mat-label>Filter</mat-label>
-            <input matInput (keyup)="applyFilter($event)" placeholder="Ex. LastName" #input>
-          </mat-form-field>
-          <!-- <button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorSuccess MuiIconButton-sizeMedium css-sd8kw4" (click)="openDialog()"></button> -->
-              <button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorSuccess MuiIconButton-sizeMedium css-sd8kw4" (click)="openDialog()">
-                              <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-vubbuv" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="AddCircleOutlineIcon"><path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2m0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8"></path></svg>
-                              Agregar
-              </button>                        
-          <table mat-table [dataSource]="dataSource" class="MuiTable-root css-1wwzycz" aria-labelledby="tableTitle">     
-            <ng-container matColumnDef="lastname">
-              <th mat-header-cell *matHeaderCellDef> LastName </th>
-              <td mat-cell *matCellDef="let Element"> {{Element.lastName}} </td>
-            </ng-container>
-          
-            <ng-container matColumnDef="motherlastname">
-              <th mat-header-cell *matHeaderCellDef> MotherLastName </th>
-              <td mat-cell *matCellDef="let Element"> {{Element.motherLastName}} </td>
-            </ng-container>
-          
-            <ng-container matColumnDef="names">
-              <th mat-header-cell *matHeaderCellDef> Names </th>
-              <td mat-cell *matCellDef="let Element"> {{Element.names}} </td>
-            </ng-container>               
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr
-                mat-row
-                (click)="handleRowClick(row)"
-                [class.demo-row-is-clicked]="clickedRows.has(row)"
-                *matRowDef="let row; columns: displayedColumns;"
-            ></tr>  
-          </table>        
+<div class="flex flex-col items-center justify-top min-h-screen bg-gray-800 dark bg-cover bg-center" style="padding-top: 1%; background-image: url('../../../../../assets/Images/fondo_main_seconds.jpeg');">
+  <div class="w-full max-w-3xl bg-gray-800 rounded-lg shadow-md p-6 border border-white">
+      <h2 class="text-2xl font-bold text-gray-200 mb-4 text-center">LIST OF USERS</h2>
+      <div class="flex flex-col space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:space-x-2 w-full">
+          <label class="cursor-pointer text-slate-400 sm:w-auto sm:mr-2 mb-2 sm:mb-0">
+              <span>Filter</span>
+          </label>
+          <div class="flex flex-col sm:flex-row sm:items-center sm:space-x-2 w-full sm:flex-grow">
+            <div class="flex items-center space-x-2 w-full">                
+                <input
+                    matInput (keyup)="applyFilter($event)"
+                    placeholder="Ex. LastName"
+                    class="bg-gray-700 text-gray-200 border-0 rounded-md p-2 flex-grow focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
+                />
+                <div class="group relative flex items-center">
+                    <button 
+                        (click)="openDialog()" 
+                    >
+                    <svg 
+                        stroke-linejoin="round" 
+                        stroke-linecap="round" 
+                        stroke-width="2" 
+                        stroke="currentColor" 
+                        fill="none" 
+                        viewBox="0 0 24 24" 
+                        class="w-8 h-8 hover:scale-125 duration-200 hover:stroke-blue-500"
+                    >
+                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                        <g id="SVGRepo_iconCarrier"> 
+                            <path d="M15 12L12 12M12 12L9 12M12 12L12 9M12 12L12 15" stroke="#dde0e9" stroke-width="1.5" stroke-linecap="round"></path> 
+                            <path d="M7 3.33782C8.47087 2.48697 10.1786 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 10.1786 2.48697 8.47087 3.33782 7" stroke="#dde0e9" stroke-width="1.5" stroke-linecap="round"></path> 
+                        </g>
+                    </svg>
+                    </button>
+                    <span class="absolute -top-14 left-[50%] -translate-x-[50%] 
+                        z-20 origin-left scale-0 px-3 rounded-lg border 
+                        border-gray-300 bg-white py-2 text-sm font-bold
+                        shadow-md transition-all duration-300 ease-in-out 
+                        group-hover:scale-100">Add
+                    </span>
+                </div>
+            </div>
         </div>
       </div>
-    </div>
+      <div class="w-full overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-200 bg-gray-700 text-gray-200">
+            <thead class="bg-gray-600">
+                <tr>
+                    <th class="px-2 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">LastName</th>
+                    <th class="px-2 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">MotherLastName</th>
+                    <th class="px-2 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Names</th>
+                </tr>
+            </thead>
+            <tbody class="bg-gray-700 divide-y divide-gray-600">
+                <tr *ngFor="let element of dataSource.data">
+                    <td class="px-2 py-4 whitespace-nowrap text-sm text-gray-200">{{ element.lastName }}</td>
+                    <td class="px-2 py-4 whitespace-nowrap text-sm text-gray-200">{{ element.motherLastName }}</td>
+                    <td class="px-2 py-4 whitespace-nowrap text-sm text-gray-200">{{ element.names }}</td>
+                    <td class="px-2 py-4 whitespace-nowrap text-sm text-gray-300">
+                      <button class="text-green-500" (click)="onSelect(element)">
+                        <i class="fa fa-info-circle"></i> Details
+                      </button>
+                  </td>                          
+                </tr>                      
+            </tbody>
+        </table>
+    </div>  
   </div>
+</div>
+
