@@ -63,10 +63,10 @@ export class UserComponent {
       
     }})
   }
-  handleRowClick(row: InformationUser) {
-    console.log('entro: ' + row.id);
+  onSelect(element: any) {    
+    console.log('entro: ' + element.id);
     // Aquí puedes agregar cualquier otra lógica que necesites
-    this.router.navigate(['/Users/Dashboard/Users/Details/'+ row.id]);
+    this.router.navigate(['/Users/Dashboard/Users/Details/'+ element.id]);
 }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
